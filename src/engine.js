@@ -1,10 +1,9 @@
 import { Observable } from 'rx';
 
-import { getDistance } from './utils';
 import { enemy$, enemiesMove$ } from './enemy/index';
 import { tower$, towerFireToEnemy$ } from './tower';
-import { isInDistance } from './utils';
-// import { bullet$ } from './bullet';
+import { bulletFactory } from './bullet';
+import { isInDistance, getDistance } from './utils';
 
 // init
 let enemies = [];
@@ -14,14 +13,15 @@ let bullets = [];
 tower$.subscribe((tower) => { towers.push(tower); });
 
 // tower detect enemy in his area
-enemiesMove$.subscrive((enemy) => {
+enemiesMove$.subscribe((enemy) => {
   const towerInRange = towers
     .filter((tower) => isInDistance(tower, enemy))
-    .filter((tower) => tower.reloadBulltetTime === 0);
+    .filter((tower) => tower.reloadBulltetTime === 0)
+    ;
   towerInRange.forEach((tower) => { tower.fireToEnemy(enemy); });
 });
 
 // tower fire to enemy
-towerFireToEnemy$.subscrive(({ tower, enemy }) => {
-  
+towerFireToEnemy$.subscribe(({ tower, enemy }) => {
+  bulletFactory()
 });

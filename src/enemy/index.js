@@ -1,20 +1,22 @@
 import createjs from 'easel';
 import Rx from 'rx';
 
+import stage from '../stage';
+import ticker from '../ticker';
 import getMove from './move';
 
 export const enemy$ = new Rx.Subject();
 export const enemiesMove$ = new Rx.Subject();
 
-export function enemyFactory(stage, ticker) {
+export function enemyFactory() {
   const circle = new createjs.Shape();
+  circle.graphics.beginFill('red').drawCircle(0, 0, 5);
   circle.actions = {
     die: new Rx.Subject(),
     move: new Rx.Subject(),
   };
   circle.step = 0;
   circle.speed = 2;
-  circle.graphics.beginFill('red').drawCircle(0, 0, 5);
 
   circle.subscribsion = ticker.subscribe(
     () => {
@@ -33,7 +35,6 @@ export function enemyFactory(stage, ticker) {
     if (circle.x > 500 || circle.y > 1000) {
       circle.actions.die.onNext();
     }
-    // hit by bullet
   });
 
   circle.actions.die.subscribe(() => {

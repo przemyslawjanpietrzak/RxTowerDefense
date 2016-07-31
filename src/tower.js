@@ -1,20 +1,34 @@
 import createjs from 'easel';
 import Rx from 'rx';
 
+import stage from './stage';
+import ticker from './ticker';
+
 export const tower$ = new Rx.Subject();
 export const towerFireToEnemy$ = new Rx.Subject();
 
-export function towerFactory(x, y, stage) {
-  // const reloadBulltetTime = 5;
+export function towerFactory(x, y) {
+  const reloadBulltetTime = 50;
   const tower = new createjs.Shape();
-  tower.graphics.beginFill('blue').drawtower(x, y, 5);
-  tower.range = 50;
+  tower.graphics.beginFill('blue').drawCircle(0, 0, 5);
+  tower.x = x;
+  tower.y = y;
+  tower.range = 250;
   tower.reloadBulltetTime = 0;
-  tower.fire = function towerFire(enemy) {
+  tower.fireToEnemy = function towerFireToEnemy(enemy) {
     towerFireToEnemy$.onNext({ tower, enemy });
+    tower.reloadBulltetTime = reloadBulltetTime;
   };
 
+  tower.subscribsion = ticker.subscribe(
+    () => {
+      if (tower.reloadBulltetTime > 0) {
+        tower.reloadBulltetTime--;
+      }
+    }
+  );
+
   stage.addChild(tower);
-  tower$.onNext({ x: tower.x, y: tower.y, range: tower.range });
+  tower$.onNext(tower);
   return tower;
 }

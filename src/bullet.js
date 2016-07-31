@@ -1,28 +1,40 @@
 import createjs from 'easel';
 import Rx from 'rx';
 
-export default function bulletFactory(
+import stage from './stage';
+import ticker from './ticker';
+import { getMove } from './utils';
+
+export function bulletFactory(
   { x: positionX, y: positionY },
-  { x: destinationX, y: destinationY },
-  stage,
-  ticker
+  { x: destinationX, y: destinationY }
 ) {
-  const circle = new createjs.Shape();
-  circle.actions = {
+  const bullet = new createjs.Shape();
+  bullet.graphics.beginFill('black').drawbullet(positionX, positionY, 2);
+  bullet.actions = {
     die: new Rx.Subject(),
     move: new Rx.Subject(),
   };
-  circle.graphics.beginFill('black').drawCircle(positionX, positionY, 2);
-  stage.addChild(circle);
 
-  circle.subscribsion = ticker.subscribe(
-    () => {
-      const newDirections = (circle);
-      circle.x = newDirections.x;
-      circle.y = newDirections.y;
-      circle.step = newDirections.step;
+  bullet.die = () => {
+    stage.removeChild(bullet);
+    bullet.subscribcion.completed();
+    bullet.actions.move.onCompleted();
+  };
 
-      circle.actions.move.onNext({ x: circle.x, y: circle.y });
-    }
-  );
+  bullet.subscribcion = ticker.subscribe(() => {
+    const newDirections = getMove(
+      { x: positionX, y: positionY },
+      { x: destinationX, y: destinationY },
+      bullet.speed
+    );
+    bullet.x = newDirections.x;
+    bullet.y = newDirections.y;
+    bullet.step = newDirections.step;
+
+    bullet.actions.move.onNext({ x: bullet.x, y: bullet.y });
+  });
+
+  stage.addChild(bullet);
+  return bullet;
 }
