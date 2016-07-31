@@ -5,7 +5,6 @@ import stage from './stage';
 import { enemyFactory } from './enemy/index';
 import { towerFactory } from './tower';
 import path from './path';
-
 import engine from './engine';
 
 stage.addChild(path);
@@ -15,7 +14,7 @@ enemyFactory();
 towerFactory(450, 300);
 
 Rx.Observable
-  .interval(670)
+  .interval(333)
   .timeInterval()
   .subscribe(() => {
     enemyFactory(stage);

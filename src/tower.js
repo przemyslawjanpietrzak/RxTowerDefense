@@ -8,7 +8,7 @@ export const tower$ = new Rx.Subject();
 export const towerFireToEnemy$ = new Rx.Subject();
 
 export function towerFactory(x, y) {
-  const reloadBulltetTime = 50;
+  const reloadBulltetTime = 100;
   const tower = new createjs.Shape();
   tower.graphics.beginFill('blue').drawCircle(0, 0, 5);
   tower.x = x;

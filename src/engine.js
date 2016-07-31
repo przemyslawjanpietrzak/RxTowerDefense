@@ -1,14 +1,15 @@
-import { Observable } from 'rx';
+// import { Observable } from 'rx';
 
-import { enemy$, enemiesMove$ } from './enemy/index';
+import { enemiesMove$ } from './enemy/index';
 import { tower$, towerFireToEnemy$ } from './tower';
-import { bulletFactory } from './bullet';
-import { isInDistance, getDistance } from './utils';
+import { bullet$, bulletFactory } from './bullet';
+import { isInDistance } from './utils';
+
 
 // init
-let enemies = [];
+// let enemies = [];
 const towers = [];
-let bullets = [];
+// let bullets = [];
 
 tower$.subscribe((tower) => { towers.push(tower); });
 
@@ -23,5 +24,5 @@ enemiesMove$.subscribe((enemy) => {
 
 // tower fire to enemy
 towerFireToEnemy$.subscribe(({ tower, enemy }) => {
-  bulletFactory()
+  bulletFactory(tower, enemy);
 });

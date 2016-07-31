@@ -3,14 +3,22 @@ import Rx from 'rx';
 
 import stage from './stage';
 import ticker from './ticker';
-import { getMove } from './utils';
+import { getMove, getDistance } from './utils';
+
+export const bullet$ = new Rx.Subject();
+export const bulletMove$ = new Rx.Subject();
 
 export function bulletFactory(
   { x: positionX, y: positionY },
   { x: destinationX, y: destinationY }
 ) {
   const bullet = new createjs.Shape();
-  bullet.graphics.beginFill('black').drawbullet(positionX, positionY, 2);
+  bullet.graphics.beginFill('black').drawCircle(0, 0, 10);
+  bullet.x = positionX;
+  bullet.y = positionY;
+  bullet.destinationX = destinationX;
+  bullet.destinationY = destinationY;
+  bullet.speed = 5;
   bullet.actions = {
     die: new Rx.Subject(),
     move: new Rx.Subject(),
@@ -19,22 +27,39 @@ export function bulletFactory(
   bullet.die = () => {
     stage.removeChild(bullet);
     bullet.subscribcion.completed();
+    bullet.moveSubscription.completed();
     bullet.actions.move.onCompleted();
+    bullet.actions.die.onCompleted();
   };
 
   bullet.subscribcion = ticker.subscribe(() => {
     const newDirections = getMove(
-      { x: positionX, y: positionY },
+      bullet,
       { x: destinationX, y: destinationY },
       bullet.speed
     );
     bullet.x = newDirections.x;
     bullet.y = newDirections.y;
-    bullet.step = newDirections.step;
 
-    bullet.actions.move.onNext({ x: bullet.x, y: bullet.y });
+    bullet.actions.move.onNext(bullet);
+    bulletMove$.onNext(bullet);
   });
 
+  bullet.moveSubscription = bullet.actions.move.subscribe((movedBullet) => {
+    if (getDistance(
+        movedBullet.x,
+        movedBullet.y,
+        movedBullet.destinationX,
+        movedBullet.destinationY
+      ) < movedBullet.speed * 1.43) {
+      stage.removeChild(movedBullet);
+      movedBullet.actions.move.onCompleted();
+      movedBullet.actions.die.onCompleted();
+      movedBullet.moveSubscription.dispose();
+    }
+  });
+
+  bullet$.onNext(bullet);
   stage.addChild(bullet);
   return bullet;
 }
