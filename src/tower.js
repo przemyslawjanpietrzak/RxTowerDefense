@@ -2,21 +2,19 @@ import createjs from 'easel';
 import Rx from 'rx';
 
 export const tower$ = new Rx.Subject();
+export const towerFireToEnemy$ = new Rx.Subject();
 
 export function towerFactory(x, y, stage) {
   // const reloadBulltetTime = 5;
-  const circle = new createjs.Shape();
-  circle.graphics.beginFill('blue').drawCircle(x, y, 5);
-  circle.actions = {
-    fireToEnemy: new Rx.Subject(),
-    range: new Rx.Subject(),
-  };
-  circle.range = 50;
-  circle.reloadBulltetTime = 0;
-  circle.fire = function towerFire(enemy) {
-    circle.actions.fireToEnemy.onNext(enemy);
+  const tower = new createjs.Shape();
+  tower.graphics.beginFill('blue').drawtower(x, y, 5);
+  tower.range = 50;
+  tower.reloadBulltetTime = 0;
+  tower.fire = function towerFire(enemy) {
+    towerFireToEnemy$.onNext({ tower, enemy });
   };
 
-  stage.addChild(circle);
-  tower$.onNext({ x: circle.x, y: circle.y, range: circle.range });
+  stage.addChild(tower);
+  tower$.onNext({ x: tower.x, y: tower.y, range: tower.range });
+  return tower;
 }

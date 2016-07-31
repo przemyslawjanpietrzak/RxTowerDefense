@@ -1,8 +1,8 @@
 /* global define, it, describe */
 const assert = require('chai');
 const map = require('./map');
-const getStepChange = require('./move').getStepChange;
-const getMove = require('./move').default;
+const getStepChange = require('./enemy/move').getStepChange;
+const getMove = require('./enemy/move').default;
 
 describe('Get step change', function() {
   it('getStepChange should return true when distance between new point is smaller than speed', () => {

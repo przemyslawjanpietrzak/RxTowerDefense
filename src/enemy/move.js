@@ -1,4 +1,4 @@
-import paths from './map';
+import paths from '../map';
 
 export const getStepChange =
   (x, y, endX, endY, speed) => Math.abs(endX - x) <= speed && Math.abs(endY - y) <= speed;

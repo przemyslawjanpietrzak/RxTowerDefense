@@ -2,7 +2,7 @@ import createjs from 'easel';
 import Rx from 'rx';
 
 
-import { enemyFactory } from './enemy';
+import { enemyFactory } from './enemy/index';
 import { towerFactory } from './tower';
 import path from './path';
 
