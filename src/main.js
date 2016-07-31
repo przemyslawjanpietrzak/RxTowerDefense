@@ -1,11 +1,10 @@
-import createjs from 'easel';
 import Rx from 'rx';
 
 import stage from './stage';
 import { enemyFactory } from './enemy/index';
 import { towerFactory } from './tower';
 import path from './path';
-import engine from './engine';
+import './engine';
 
 stage.addChild(path);
 stage.update();

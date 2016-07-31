@@ -8,17 +8,17 @@ import { getMove, getDistance } from './utils';
 export const bullet$ = new Rx.Subject();
 export const bulletMove$ = new Rx.Subject();
 
-export function bulletFactory(
-  { x: positionX, y: positionY },
-  { x: destinationX, y: destinationY }
-) {
+export function bulletFactory(tower, enemy) {
   const bullet = new createjs.Shape();
+  const { x: positionX, y: positionY } = tower;
+  const { x: destinationX, y: destinationY } = enemy;
+
   bullet.graphics.beginFill('black').drawCircle(0, 0, 10);
   bullet.x = positionX;
   bullet.y = positionY;
   bullet.destinationX = destinationX;
   bullet.destinationY = destinationY;
-  bullet.speed = 5;
+  bullet.speed = 10;
   bullet.actions = {
     die: new Rx.Subject(),
     move: new Rx.Subject(),
@@ -56,6 +56,7 @@ export function bulletFactory(
       movedBullet.actions.move.onCompleted();
       movedBullet.actions.die.onCompleted();
       movedBullet.moveSubscription.dispose();
+      enemy.die();
     }
   });
 

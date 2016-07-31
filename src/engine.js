@@ -1,15 +1,20 @@
 // import { Observable } from 'rx';
 
-import { enemiesMove$ } from './enemy/index';
+import { enemy$, enemiesMove$ } from './enemy/index';
 import { tower$, towerFireToEnemy$ } from './tower';
 import { bullet$, bulletFactory } from './bullet';
 import { isInDistance } from './utils';
 
 
 // init
-// let enemies = [];
+
 const towers = [];
-// let bullets = [];
+const enemies = [];
+const bullets = [];
+bullet$.subscribe((bullet) => { bullets.push(bullet); });
+enemy$.subscribe((enemy) => { enemies.push(enemy); });
+bullet$.subscribe((bullet) => { bullets.push(bullet); });
+
 
 tower$.subscribe((tower) => { towers.push(tower); });
 

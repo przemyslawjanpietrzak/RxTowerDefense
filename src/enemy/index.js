@@ -8,43 +8,51 @@ import getMove from './move';
 export const enemy$ = new Rx.Subject();
 export const enemiesMove$ = new Rx.Subject();
 
+const die = (enemy) => {
+  stage.removeChild(enemy);
+  enemy.actions.move.onCompleted();
+  enemy.actions.die.onCompleted();
+  enemy.subscribsion.completed();
+};
+
+
 export function enemyFactory() {
-  const circle = new createjs.Shape();
-  circle.graphics.beginFill('red').drawCircle(0, 0, 5);
-  circle.actions = {
+  const enemy = new createjs.Shape();
+  enemy.graphics.beginFill('red').drawCircle(0, 0, 5);
+  enemy.actions = {
     die: new Rx.Subject(),
     move: new Rx.Subject(),
   };
-  circle.step = 0;
-  circle.speed = 2;
+  enemy.step = 0;
+  enemy.speed = 2;
+  enemy.die = function dieEnemy() {
+    die(enemy);
+  };
 
-  circle.subscribsion = ticker.subscribe(
+  enemy.subscribsion = ticker.subscribe(
     () => {
-      const newDirections = getMove(circle);
-      circle.x = newDirections.x;
-      circle.y = newDirections.y;
-      circle.step = newDirections.step;
+      const newDirections = getMove(enemy);
+      enemy.x = newDirections.x;
+      enemy.y = newDirections.y;
+      enemy.step = newDirections.step;
 
-      circle.actions.move.onNext({ x: circle.x, y: circle.y });
-      enemiesMove$.onNext({ x: circle.x, y: circle.y });
+      enemy.actions.move.onNext(enemy);
+      enemiesMove$.onNext(enemy);
     }
   );
 
-  circle.actions.move.subscribe(() => {
+  enemy.actions.move.subscribe(() => {
     // out of map
-    if (circle.x > 500 || circle.y > 1000) {
-      circle.actions.die.onNext();
+    if (enemy.x > 500 || enemy.y > 1000) {
+      enemy.actions.die.onNext();
     }
   });
 
-  circle.actions.die.subscribe(() => {
-    stage.removeChild(circle);
-    circle.actions.move.onCompleted();
-    circle.actions.die.onCompleted();
-    circle.subscribsion.completed();
+  enemy.actions.die.subscribe(() => {
+    die(enemy);
   });
 
-  stage.addChild(circle);
-  enemy$.onNext(circle);
-  return circle;
+  stage.addChild(enemy);
+  enemy$.onNext(enemy);
+  return enemy;
 }
