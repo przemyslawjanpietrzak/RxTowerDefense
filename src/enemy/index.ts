@@ -43,7 +43,7 @@ export function enemyFactory() {
 
   enemy.actions.move.subscribe(() => {
     // out of map
-    if (enemy.x > 500 || enemy.y > 1000) {
+    if (enemy.x > 1000 || enemy.y > 1000) {
       enemy.actions.die.onNext();
     }
   });

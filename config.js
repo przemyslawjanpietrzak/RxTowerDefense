@@ -34,6 +34,7 @@ System.config({
     "ts": "github:frankwallis/plugin-typescript@5.0.8",
     "ts-runtime": "npm:babel-runtime@5.8.38",
     "tween.js": "npm:tween.js@16.3.4",
+    "victor": "npm:victor@1.1.0",
     "github:frankwallis/plugin-typescript@5.0.8": {
       "typescript": "npm:typescript@2.0.0"
     },

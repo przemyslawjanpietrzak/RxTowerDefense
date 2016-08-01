@@ -1,29 +1,11 @@
-const steps: Array<Step> = [
-  {
-    x: 0,
-    y: 100,
-  },
-  {
-    x: 100,
-    y: 100,
+import Victor from 'victor';
+import steps from './map0';
 
-  },
-  {
-    x: 250,
-    y: 250,
-  },
-  {
-    x: 500,
-    y: 250,
-  },
-  {
-    x: 500,
-    y: 500,
-  },
-  {
-    x: 1000,
-    y: 1000,
-  },
-];
+const firstStep = {
+  x: 0,
+  y: 0,
+};
 
-export default steps;
+
+const allSteps = [firstStep, ...steps];
+export default steps.map(({ x, y }, index) => new Victor(x - allSteps[index].x, y - allSteps[index].y));

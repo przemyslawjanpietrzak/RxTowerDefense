@@ -13,7 +13,8 @@
       "easel": "github:CreateJS/EaselJS@^0.8.2",
       "node-easel": "npm:node-easel@^0.1.2",
       "rx": "npm:rx@^4.1.0",
-      "ts": "github:frankwallis/plugin-typescript@^5.0.8"
+      "ts": "github:frankwallis/plugin-typescript@^5.0.8",
+      "victor": "npm:victor@^1.1.0"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
