@@ -1,9 +1,9 @@
-import createjs from 'easel';
-import Rx from 'rx';
+import createjs from "easel";
+import Rx from "rx";
 
-import stage from './stage';
-import ticker from './ticker';
-import { getMove, getDistance } from './utils';
+import stage from "./../stage";
+import ticker from "./../ticker";
+import { getMove, getDistance } from "./../utils";
 
 export const bullet$ = new Rx.Subject();
 export const bulletMove$ = new Rx.Subject();
@@ -13,7 +13,7 @@ export function bulletFactory(tower, enemy) {
   const { x: positionX, y: positionY } = tower;
   const { x: destinationX, y: destinationY } = enemy;
 
-  bullet.graphics.beginFill('black').drawCircle(0, 0, 10);
+  bullet.graphics.beginFill("black").drawCircle(0, 0, 10);
   bullet.x = positionX;
   bullet.y = positionY;
   bullet.destinationX = destinationX;

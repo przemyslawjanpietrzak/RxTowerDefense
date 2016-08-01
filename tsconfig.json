@@ -1,0 +1,15 @@
+
+{
+    "compilerOptions": {
+        "module": "system",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outFile": ".build.js",
+        "sourceMap": true
+    },
+    "exclude": [
+        "node_modules",
+        "jspm_packages"
+    ]
+}

@@ -8,7 +8,7 @@ import getMove from './move';
 export const enemy$ = new Rx.Subject();
 export const enemiesMove$ = new Rx.Subject();
 
-const die = (enemy) => {
+const die = (enemy: Enemy) => {
   stage.removeChild(enemy);
   enemy.actions.move.onCompleted();
   enemy.actions.die.onCompleted();
@@ -17,7 +17,7 @@ const die = (enemy) => {
 
 
 export function enemyFactory() {
-  const enemy = new createjs.Shape();
+  const enemy: Enemy = new createjs.Shape();
   enemy.graphics.beginFill('red').drawCircle(0, 0, 5);
   enemy.actions = {
     die: new Rx.Subject(),

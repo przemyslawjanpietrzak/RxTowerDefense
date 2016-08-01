@@ -1,9 +1,9 @@
-import createjs from 'easel';
+import createjs from "easel";
 
-import steps from './map';
+import steps from "./map";
 
-const line = new createjs.Shape();
-line.graphics.beginStroke('black');
+const line: Shape = new createjs.Shape();
+line.graphics.beginStroke("black");
 
 const [firstStep, ...restSteps] = steps;
 line.graphics.moveTo(firstStep.x, firstStep.y);
