@@ -14,7 +14,7 @@ export function towerFactory(x, y) {
   tower.x = x;
   tower.y = y;
   tower.range = 250;
-  tower.reloadBulltetTime = 0;
+  tower.reloadBulltetTime = 0; d
   tower.fireToEnemy = function towerFireToEnemy(enemy) {
     towerFireToEnemy$.onNext({ tower, enemy });
     tower.reloadBulltetTime = reloadBulltetTime;
