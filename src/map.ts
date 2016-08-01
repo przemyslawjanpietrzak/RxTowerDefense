@@ -1,4 +1,4 @@
-export default [
+const steps: Array<Step> = [
   {
     x: 0,
     y: 100,
@@ -25,3 +25,5 @@ export default [
     y: 1000,
   },
 ];
+
+export default steps;

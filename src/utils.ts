@@ -1,7 +1,7 @@
 export const getDistance = (x1, y1, x2, y2) =>
   Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 
-const getDirection = (position, destination, speed) => {
+const getDirection = (position: number, destination: number, speed: number): number => {
   if (Math.abs(position - destination) < speed * 1.43) {
     return 0;
   }
@@ -20,6 +20,6 @@ export function getMove(position, destination, speed) {
   };
 }
 
-export function isInDistance(tower, enemy) {
+export function isInDistance(tower: Tower, enemy: Enemy): boolean {
   return getDistance(tower.x, tower.y, enemy.x, enemy.y) <= tower.range;
 }

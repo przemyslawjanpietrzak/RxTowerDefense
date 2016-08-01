@@ -8,8 +8,8 @@ import { getMove, getDistance } from "./../utils";
 export const bullet$ = new Rx.Subject();
 export const bulletMove$ = new Rx.Subject();
 
-export function bulletFactory(tower, enemy) {
-  const bullet = new createjs.Shape();
+export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
+  const bullet: Bullet = new createjs.Shape();
   const { x: positionX, y: positionY } = tower;
   const { x: destinationX, y: destinationY } = enemy;
 
@@ -26,13 +26,13 @@ export function bulletFactory(tower, enemy) {
 
   bullet.die = () => {
     stage.removeChild(bullet);
-    bullet.subscribcion.completed();
+    bullet.subscription.completed();
     bullet.moveSubscription.completed();
     bullet.actions.move.onCompleted();
     bullet.actions.die.onCompleted();
   };
 
-  bullet.subscribcion = ticker.subscribe(() => {
+  bullet.subscription = ticker.subscribe(() => {
     const newDirections = getMove(
       bullet,
       { x: destinationX, y: destinationY },

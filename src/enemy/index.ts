@@ -12,7 +12,7 @@ const die = (enemy: Enemy) => {
   stage.removeChild(enemy);
   enemy.actions.move.onCompleted();
   enemy.actions.die.onCompleted();
-  enemy.subscribsion.completed();
+  enemy.subscription.completed();
 };
 
 
@@ -29,7 +29,7 @@ export function enemyFactory() {
     die(enemy);
   };
 
-  enemy.subscribsion = ticker.subscribe(
+  enemy.subscription = ticker.subscribe(
     () => {
       const newDirections = getMove(enemy);
       enemy.x = newDirections.x;
