@@ -8,6 +8,11 @@ import { getMove, getDistance } from "./../utils";
 export const bullet$ = new Rx.Subject();
 export const bulletMove$ = new Rx.Subject();
 
+const die = (bullet: Bullet) => {
+  stage.removeChild(bullet);
+  bullet.subscription.dispose();
+};
+
 export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
   const bullet: Bullet = new createjs.Shape();
   const { x: positionX, y: positionY } = tower;
@@ -19,20 +24,8 @@ export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
   bullet.destinationX = destinationX;
   bullet.destinationY = destinationY;
   bullet.speed = 10;
-  bullet.actions = {
-    die: new Rx.Subject(),
-    move: new Rx.Subject(),
-  };
 
-  bullet.die = () => {
-    stage.removeChild(bullet);
-    bullet.subscription.completed();
-    bullet.moveSubscription.completed();
-    bullet.actions.move.onCompleted();
-    bullet.actions.die.onCompleted();
-  };
-
-  bullet.subscription = ticker.subscribe(() => {
+  bullet.subscription = ticker.subscribe(() => { // TODO move to file
     const newDirections = getMove(
       bullet,
       { x: destinationX, y: destinationY },
@@ -41,23 +34,18 @@ export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
     bullet.x = newDirections.x;
     bullet.y = newDirections.y;
 
-    bullet.actions.move.onNext(bullet);
+    if (getDistance(bullet.x,
+        bullet.y,
+        bullet.destinationX,
+        bullet.destinationY
+      ) <= bullet.speed) {
+      enemy.die(); // TODO move to enemy file
+      die(bullet);
+    }
+
     bulletMove$.onNext(bullet);
   });
 
-  bullet.moveSubscription = bullet.actions.move.subscribe((movedBullet) => {
-    if (getDistance(movedBullet.x,
-        movedBullet.y,
-        movedBullet.destinationX,
-        movedBullet.destinationY
-      ) <= movedBullet.speed) {
-      stage.removeChild(movedBullet);
-      movedBullet.actions.move.onCompleted();
-      movedBullet.actions.die.onCompleted();
-      movedBullet.moveSubscription.dispose();
-      enemy.die();
-    }
-  });
 
   bullet$.onNext(bullet);
   stage.addChild(bullet);

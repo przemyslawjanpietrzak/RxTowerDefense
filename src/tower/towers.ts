@@ -1,6 +1,6 @@
 import createjs from "easel";
 import { Subject } from "rx";
-import { last } from  'ramda';
+import { last, } from  'ramda';
 
 import stage from "../stage";
 import ticker from "../ticker";

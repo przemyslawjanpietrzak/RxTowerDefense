@@ -1,11 +1,11 @@
 const steps: Array<{ x: number,  y: number }> = [
     {
-        x: 0,
+        x: 100,
         y: 100,
     },
     {
         x: 100,
-        y: 100,
+        y: 250,
 
     },
     {
@@ -14,15 +14,11 @@ const steps: Array<{ x: number,  y: number }> = [
     },
     {
         x: 500,
-        y: 250,
-    },
-    {
-        x: 500,
         y: 500,
     },
     {
-        x: 1000,
-        y: 1000,
+        x: 750,
+        y: 500,
     },
 ];
 

@@ -6,30 +6,21 @@ import ticker from '../ticker';
 import { getMove, getDistance } from '../utils';
 import steps from '../mapPoint';
 
-export const enemy$ = new Rx.Subject();
-export const enemiesMove$ = new Rx.Subject();
-
 const die = (enemy: Enemy) => {
   stage.removeChild(enemy);
-  enemy.actions.move.onCompleted();
-  enemy.actions.die.onCompleted();
-  enemy.subscription.completed();
+  enemy.subscription.dispose();
 };
 
+export const enemiesMove$ = new Rx.Subject();
 
 export function enemyFactory() {
   const enemy: Enemy = new createjs.Shape();
   enemy.graphics.beginFill('red').drawCircle(0, 0, 5);
-  enemy.actions = {
-    die: new Rx.Subject(),
-    move: new Rx.Subject(),
-  };
   enemy.step = 0;
   enemy.speed = 2;
-  enemy.die = function dieEnemy() {
+  enemy.die = function() {
     die(enemy);
   };
-
   enemy.subscription = ticker.subscribe(
     () => {
       const nextStep = [...steps][enemy.step];
@@ -42,24 +33,11 @@ export function enemyFactory() {
         if (getDistance(enemy.x, enemy.y, nextStep.x, nextStep.y) < enemy.speed) {
           enemy.step++;
         }
-        enemy.actions.move.onNext(enemy);
         enemiesMove$.onNext(enemy);
       }
     }
   );
 
-  enemy.actions.move.subscribe(() => {
-    // out of map
-    if (enemy.x > 1000 || enemy.y > 1000) {
-      enemy.actions.die.onNext();
-    }
-  });
-
-  enemy.actions.die.subscribe(() => {
-    die(enemy);
-  });
-
   stage.addChild(enemy);
-  enemy$.onNext(enemy);
   return enemy;
 }

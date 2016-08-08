@@ -9,5 +9,4 @@ interface Bullet {
     die()
     subscription: any
     actions: any
-    moveSubscription: any
 }

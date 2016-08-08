@@ -10,7 +10,6 @@ import "./engine";
 stage.addChild(path);
 stage.update();
 
-enemyFactory();
 towerFactory(450, 300);
 towerFactory(300, 300);
 towerFactory(300, 450);
