@@ -3,6 +3,7 @@ import { Observable } from "rx";
 import stage from "./stage";
 import { enemyFactory } from "./enemy/index";
 import { towerFactory } from "./tower/towers";
+import ticker from './ticker';
 import path from "./path";
 import "./engine";
 
@@ -11,10 +12,12 @@ stage.update();
 
 enemyFactory();
 towerFactory(450, 300);
+towerFactory(300, 300);
+towerFactory(300, 450);
 
-Observable
-  .interval(333)
-  .timeInterval()
+let counter = 0;
+ticker
+  .filter(() => ++counter % 33 === 0)
   .subscribe(() => {
     enemyFactory();
   });

@@ -30,6 +30,7 @@ System.config({
     "core-js": "npm:core-js@1.2.7",
     "easel": "github:CreateJS/EaselJS@0.8.2",
     "node-easel": "npm:node-easel@0.1.2",
+    "ramda": "npm:ramda@0.22.1",
     "rx": "npm:rx@4.1.0",
     "ts": "github:frankwallis/plugin-typescript@5.0.8",
     "ts-runtime": "npm:babel-runtime@5.8.38",
@@ -60,7 +61,7 @@ System.config({
       "path-browserify": "npm:path-browserify@0.0.0"
     },
     "github:jspm/nodelibs-process@0.1.2": {
-      "process": "npm:process@0.11.6"
+      "process": "npm:process@0.11.8"
     },
     "github:jspm/nodelibs-stream@0.1.0": {
       "stream-browserify": "npm:stream-browserify@1.0.0"
@@ -284,7 +285,7 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2",
       "systemjs-json": "github:systemjs/plugin-json@0.1.2"
     },
-    "npm:process@0.11.6": {
+    "npm:process@0.11.8": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "vm": "github:jspm/nodelibs-vm@0.1.0"
@@ -297,6 +298,9 @@ System.config({
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
       "parse-asn1": "npm:parse-asn1@5.0.0",
       "randombytes": "npm:randombytes@2.0.3"
+    },
+    "npm:ramda@0.22.1": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:randombytes@2.0.3": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",

@@ -46,12 +46,11 @@ export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
   });
 
   bullet.moveSubscription = bullet.actions.move.subscribe((movedBullet) => {
-    if (getDistance(
-        movedBullet.x,
+    if (getDistance(movedBullet.x,
         movedBullet.y,
         movedBullet.destinationX,
         movedBullet.destinationY
-      ) < movedBullet.speed * 1.43) {
+      ) <= movedBullet.speed) {
       stage.removeChild(movedBullet);
       movedBullet.actions.move.onCompleted();
       movedBullet.actions.die.onCompleted();

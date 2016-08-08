@@ -14,13 +14,13 @@ enemy$.subscribe((enemy: Enemy) => { enemies.push(enemy); });
 tower$.subscribe((tower: Tower) => { towers.push(tower); });
 
 // tower detect enemy in his area
-enemiesMove$.subscribe((enemy: Enemy) => {
-  const towerInRange = towers
-    .filter((tower: Tower) => isInDistance(tower, enemy))
-    .filter((tower: Tower) => tower.reloadBulletTime === 0)
-    ;
-  towerInRange.forEach((tower: Tower) => { tower.fireToEnemy(enemy); });
-});
+// enemiesMove$.subscribe((enemy: Enemy) => {
+//   const towerInRange = towers
+//     .filter((tower: Tower) => isInDistance(tower, enemy))
+//     .filter((tower: Tower) => tower.reloadBulletTime === 0)
+//     ;
+//   towerInRange.forEach((tower: Tower) => { tower.fireToEnemy(enemy); });
+// });
 
 // tower fire to enemy
 towerFireToEnemy$.subscribe(({ tower, enemy }: { tower: Tower, enemy: Enemy }) => {

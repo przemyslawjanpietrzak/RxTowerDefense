@@ -3,7 +3,8 @@ import Rx from 'rx';
 
 import stage from '../stage';
 import ticker from '../ticker';
-import getMove from './move';
+import { getMove, getDistance } from '../utils';
+import steps from '../mapPoint';
 
 export const enemy$ = new Rx.Subject();
 export const enemiesMove$ = new Rx.Subject();
@@ -31,13 +32,19 @@ export function enemyFactory() {
 
   enemy.subscription = ticker.subscribe(
     () => {
-      const newDirections = getMove(enemy);
-      enemy.x = newDirections.x;
-      enemy.y = newDirections.y;
-      enemy.step = newDirections.step;
-
-      enemy.actions.move.onNext(enemy);
-      enemiesMove$.onNext(enemy);
+      const nextStep = [...steps][enemy.step];
+      if (!nextStep) {
+        enemy.die();
+      } else {
+        const newDirections = getMove(enemy, nextStep, enemy.speed);
+        enemy.x = newDirections.x;
+        enemy.y = newDirections.y;
+        if (getDistance(enemy.x, enemy.y, nextStep.x, nextStep.y) < enemy.speed) {
+          enemy.step++;
+        }
+        enemy.actions.move.onNext(enemy);
+        enemiesMove$.onNext(enemy);
+      }
     }
   );
 

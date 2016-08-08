@@ -33,4 +33,6 @@ interface Tower {
     graphics: Graphics;
     fireToEnemy(Enemy);
     subscribsion: any;
+    enemiesInRange: Array<Enemy>;
+    enemySubscription: any
 }
