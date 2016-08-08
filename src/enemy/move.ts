@@ -1,21 +1,11 @@
 import steps from '../map';
-import steps0 from '../map0';
+import steps0 from '../mapPoint';
 
 export const getStepChange =
   (x, y, endX, endY, speed) => Math.abs(endX - x) <= speed && Math.abs(endY - y) <= speed;
 
-// const getDirection = (position, destination, speed) => {
-//   if (Math.abs(position - destination) < speed) {
-//     return 0;
-//   }
-//   return destination > position ? 1 : -1;
-// };
-
 export default function getMove({ x, y, step, speed }) {
   const path: Vector = steps[step];
-  // const directionX = getDirection(x, path.x, speed);
-  // const directionY = getDirection(y, path.y, speed);
-
   const angle = path.angle();
   const newX = x + speed * Math.cos(angle);
   const newY = y + speed * Math.sin(angle);

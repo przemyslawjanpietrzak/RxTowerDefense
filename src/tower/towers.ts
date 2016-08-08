@@ -7,7 +7,6 @@ import ticker from "../ticker";
 export const tower$ = new Subject();
 export const towerFireToEnemy$ = new Subject();
 
-
 export function towerFactory(x: number, y: number): Tower {
     const reloadBulletTime = 100;
     const tower: Tower = new createjs.Shape();

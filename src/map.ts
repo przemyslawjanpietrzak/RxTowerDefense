@@ -1,5 +1,5 @@
 import Victor from 'victor';
-import steps from './map0';
+import steps from './mapPoint';
 
 const firstStep = {
   x: 0,
