@@ -1,5 +1,5 @@
 import createjs from 'easel';
-import Rx from 'rx';
+import { Subject } from 'rxjs/Subject';
 
 import stage from '../stage';
 import ticker from '../ticker';
@@ -8,10 +8,10 @@ import steps from '../mapPoint';
 
 const die = (enemy: Enemy) => {
   stage.removeChild(enemy);
-  enemy.subscription.dispose();
+  enemy.subscription.unsubscribe();
 };
 
-export const enemiesMove$ = new Rx.Subject();
+export const enemiesMove$ = new Subject();
 
 export function enemyFactory() {
   const enemy: Enemy = new createjs.Shape();
@@ -33,7 +33,7 @@ export function enemyFactory() {
         if (getDistance(enemy.x, enemy.y, nextStep.x, nextStep.y) < enemy.speed) {
           enemy.step++;
         }
-        enemiesMove$.onNext(enemy);
+        enemiesMove$.next(enemy);
       }
     }
   );

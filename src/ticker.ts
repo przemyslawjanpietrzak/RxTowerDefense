@@ -1,10 +1,6 @@
-import { Observable } from 'rx';
+import Rx from 'rxjs/Rx';
+import 'rxjs/add/operator/timeInterval';
 
-import stage from './stage';
-
-export default Observable
+export default Rx.Observable
   .interval(17)
-  .timeInterval()
-  .tap(() => {
-    stage.update();
-  });
+  .timeInterval();

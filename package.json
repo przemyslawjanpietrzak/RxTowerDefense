@@ -13,7 +13,6 @@
       "easel": "github:CreateJS/EaselJS@^0.8.2",
       "node-easel": "npm:node-easel@^0.1.2",
       "ramda": "npm:ramda@^0.22.1",
-      "rx": "npm:rx@^4.1.0",
       "ts": "github:frankwallis/plugin-typescript@^5.0.8",
       "victor": "npm:victor@^1.1.0"
     },
@@ -34,5 +33,8 @@
     "eslint-plugin-import": "^1.12.0",
     "eslint-plugin-jsx-a11y": "^2.0.1",
     "eslint-plugin-react": "^5.2.2"
+  },
+  "dependencies": {
+    "rxjs": "^5.0.0-beta.11"
   }
 }

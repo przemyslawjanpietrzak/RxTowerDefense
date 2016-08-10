@@ -1,16 +1,16 @@
 import createjs from "easel";
-import Rx from "rx";
+import { Subject } from 'rxjs/Subject';
 
 import stage from "./../stage";
 import ticker from "./../ticker";
 import { getMove, getDistance } from "./../utils";
 
-export const bullet$ = new Rx.Subject();
-export const bulletMove$ = new Rx.Subject();
+export const bullet$ = new Subject();
+export const bulletMove$ = new Subject();
 
 const die = (bullet: Bullet) => {
   stage.removeChild(bullet);
-  bullet.subscription.dispose();
+  bullet.subscription.unsubscribe();
 };
 
 export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
@@ -43,11 +43,11 @@ export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
       die(bullet);
     }
 
-    bulletMove$.onNext(bullet);
+    bulletMove$.next(bullet);
   });
 
 
-  bullet$.onNext(bullet);
+  bullet$.next(bullet);
   stage.addChild(bullet);
   return bullet;
 }

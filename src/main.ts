@@ -1,4 +1,5 @@
-import { Observable } from "rx";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/filter';
 
 import stage from "./stage";
 import { enemyFactory } from "./enemy/index";
@@ -16,7 +17,12 @@ towerFactory(300, 450);
 
 let counter = 0;
 ticker
-  .filter(() => ++counter % 33 === 0)
+  .filter(() => ++counter % 6 === 0)
   .subscribe(() => {
     enemyFactory();
+  });
+
+ticker
+  .subscribe(() => {
+    stage.update();
   });

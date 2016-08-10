@@ -1,12 +1,11 @@
 import createjs from "easel";
-import { Subject } from "rx";
+import { Subject } from 'rxjs/Subject';
 
 import stage from "../stage";
 import ticker from "../ticker";
 import { enemiesMove$, } from '../enemy/index';
 import { isInDistance } from "../utils";
 
-export const tower$ = new Subject();
 export const towerFireToEnemy$ = new Subject();
 
 export function towerFactory(x: number, y: number): Tower {
@@ -19,7 +18,7 @@ export function towerFactory(x: number, y: number): Tower {
     tower.reloadBulletTime = 0;
     tower.enemiesInRange = [];
     tower.fireToEnemy = function towerFireToEnemy(enemy: Enemy) {
-        towerFireToEnemy$.onNext({ tower, enemy });
+        towerFireToEnemy$.next({ tower, enemy });
         tower.reloadBulletTime = reloadBulletTime;
     };
 
@@ -43,6 +42,5 @@ export function towerFactory(x: number, y: number): Tower {
     });
 
     stage.addChild(tower);
-    tower$.onNext(tower);
     return tower;
 }

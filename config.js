@@ -31,7 +31,7 @@ System.config({
     "easel": "github:CreateJS/EaselJS@0.8.2",
     "node-easel": "npm:node-easel@0.1.2",
     "ramda": "npm:ramda@0.22.1",
-    "rx": "npm:rx@4.1.0",
+    "rxjs": "node_modules/rxjs",
     "ts": "github:frankwallis/plugin-typescript@5.0.8",
     "ts-runtime": "npm:babel-runtime@5.8.38",
     "tween.js": "npm:tween.js@16.3.4",
@@ -319,9 +319,6 @@ System.config({
     },
     "npm:ripemd160@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:rx@4.1.0": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:sha.js@2.4.5": {
