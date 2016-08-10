@@ -1,6 +1,5 @@
 import createjs from "easel";
 import { Subject } from "rx";
-import { last, } from  'ramda';
 
 import stage from "../stage";
 import ticker from "../ticker";
@@ -26,11 +25,10 @@ export function towerFactory(x: number, y: number): Tower {
 
     tower.subscribsion = ticker.subscribe(
         () => {
-            const lastEnemy = last(tower.enemiesInRange);
-            if (lastEnemy) {
-                tower.fireToEnemy(lastEnemy);
+            const firstEnemy: Enemy = tower.enemiesInRange[0];
+            if (firstEnemy) {
+                tower.fireToEnemy(firstEnemy);
             }
-             // tower shot to last enemy
             if (tower.reloadBulletTime > 0) {
                 tower.reloadBulletTime--;
             }
