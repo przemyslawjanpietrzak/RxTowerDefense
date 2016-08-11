@@ -25,14 +25,3 @@ interface Createjs {
     Stage(string): Stage;
 }
 
-interface Tower {
-    x: number;
-    y: number;
-    range: number;
-    reloadBulletTime: number;
-    graphics: Graphics;
-    fireToEnemy(Enemy);
-    subscribsion: any;
-    enemiesInRange: Array<Enemy>;
-    enemySubscription: any
-}

@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
 
 import stage from "./stage";
@@ -17,7 +16,7 @@ towerFactory(300, 450);
 
 let counter = 0;
 ticker
-  .filter(() => ++counter % 6 === 0)
+  .filter(() => ++counter % 3 === 0)
   .subscribe(() => {
     enemyFactory();
   });

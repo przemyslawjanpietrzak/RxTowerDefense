@@ -6,6 +6,8 @@ import ticker from "../ticker";
 import { enemiesMove$, } from '../enemy/index';
 import { isInDistance } from "../utils";
 
+import { getArea, toogleAreaFactory } from './area';
+
 export const towerFireToEnemy$ = new Subject();
 
 export function towerFactory(x: number, y: number): Tower {
@@ -17,6 +19,11 @@ export function towerFactory(x: number, y: number): Tower {
     tower.range = 250;
     tower.reloadBulletTime = 0;
     tower.enemiesInRange = [];
+    tower.areaVisible = false;
+    tower.area = getArea(tower);
+
+    tower.onClickHandler = toogleAreaFactory(tower);
+    tower.addEventListener('click', tower.onClickHandler);
     tower.fireToEnemy = function towerFireToEnemy(enemy: Enemy) {
         towerFireToEnemy$.next({ tower, enemy });
         tower.reloadBulletTime = reloadBulletTime;
