@@ -5,6 +5,7 @@ import stage from '../stage';
 import ticker from '../ticker';
 import { getMove, getDistance } from '../utils';
 import steps from '../mapPoint';
+import { enemy as settings, } from '../settings';
 
 const die = (enemy: Enemy) => {
   stage.removeChild(enemy);
@@ -15,9 +16,9 @@ export const enemiesMove$ = new Subject();
 
 export function enemyFactory() {
   const enemy: Enemy = new createjs.Shape();
-  enemy.graphics.beginFill('red').drawCircle(0, 0, 5);
+  enemy.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
   enemy.step = 0;
-  enemy.speed = 2;
+  enemy.speed = settings.speed;
   enemy.die = function() {
     die(enemy);
   };

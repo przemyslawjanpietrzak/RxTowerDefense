@@ -1,11 +1,12 @@
 import createjs from "easel";
 
 import stage from "../stage";
+import { tower as settings } from '../settings';
 
 
 export function getArea(tower: Tower) {
 	const area: Shape = new createjs.Shape();
-	area.graphics.beginFill('rgba(255,0,0,0.5)').drawCircle(tower.x, tower.y, tower.range);
+	area.graphics.beginFill(settings.areaColor).drawCircle(tower.x, tower.y, tower.range);
 
 	return area;
 }

@@ -4,6 +4,7 @@ import { Subject } from 'rxjs/Subject';
 import stage from "./../stage";
 import ticker from "./../ticker";
 import { getMove, getDistance } from "./../utils";
+import { bullet as settings } from '../settings';
 
 export const bullet$ = new Subject();
 export const bulletMove$ = new Subject();
@@ -18,12 +19,12 @@ export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
   const { x: positionX, y: positionY } = tower;
   const { x: destinationX, y: destinationY } = enemy;
 
-  bullet.graphics.beginFill("black").drawCircle(0, 0, 10);
+  bullet.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
   bullet.x = positionX;
   bullet.y = positionY;
   bullet.destinationX = destinationX;
   bullet.destinationY = destinationY;
-  bullet.speed = 10;
+  bullet.speed = settings.speed;
 
   bullet.subscription = ticker.subscribe(() => { // TODO move to file
     const newDirections = getMove(

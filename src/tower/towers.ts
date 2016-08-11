@@ -5,7 +5,7 @@ import stage from "../stage";
 import ticker from "../ticker";
 import { enemiesMove$, } from '../enemy/index';
 import { isInDistance } from "../utils";
-
+import { tower as settings } from '../settings';
 import { getArea, toogleAreaFactory } from './area';
 
 export const towerFireToEnemy$ = new Subject();
@@ -13,10 +13,10 @@ export const towerFireToEnemy$ = new Subject();
 export function towerFactory(x: number, y: number): Tower {
     const reloadBulletTime = 100;
     const tower: Tower = new createjs.Shape();
-    tower.graphics.beginFill("blue").drawCircle(0, 0, 5);
+    tower.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
     tower.x = x;
     tower.y = y;
-    tower.range = 250;
+    tower.range = settings.range;
     tower.reloadBulletTime = 0;
     tower.enemiesInRange = [];
     tower.areaVisible = false;
