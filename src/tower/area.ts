@@ -4,14 +4,14 @@ import stage from "../stage/stage";
 import { tower as settings } from '../settings';
 
 
-export function getArea(tower: Tower) {
+export function getArea(tower: Tower | TowerShape, showArea: boolean = false) {
 	const area: Shape = new createjs.Shape();
 	area.graphics.beginFill(settings.areaColor).drawCircle(tower.x, tower.y, tower.range);
 
 	return area;
 }
 
-export function toogleAreaFactory(tower: Tower) {
+export function toogleAreaFactory(tower: Tower | TowerShape) {
 	return (event) => {
 		const areaWasVisible = tower.areaVisible;
 		if (areaWasVisible) {

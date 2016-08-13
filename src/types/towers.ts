@@ -15,3 +15,12 @@ interface Tower {
 	addEventListener(string, any)
 	removeEventListener(string)
 }
+
+interface TowerShape {
+	x: number;
+	y: number;
+	range: number;
+	graphics: Graphics;
+	areaVisible: boolean
+	area: Shape
+}

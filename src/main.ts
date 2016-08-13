@@ -3,11 +3,16 @@ import 'rxjs/add/operator/filter';
 import stage from "./stage/stage";
 import { enemyFactory } from "./enemy/index";
 import { towerFactory } from "./tower/towers";
+import towerEngine from './tower/index';
 import ticker from './ticker';
 import path from "./path";
 import "./engine";
 
+import drawMenu from './menu/menu';
+
 stage.addChild(path);
+drawMenu();
+towerEngine();
 stage.update();
 
 towerFactory(120, 120);

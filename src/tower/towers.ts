@@ -4,9 +4,11 @@ import { Subject } from 'rxjs/Subject';
 import stage from "../stage/stage";
 import ticker from "../ticker";
 import { enemiesMove$, } from '../enemy/index';
+
 import { isInDistance } from "../utils";
 import { tower as settings } from '../settings';
 import { getArea, toogleAreaFactory } from './area';
+
 
 export const towerFireToEnemy$ = new Subject();
 
