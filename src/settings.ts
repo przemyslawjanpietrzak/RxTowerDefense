@@ -1,13 +1,13 @@
 export const tower = {
-	color: '#4CAF50',
+	color: 'rgba(33,150,243,1)',
 	range: 50,
 	reloadBulletTime: 250,
 	size: 5,
-	areaColor: 'rgba(200,230,201,0.1)',
+	areaColor: 'rgba(187,222,251 ,0.1)',
 };
 
 export const stage = {
-	color: 'rgba(232,245,233 ,1)',
+	color: 'rgba(76,175,80 ,1)',
 };
 
 export const enemy = {
@@ -17,7 +17,7 @@ export const enemy = {
 };
 
 export const bullet = {
-	color: 'rgba(158,158,158 ,1)',
+	color: 'rgba(33,33,33 ,1)',
 	speed: 10,
 	size: 5,
 };

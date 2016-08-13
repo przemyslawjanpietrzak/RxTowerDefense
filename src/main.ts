@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/filter';
 
-import stage from "./stage";
+import stage from "./stage/stage";
 import { enemyFactory } from "./enemy/index";
 import { towerFactory } from "./tower/towers";
 import ticker from './ticker';
@@ -10,13 +10,13 @@ import "./engine";
 stage.addChild(path);
 stage.update();
 
-towerFactory(450, 300);
+towerFactory(120, 120);
 towerFactory(300, 300);
-towerFactory(300, 450);
+towerFactory(110, 260);
 
 let counter = 0;
 ticker
-  .filter(() => ++counter % 3 === 0)
+  .filter(() => ++counter % 33 === 0)
   .subscribe(() => {
     enemyFactory();
   });

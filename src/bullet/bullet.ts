@@ -1,7 +1,7 @@
 import createjs from "easel";
 import { Subject } from 'rxjs/Subject';
 
-import stage from "./../stage";
+import stage from "./../stage/stage";
 import ticker from "./../ticker";
 import { getMove, getDistance } from "./../utils";
 import { bullet as settings } from '../settings';

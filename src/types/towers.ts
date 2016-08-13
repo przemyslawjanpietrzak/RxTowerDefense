@@ -9,7 +9,9 @@ interface Tower {
 	enemySubscription: any
 	areaVisible: boolean
 	area: Shape
+	die()
 	fireToEnemy(Enemy)
 	onClickHandler(Tower)
 	addEventListener(string, any)
+	removeEventListener(string)
 }

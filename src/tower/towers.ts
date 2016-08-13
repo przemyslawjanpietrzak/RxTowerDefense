@@ -1,7 +1,7 @@
 import createjs from "easel";
 import { Subject } from 'rxjs/Subject';
 
-import stage from "../stage";
+import stage from "../stage/stage";
 import ticker from "../ticker";
 import { enemiesMove$, } from '../enemy/index';
 import { isInDistance } from "../utils";
@@ -27,6 +27,13 @@ export function towerFactory(x: number, y: number): Tower {
     tower.fireToEnemy = function towerFireToEnemy(enemy: Enemy) {
         towerFireToEnemy$.next({ tower, enemy });
         tower.reloadBulletTime = reloadBulletTime;
+    };
+
+    tower.die = () => {
+        stage.removeChild(tower);
+        tower.subscribsion.unsubscribe();
+        tower.enemySubscription.unsubscribe();
+        tower.removeEventListener('click');
     };
 
     tower.subscribsion = ticker.subscribe(
