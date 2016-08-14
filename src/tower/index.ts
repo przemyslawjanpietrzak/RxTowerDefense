@@ -20,17 +20,23 @@ export default function towerEngine() {
 		.filter(() => showTowerPropose)
 		.subscribe(
 			(event) => {
+				if (towerPropose) {
+					hideTowerShape(towerPropose);
+				}
 				towerPropose = showTowerShape(event.stageX, event.stageY);
 				showTowerPropose = false;
 			}
 		);
 
-	cancelTowerButtonClick$.subscribe((event) => {
-		showTowerPropose = false;
-		if (towerPropose) {
-			hideTowerShape(towerPropose);
-		}
-	});
+	cancelTowerButtonClick$
+		.filter(() => towerPropose)
+		.subscribe((event) => {
+			showTowerPropose = false;
+			if (towerPropose) {
+				hideTowerShape(towerPropose);
+				towerPropose = null;
+			}
+		});
 
 
 	confirmTowerButtonClick$

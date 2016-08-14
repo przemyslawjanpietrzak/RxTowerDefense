@@ -9,10 +9,9 @@ import ticker from './ticker';
 import path from "./path";
 import "./engine";
 
-import drawMenu from './menu/menu';
 
 stage.addChild(path);
-drawMenu();
+
 towerEngine();
 stage.update();
 
