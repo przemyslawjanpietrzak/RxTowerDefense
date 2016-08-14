@@ -17,9 +17,7 @@ System.config({
     "src": {
       "defaultExtension": "ts",
       "meta": {
-        "*.ts": {
-          "loader": "ts"
-        }
+        "*.ts": { "loader": "ts" }
       }
     }
   },
@@ -27,7 +25,9 @@ System.config({
   map: {
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
+    "bootstrap": "github:kristopolous/BOOTSTRA.386@master",
     "core-js": "npm:core-js@1.2.7",
+    "css": "github:systemjs/plugin-css@0.1.26",
     "easel": "github:CreateJS/EaselJS@0.8.2",
     "node-easel": "npm:node-easel@0.1.2",
     "ramda": "npm:ramda@0.22.1",

@@ -10,6 +10,8 @@
   "license": "ISC",
   "jspm": {
     "dependencies": {
+      "bootstrap": "github:kristopolous/BOOTSTRA.386@master",
+      "css": "github:systemjs/plugin-css@^0.1.26",
       "easel": "github:CreateJS/EaselJS@^0.8.2",
       "node-easel": "npm:node-easel@^0.1.2",
       "ramda": "npm:ramda@^0.22.1",
