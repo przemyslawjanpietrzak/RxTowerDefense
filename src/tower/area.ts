@@ -22,3 +22,7 @@ export function toogleAreaFactory(tower: Tower | TowerShape) {
 		tower.areaVisible = !areaWasVisible
 	};
 }
+export function hideTowerArea(tower: Tower | TowerShape) {
+	tower.areaVisible = false;
+	stage.removeChild(tower.area);
+}

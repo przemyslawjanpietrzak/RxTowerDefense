@@ -5,6 +5,7 @@ interface Tower {
 	reloadBulletTime: number;
 	graphics: Graphics;
 	subscribsion: any;
+	stageClickSubscription: any
 	enemiesInRange: Array<Enemy>;
 	enemySubscription: any
 	areaVisible: boolean
@@ -14,6 +15,7 @@ interface Tower {
 	onClickHandler(Tower)
 	addEventListener(string, any)
 	removeEventListener(string)
+
 }
 
 interface TowerShape {

@@ -1,13 +1,13 @@
 import createjs from "easel";
 import { Subject } from 'rxjs/Subject';
 
-import stage from "../stage/stage";
+import stage, { stageClick$ } from "../stage/stage";
 import ticker from "../ticker";
 import { enemiesMove$, } from '../enemy/index';
 
-import { isInDistance } from "../utils";
+import { isInDistance, getDistance } from "../utils";
 import { tower as settings } from '../settings';
-import { getArea, toogleAreaFactory } from './area';
+import { getArea, toogleAreaFactory, hideTowerArea } from './area';
 
 
 export const towerFireToEnemy$ = new Subject();
@@ -35,6 +35,7 @@ export function towerFactory(x: number, y: number): Tower {
         stage.removeChild(tower);
         tower.subscribsion.unsubscribe();
         tower.enemySubscription.unsubscribe();
+        tower.stageClickSubscription.unsubscribe();
         tower.removeEventListener('click');
     };
 
@@ -56,6 +57,12 @@ export function towerFactory(x: number, y: number): Tower {
             tower.enemiesInRange.push(enemy);
         }
     });
+
+    tower.stageClickSubscription = stageClick$
+      .filter((event) => getDistance(event.stageX, event.stageY, tower.x, tower.y) > settings.size) // click out of tower
+      .subscribe(() => {
+        hideTowerArea(tower);
+      });
 
     stage.addChild(tower);
     return tower;

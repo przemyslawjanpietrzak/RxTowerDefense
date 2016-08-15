@@ -1,4 +1,3 @@
-// import 'css!bootstrap/';
 import 'rxjs/add/operator/filter';
 
 import stage from "./stage/stage";
@@ -14,10 +13,6 @@ stage.addChild(path);
 
 towerEngine();
 stage.update();
-
-towerFactory(120, 120);
-towerFactory(300, 300);
-towerFactory(110, 260);
 
 let counter = 0;
 ticker

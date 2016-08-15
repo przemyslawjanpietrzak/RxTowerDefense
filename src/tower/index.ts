@@ -8,13 +8,10 @@ import { addTowerButtonClick$, cancelTowerButtonClick$, confirmTowerButtonClick$
 export default function towerEngine() {
 	let towerPropose = null;
 	let showTowerPropose: boolean = false;
-
+	// Adding new tower from menu
 	addTowerButtonClick$.subscribe((event) => {
-		window.setTimeout(() => {
-			showTowerPropose = true;
-		});
+		showTowerPropose = true;
 	});
-
 
 	stageClick$
 		.filter(() => showTowerPropose)
@@ -46,4 +43,5 @@ export default function towerEngine() {
 			towerFactory(towerPropose.x, towerPropose.y);
 			showTowerPropose = false;
 		});
-}
+} // end
+
