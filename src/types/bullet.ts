@@ -9,4 +9,5 @@ interface Bullet {
     subscription: any
     hitEnemySubscription: any
     enemy: Enemy
+    die();
 }

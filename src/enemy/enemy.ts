@@ -7,7 +7,7 @@ import steps from '../mapPoint';
 import { getMove, getDistance } from '../utils';
 import { enemy as settings, } from '../settings';
 
-export const die = (enemy: Enemy) => {
+const die = (enemy: Enemy) => {
   enemies.splice(enemies.indexOf(enemy), 1);
   stage.removeChild(enemy);
   enemy.subscription.unsubscribe();

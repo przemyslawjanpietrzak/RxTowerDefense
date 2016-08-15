@@ -18,10 +18,9 @@ const bullets: Array<{ bullet: Bullet, enemy: Enemy} > = [];
 export const bulletHitEnemy$ = ticker
   .flatMap(
     () => Observable.from(bullets)
-  ).filter(
-    (bullet: Bullet) => {
-      return getDistance(bullet.x, bullet.y, bullet.destinationX, bullet.destinationY) <= bullet.speed
-    }
+  )
+  .filter(
+    (bullet: Bullet) => bullet && getDistance(bullet.x, bullet.y, bullet.destinationX, bullet.destinationY) <= bullet.speed
   );
 
 export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
@@ -36,6 +35,7 @@ export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
   bullet.destinationY = destinationY;
   bullet.speed = settings.speed;
   bullet.enemy = enemy;
+  bullet.die = () => die(bullet);
 
   bullet.subscription = ticker.subscribe(() => { // TODO move to file
     const newDirections = getMove(
@@ -48,8 +48,8 @@ export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
   });
 
   bullet.hitEnemySubscription = bulletHitEnemy$.subscribe((bullet) => {
-    die(bullet);
-    enemy.die(); // TODO it shouldn't be here
+    // die(bullet);
+    // bullet.enemy.die(); // TODO it shouldn't be here
   });
 
   bullets.push(bullet);
