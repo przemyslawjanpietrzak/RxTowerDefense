@@ -17,7 +17,9 @@ System.config({
     "src": {
       "defaultExtension": "ts",
       "meta": {
-        "*.ts": { "loader": "ts" }
+        "*.ts": {
+          "loader": "ts"
+        }
       }
     }
   },

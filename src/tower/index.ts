@@ -21,7 +21,7 @@ export default function towerEngine() {
 					hideTowerShape(towerPropose);
 				}
 				towerPropose = showTowerShape(event.stageX, event.stageY);
-				showTowerPropose = false;
+				showTowerPropose = true;
 			}
 		);
 
@@ -37,7 +37,7 @@ export default function towerEngine() {
 
 
 	confirmTowerButtonClick$
-		.filter(() => towerPropose)
+		.filter(() => towerPropose && showTowerPropose)
 		.subscribe((event) => {
 			hideTowerShape(towerPropose);
 			towerFactory(towerPropose.x, towerPropose.y);

@@ -1,9 +1,9 @@
 import 'rxjs/add/operator/filter';
 
 import stage from "./stage/stage";
-import { enemyFactory } from "./enemy/index";
-import { towerFactory } from "./tower/towers";
+import { enemyFactory } from "./enemy/enemy";
 import towerEngine from './tower/index';
+import bulletEngine from './bullet/index';
 import ticker from './ticker';
 import path from "./path";
 import "./engine";
@@ -12,7 +12,7 @@ import "./engine";
 stage.addChild(path);
 
 towerEngine();
-stage.update();
+bulletEngine();
 
 let counter = 0;
 ticker

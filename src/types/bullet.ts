@@ -6,7 +6,7 @@ interface Bullet {
     graphics: Graphics
     step: number
     speed: number
-    die()
     subscription: any
-    actions: any
+    hitEnemySubscription: any
+    enemy: Enemy
 }

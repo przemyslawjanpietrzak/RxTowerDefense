@@ -1,18 +1,28 @@
 import createjs from "easel";
-import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 import stage from "./../stage/stage";
 import ticker from "./../ticker";
 import { getMove, getDistance } from "./../utils";
 import { bullet as settings } from '../settings';
 
-export const bullet$ = new Subject();
-export const bulletMove$ = new Subject();
-
 const die = (bullet: Bullet) => {
+  bullets.splice(bullets.indexOf(bullet), 1);
   stage.removeChild(bullet);
   bullet.subscription.unsubscribe();
+  bullet.hitEnemySubscription.unsubscribe();
 };
+
+const bullets: Array<{ bullet: Bullet, enemy: Enemy} > = [];
+
+export const bulletHitEnemy$ = ticker
+  .flatMap(
+    () => Observable.from(bullets)
+  ).filter(
+    (bullet: Bullet) => {
+      return getDistance(bullet.x, bullet.y, bullet.destinationX, bullet.destinationY) <= bullet.speed
+    }
+  );
 
 export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
   const bullet: Bullet = new createjs.Shape();
@@ -25,6 +35,7 @@ export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
   bullet.destinationX = destinationX;
   bullet.destinationY = destinationY;
   bullet.speed = settings.speed;
+  bullet.enemy = enemy;
 
   bullet.subscription = ticker.subscribe(() => { // TODO move to file
     const newDirections = getMove(
@@ -34,21 +45,15 @@ export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
     );
     bullet.x = newDirections.x;
     bullet.y = newDirections.y;
-
-    if (getDistance(bullet.x,
-        bullet.y,
-        bullet.destinationX,
-        bullet.destinationY
-      ) <= bullet.speed) {
-      enemy.die(); // TODO move to enemy file
-      die(bullet);
-    }
-
-    bulletMove$.next(bullet);
   });
 
+  bullet.hitEnemySubscription = bulletHitEnemy$.subscribe((bullet) => {
+    die(bullet);
+    enemy.die(); // TODO it shouldn't be here
+  });
 
-  bullet$.next(bullet);
+  bullets.push(bullet);
   stage.addChild(bullet);
   return bullet;
 }
+
