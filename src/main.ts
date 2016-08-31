@@ -16,6 +16,7 @@ towerEngine();
 enemyEngine();
 bulletEngine();
 
+
 let counter = 0;
 ticker
   .filter(() => ++counter % 33 === 0)
