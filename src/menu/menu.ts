@@ -6,3 +6,4 @@ export const cancelTowerButtonClick$ = Rx.Observable.fromEvent(document.getEleme
 export const confirmTowerButtonClick$ = Rx.Observable.fromEvent(document.getElementById('confirm'), 'click');
 
 export const playPauseButtonClick$ = Rx.Observable.fromEvent(document.getElementById('play-pause'), 'click');
+export const speedButtonClick$ = Rx.Observable.fromEvent(document.getElementById('speed'), 'click');

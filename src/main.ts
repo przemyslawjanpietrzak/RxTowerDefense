@@ -8,6 +8,8 @@ import bulletEngine from './bullet/index';
 import ticker from './ticker';
 import path from "./path";
 import "./engine";
+import scenario from './scenario';
+import { getTickerPerEnemy } from './utils';
 
 
 stage.addChild(path);
@@ -19,9 +21,10 @@ bulletEngine();
 
 let counter = 0;
 ticker
-  .filter(() => ++counter % 33 === 0)
+  .filter(() => ++counter % getTickerPerEnemy(counter, scenario) === 0)
   .subscribe(() => {
     enemyFactory();
+    console.debug(getTickerPerEnemy(counter, scenario));
   });
 
 ticker
