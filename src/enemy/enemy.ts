@@ -14,7 +14,7 @@ const die = (enemy: Enemy) => {
 };
 
 const enemyMove = (enemy: Enemy) => {
-  const nextStep = [...steps][enemy.step];
+  const nextStep = steps[enemy.step];
   if (!nextStep) {
     enemy.die();
   } else {

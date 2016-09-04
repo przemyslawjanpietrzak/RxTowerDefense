@@ -5,6 +5,7 @@ export default function () {
 	bulletHitEnemy$
 		.map(prop('enemy'))
 		.subscribe((enemy: Enemy) => {
+			console.debug('bulletHitEnemy$ enemy', enemy);
 			enemy.die();
 		});
 }

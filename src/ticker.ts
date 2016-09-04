@@ -12,5 +12,4 @@ playPauseButtonClick$
 export default Rx.Observable
   .interval(17)
   .timeInterval()
-	.filter(() => isPlay)
-;
+	.filter(() => isPlay);

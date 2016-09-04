@@ -1,8 +1,13 @@
-import { bulletHitEnemy$ } from '../bullet/bullet';
+import { bulletHitEnemy$ } from './bullet';
 
 export default function () {
 	bulletHitEnemy$
 		.subscribe((bullet: Bullet) => {
-			bullet.die();
+			window.setTimeout(() => { // TODO
+				console.debug('bulletHitEnemy$ bullet', bullet);
+				bullet.die();
+			});
+
+
 		});
 }

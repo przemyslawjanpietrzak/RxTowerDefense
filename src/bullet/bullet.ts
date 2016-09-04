@@ -10,7 +10,6 @@ const die = (bullet: Bullet) => {
   bullets.splice(bullets.indexOf(bullet), 1);
   stage.removeChild(bullet);
   bullet.subscription.unsubscribe();
-  bullet.hitEnemySubscription.unsubscribe();
 };
 
 const bullets: Array<{ bullet: Bullet, enemy: Enemy} > = [];
@@ -20,7 +19,7 @@ export const bulletHitEnemy$ = ticker
     () => Observable.from(bullets)
   )
   .filter(
-    (bullet: Bullet) => bullet && getDistance(bullet.x, bullet.y, bullet.destinationX, bullet.destinationY) <= bullet.speed
+    (bullet: Bullet) => getDistance(bullet.x, bullet.y, bullet.destinationX, bullet.destinationY) <= bullet.speed
   );
 
 export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
@@ -45,11 +44,6 @@ export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
     );
     bullet.x = newDirections.x;
     bullet.y = newDirections.y;
-  });
-
-  bullet.hitEnemySubscription = bulletHitEnemy$.subscribe((bullet) => {
-    // die(bullet);
-    // bullet.enemy.die(); // TODO it shouldn't be here
   });
 
   bullets.push(bullet);
