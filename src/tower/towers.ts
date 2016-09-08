@@ -39,18 +39,16 @@ export function towerFactory(x: number, y: number): Tower {
         tower.removeEventListener('click');
     };
 
-    tower.subscribsion = ticker.subscribe(
-        () => {
-            const firstEnemy: Enemy = tower.enemiesInRange[0];
-            if (firstEnemy) {
-                tower.fireToEnemy(firstEnemy);
-            }
-            if (tower.reloadBulletTime > 0) {
-                tower.reloadBulletTime--;
-            }
-            tower.enemiesInRange = [];
+    tower.subscribsion = ticker.subscribe(() => {
+        const firstEnemy: Enemy = tower.enemiesInRange[0];
+        if (firstEnemy) {
+            tower.fireToEnemy(firstEnemy);
         }
-    );
+        if (tower.reloadBulletTime > 0) {
+            tower.reloadBulletTime--;
+        }
+        tower.enemiesInRange = [];
+    });
 
     tower.enemySubscription = enemiesMove$.subscribe((enemy: Enemy) => {
         if (isInDistance(tower, enemy) && tower.reloadBulletTime === 0) {

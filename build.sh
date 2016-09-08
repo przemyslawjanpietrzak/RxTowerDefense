@@ -1,0 +1,1 @@
+jspm bundle src/main.ts build/bundle.js

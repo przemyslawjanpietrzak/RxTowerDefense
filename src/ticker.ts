@@ -1,5 +1,5 @@
-import Rx from 'rxjs/Rx';
-import 'rxjs/add/operator/timeInterval';
+import { Observable } from 'rxjs/Rx';
+
 import { playPauseButtonClick$ } from './menu/menu';
 
 let isPlay: Boolean = true;
@@ -9,7 +9,7 @@ playPauseButtonClick$
 	});
 
 
-export default Rx.Observable
+export default Observable
   .interval(17)
   .timeInterval()
 	.filter(() => isPlay);

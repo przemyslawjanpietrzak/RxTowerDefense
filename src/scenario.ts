@@ -1,4 +1,5 @@
 export default {
+	moneyOnStart: 1000,
 	tickPerStep: 1000,
 	parts: {
 		'0': {

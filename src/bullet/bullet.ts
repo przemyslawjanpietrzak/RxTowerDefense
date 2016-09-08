@@ -1,5 +1,5 @@
 import createjs from "easel";
-import { Observable } from 'rxjs/Observable';
+import Rx from 'rxjs/Rx';
 
 import stage from "./../stage/stage";
 import ticker from "./../ticker";
@@ -16,7 +16,7 @@ const bullets: Array<{ bullet: Bullet, enemy: Enemy} > = [];
 
 export const bulletHitEnemy$ = ticker
   .flatMap(
-    () => Observable.from(bullets)
+    () => Rx.Observable.from(bullets)
   )
   .filter(
     (bullet: Bullet) => getDistance(bullet.x, bullet.y, bullet.destinationX, bullet.destinationY) <= bullet.speed

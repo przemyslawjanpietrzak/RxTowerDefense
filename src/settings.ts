@@ -4,6 +4,7 @@ export const tower = {
 	reloadBulletTime: 250,
 	size: 5,
 	areaColor: 'rgba(13,71,161 ,0.1)',
+	cost: 500,
 };
 
 export const stage = {
@@ -14,6 +15,7 @@ export const enemy = {
 	size: 5,
 	color: 'rgba(244,67,54 ,1)',
 	speed: 2,
+	price: 50,
 };
 
 export const bullet = {

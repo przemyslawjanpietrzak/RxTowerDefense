@@ -7,7 +7,5 @@ export default function () {
 				console.debug('bulletHitEnemy$ bullet', bullet);
 				bullet.die();
 			});
-
-
 		});
 }

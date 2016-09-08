@@ -1,5 +1,5 @@
 import createjs from 'easel';
-import { Observable } from 'rxjs/Observable';
+import Rx from 'rxjs/Rx';
 
 import stage from '../stage/stage';
 import ticker from '../ticker';
@@ -38,8 +38,7 @@ export function enemyFactory() {
     die(enemy);
   };
 
-  enemy.subscription = ticker.subscribe(
-    () => {
+  enemy.subscription = ticker.subscribe(() => {
       enemyMove(enemy);
     }
   );
@@ -49,4 +48,4 @@ export function enemyFactory() {
   return enemy;
 }
 
-export const enemiesMove$ = ticker.flatMap(() => Observable.from(enemies));
+export const enemiesMove$ = ticker.flatMap(() => Rx.Observable.from(enemies));
