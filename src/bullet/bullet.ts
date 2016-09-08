@@ -1,26 +1,17 @@
 import createjs from 'easel';
-import { Observable } from 'rxjs/Rx';
 
 import stage from './../stage/stage';
 import ticker from './../ticker';
-import { getMove, getDistance } from './../utils';
+import { getMove } from './../utils';
 import { bullet as settings } from '../settings';
 
 const die = (bullet: Bullet) => {
-  bullets.splice(bullets.indexOf(bullet), 1);
+  // bullets.splice(bullets.indexOf(bullet), 1);
   stage.removeChild(bullet);
   bullet.subscription.unsubscribe();
 };
 
-const bullets: Array<Bullet> = [];
-
-export const bulletHitEnemy$ = ticker
-  .flatMap(
-    () => Observable.from(bullets)
-  )
-  .filter(
-    (bullet: Bullet) => getDistance(bullet.x, bullet.y, bullet.destinationX, bullet.destinationY) <= bullet.speed
-  );
+export const bullets: Array<Bullet> = [];
 
 export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
   const bullet: Bullet = new createjs.Shape();

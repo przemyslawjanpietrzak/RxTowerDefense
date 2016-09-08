@@ -5,16 +5,15 @@ import 'rxjs/add/operator/timeInterval';
 import stage from "./stage/stage";
 
 import { getTickerPerEnemy } from './utils';
-import ticker from './ticker';
+import ticker$ from './ticker';
 import path from "./path";
 
 import './wallet/index';
 import './menu/index';
-import "./engine";
 import scenario from './scenario';
 import './tower/index';
 import './enemy/index';
-import bulletEngine from './bullet/index';
+import './bullet/index';
 
 import changeWalletState$, { runWallet } from './wallet/index';
 import { runMenu } from './menu/index';
@@ -27,33 +26,37 @@ import {
 
 import { enemyFactory } from "./enemy/enemy";
 
-import { newTower$ } from './tower/index';
-import { bulletHitEnemy$ } from './bullet/bullet';
+import { newTower$, towerFireToEnemy$ } from './tower/sinks';
+import { runBullet } from './bullet/index';
+import { bulletHitEnemy$, bullets$ } from './bullet/sinks';
 
 stage.addChild(path);
 
-bulletEngine();
 
 const sinks = {
     newTower$,
+    bullets$,
+    ticker$,
     bulletHitEnemy$,
     addTowerButtonClick$,
     cancelTowerButtonClick$,
     confirmTowerButtonClick$,
     playPauseButtonClick$,
     changeWalletState$,
+    towerFireToEnemy$,
 };
 runWallet(sinks);
 runMenu(sinks);
+runBullet(sinks);
 
 let counter = 0;
-ticker
+ticker$
   .filter(() => ++counter % getTickerPerEnemy(counter, scenario) === 0)
   .subscribe(() => {
     enemyFactory();
   });
 
-ticker
+ticker$
   .subscribe(() => {
     stage.update();
   });

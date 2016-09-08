@@ -1,5 +1,5 @@
 import { prop } from 'ramda';
-import { bulletHitEnemy$ } from '../bullet/bullet';
+import { bulletHitEnemy$ } from '../bullet/sinks';
 
 
 bulletHitEnemy$

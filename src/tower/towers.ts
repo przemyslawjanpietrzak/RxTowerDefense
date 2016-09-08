@@ -2,15 +2,15 @@ import createjs from 'easel';
 import { Subject } from 'rxjs/Subject';
 
 import stage, { stageClick$ } from '../stage/stage';
-import ticker from '../ticker';
+import ticker$ from '../ticker';
 import { enemiesMove$, } from '../enemy/enemy';
 
 import { isInDistance, getDistance } from '../utils';
 import { tower as settings } from '../settings';
+
 import { getArea, toogleAreaFactory, hideTowerArea } from './area';
+import { towerFireToEnemy$ } from './sinks';
 
-
-export const towerFireToEnemy$ = new Subject();
 
 export function towerFactory(x: number, y: number): Tower {
     const reloadBulletTime = 100;
@@ -39,7 +39,7 @@ export function towerFactory(x: number, y: number): Tower {
         tower.removeEventListener('click');
     };
 
-    tower.subscribsion = ticker.subscribe(() => {
+    tower.subscribsion = enemiesMove$.subscribe(() => {
         const firstEnemy: Enemy = tower.enemiesInRange[0];
         if (firstEnemy) {
             tower.fireToEnemy(firstEnemy);

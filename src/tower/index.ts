@@ -1,9 +1,12 @@
-import { towerFactory } from './towers';
-import { showTowerShape, hideTowerShape } from './shape';
+
 
 import { stageClick$ } from '../stage/stage';
 import { addTowerButtonClick$, cancelTowerButtonClick$, confirmTowerButtonClick$ } from '../menu/sinks';
 import wallet$ from '../wallet/index';
+
+import { towerFactory } from './towers';
+import { showTowerShape, hideTowerShape } from './shape';
+import { newTower$ as newTowerProxy$ } from './sinks';
 
 let towerPropose = null;
 let showTowerPropose: boolean = false;
@@ -22,15 +25,13 @@ addTowerButtonClick$
 
 stageClick$
 	.filter(() => showTowerPropose)
-	.subscribe(
-		(event) => {
-			if (towerPropose) {
-				hideTowerShape(towerPropose);
-			}
-			towerPropose = showTowerShape(event.stageX, event.stageY);
-			showTowerPropose = true;
+	.subscribe((event) => {
+		if (towerPropose) {
+			hideTowerShape(towerPropose);
 		}
-	);
+		towerPropose = showTowerShape(event.stageX, event.stageY);
+		showTowerPropose = true;
+	});
 
 cancelTowerButtonClick$
 	.filter(() => towerPropose)
@@ -42,9 +43,14 @@ cancelTowerButtonClick$
 		}
 	});
 
-export const newTower$ = confirmTowerButtonClick$.filter(() => towerPropose && showTowerPropose);
+confirmTowerButtonClick$
+	.filter(() => towerPropose && showTowerPropose)
+	.subscribe((value) => {
+		newTowerProxy$.next(value);
+	});
 
-newTower$
+
+newTowerProxy$
 	.subscribe((event) => {
 		hideTowerShape(towerPropose);
 		towerFactory(towerPropose.x, towerPropose.y);

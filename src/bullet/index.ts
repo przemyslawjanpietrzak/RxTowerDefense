@@ -1,10 +1,23 @@
-import { bulletHitEnemy$ } from './bullet';
+import drivers from './drivers';
+import effects from './effects';
+import { bulletHitEnemy$ as bulletHitEnemyProxy$, bullets$ as bulletsProxy$ } from './sinks';
 
-export default function () {
-	bulletHitEnemy$
-		.subscribe((bullet: Bullet) => {
-			window.setTimeout(() => { // TODO
-				bullet.die();
-			});
-		});
+
+const proxies = {
+	bulletHitEnemy$: bulletHitEnemyProxy$,
+	bullets$: bulletsProxy$,
+};
+
+
+export function runBullet(sinks) {
+	Object.keys(drivers).forEach((key) => {
+		const source = drivers[key](sinks);
+		source.subscribe((value) => {
+			proxies[key].next(value);
+		})
+	});
+	Object.keys(effects).forEach((key) => {
+		effects[key](sinks);
+	});
 }
+
