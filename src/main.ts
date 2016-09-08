@@ -15,7 +15,9 @@ import './tower/index';
 import './enemy/index';
 import './bullet/index';
 
-import changeWalletState$, { runWallet } from './wallet/index';
+import { runWallet } from './wallet/index';
+import { changeWalletState$ } from './wallet/sinks';
+
 import { runMenu } from './menu/index';
 import {
     addTowerButtonClick$,
@@ -24,32 +26,37 @@ import {
     playPauseButtonClick$,
 } from './menu/sinks';
 
-import { enemyFactory } from "./enemy/enemy";
-
 import { newTower$, towerFireToEnemy$ } from './tower/sinks';
 import { runBullet } from './bullet/index';
 import { bulletHitEnemy$, bullets$ } from './bullet/sinks';
+
+import { enemyFactory } from "./enemy/enemy";
 
 stage.addChild(path);
 
 
 const sinks = {
-    newTower$,
-    bullets$,
     ticker$,
+
+    newTower$,
+    towerFireToEnemy$,
+
+    bullets$,
     bulletHitEnemy$,
+
+    changeWalletState$,
+
     addTowerButtonClick$,
     cancelTowerButtonClick$,
     confirmTowerButtonClick$,
     playPauseButtonClick$,
-    changeWalletState$,
-    towerFireToEnemy$,
 };
+
 runWallet(sinks);
 runMenu(sinks);
 runBullet(sinks);
 
-let counter = 0;
+let counter = 0; // TODO move to ticker's modules
 ticker$
   .filter(() => ++counter % getTickerPerEnemy(counter, scenario) === 0)
   .subscribe(() => {

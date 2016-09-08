@@ -4,7 +4,7 @@ import stage from "../stage/stage";
 import { tower as settings } from '../settings';
 
 
-export function getArea(tower: Tower | TowerShape, showArea: boolean = false) {
+export function getArea(tower: Tower | TowerShape) {
 	const area: Shape = new createjs.Shape();
 	area.graphics.beginFill(settings.areaColor).drawCircle(tower.x, tower.y, tower.range);
 

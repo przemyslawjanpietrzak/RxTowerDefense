@@ -1,5 +1,7 @@
 import { Observable } from 'rxjs/Rx';
+
 import { getDistance } from './../utils';
+
 import { bulletFactory } from './bullet';
 
 

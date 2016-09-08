@@ -6,7 +6,6 @@ import { getMove } from './../utils';
 import { bullet as settings } from '../settings';
 
 const die = (bullet: Bullet) => {
-  // bullets.splice(bullets.indexOf(bullet), 1);
   stage.removeChild(bullet);
   bullet.subscription.unsubscribe();
 };

@@ -1,8 +1,6 @@
 import createjs from 'easel';
-import { Subject } from 'rxjs/Subject';
 
 import stage, { stageClick$ } from '../stage/stage';
-import ticker$ from '../ticker';
 import { enemiesMove$, } from '../enemy/enemy';
 
 import { isInDistance, getDistance } from '../utils';

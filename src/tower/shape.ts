@@ -1,8 +1,9 @@
 import createjs from 'easel';
 
-import stage, { stageClick$, } from '../stage/stage';
-import { getArea, } from './area';
+import stage from '../stage/stage';
 import { tower as settings } from '../settings';
+
+import { getArea, } from './area';
 
 
 export const showTowerShape = (x: number, y: number): TowerShape => {
@@ -12,7 +13,7 @@ export const showTowerShape = (x: number, y: number): TowerShape => {
 	towerShape.y = y;
 	towerShape.range = settings.range;
 	towerShape.areaVisible = true;
-	towerShape.area = getArea(towerShape, true);
+	towerShape.area = getArea(towerShape);
 
 	stage.addChild(towerShape);
 	stage.addChild(towerShape.area);

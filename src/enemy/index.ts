@@ -1,4 +1,4 @@
-import { prop } from 'ramda';
+import { prop } from '../utils';
 import { bulletHitEnemy$ } from '../bullet/sinks';
 
 

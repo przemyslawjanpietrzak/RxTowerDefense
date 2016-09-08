@@ -1,5 +1,3 @@
-import { Subject } from 'rxjs/Rx';
-
 import drivers from './drivers';
 import effects from './effects';
 

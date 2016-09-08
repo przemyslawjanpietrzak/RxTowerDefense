@@ -1,3 +1,4 @@
-/**
- * Created by przemyslaw on 08.09.16.
- */
+import { Subject } from 'rxjs/Rx';
+
+
+export const changeWalletState$ = new Subject();

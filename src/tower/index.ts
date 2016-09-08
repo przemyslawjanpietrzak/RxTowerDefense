@@ -1,8 +1,6 @@
-
-
 import { stageClick$ } from '../stage/stage';
 import { addTowerButtonClick$, cancelTowerButtonClick$, confirmTowerButtonClick$ } from '../menu/sinks';
-import wallet$ from '../wallet/index';
+import { changeWalletState$ } from '../wallet/sinks';
 
 import { towerFactory } from './towers';
 import { showTowerShape, hideTowerShape } from './shape';
@@ -12,12 +10,12 @@ let towerPropose = null;
 let showTowerPropose: boolean = false;
 let money = 0;
 
-wallet$.subscribe((newMoney) => {
+changeWalletState$.subscribe((newMoney) => {
 	money = newMoney;
 });
 
 
-// Adding new tower from menu
+// Adding new tower from menu TODO move to tower's modules
 addTowerButtonClick$
 	.subscribe((event) => {
 		showTowerPropose = true;
