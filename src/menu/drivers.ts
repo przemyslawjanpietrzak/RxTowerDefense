@@ -1,3 +1,14 @@
-/**
- * Created by przemyslaw on 08.09.16.
- */
+import {
+    addTowerButtonClick$,
+    cancelTowerButtonClick$,
+    confirmTowerButtonClick$,
+    playPauseButtonClick$,
+} from './sinks';
+
+
+export default {
+    // addTowerButtonClick$: () => addTowerButtonClick$,
+    // cancelTowerButtonClick$: () => cancelTowerButtonClick$,
+    // confirmTowerButtonClick$: () => confirmTowerButtonClick$,
+    // playPauseButtonClick$: () => playPauseButtonClick$,
+}

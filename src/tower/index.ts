@@ -2,7 +2,7 @@ import { towerFactory } from './towers';
 import { showTowerShape, hideTowerShape } from './shape';
 
 import { stageClick$ } from '../stage/stage';
-import { addTowerButtonClick$, cancelTowerButtonClick$, confirmTowerButtonClick$ } from '../menu/menu';
+import { addTowerButtonClick$, cancelTowerButtonClick$, confirmTowerButtonClick$ } from '../menu/sinks';
 import wallet$ from '../wallet/index';
 
 let towerPropose = null;
@@ -11,7 +11,6 @@ let money = 0;
 
 wallet$.subscribe((newMoney) => {
 	money = newMoney;
-	console.debug(money);
 });
 
 

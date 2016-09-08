@@ -1,3 +1,7 @@
-/**
- * Created by przemyslaw on 08.09.16.
- */
+export default {
+    changeWalletState$: ({ changeWalletState$ }) => {
+        changeWalletState$.subscribe((money) => {
+            document.getElementById('money-count').innerHTML = money;
+        });
+    }
+}

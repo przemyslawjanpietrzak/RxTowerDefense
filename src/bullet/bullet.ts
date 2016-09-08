@@ -1,9 +1,9 @@
-import createjs from "easel";
-import Rx from 'rxjs/Rx';
+import createjs from 'easel';
+import { Observable } from 'rxjs/Rx';
 
-import stage from "./../stage/stage";
-import ticker from "./../ticker";
-import { getMove, getDistance } from "./../utils";
+import stage from './../stage/stage';
+import ticker from './../ticker';
+import { getMove, getDistance } from './../utils';
 import { bullet as settings } from '../settings';
 
 const die = (bullet: Bullet) => {
@@ -12,11 +12,11 @@ const die = (bullet: Bullet) => {
   bullet.subscription.unsubscribe();
 };
 
-const bullets: Array<{ bullet: Bullet, enemy: Enemy} > = [];
+const bullets: Array<Bullet> = [];
 
 export const bulletHitEnemy$ = ticker
   .flatMap(
-    () => Rx.Observable.from(bullets)
+    () => Observable.from(bullets)
   )
   .filter(
     (bullet: Bullet) => getDistance(bullet.x, bullet.y, bullet.destinationX, bullet.destinationY) <= bullet.speed

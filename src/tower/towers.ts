@@ -1,11 +1,11 @@
-import createjs from "easel";
+import createjs from 'easel';
 import { Subject } from 'rxjs/Subject';
 
-import stage, { stageClick$ } from "../stage/stage";
-import ticker from "../ticker";
+import stage, { stageClick$ } from '../stage/stage';
+import ticker from '../ticker';
 import { enemiesMove$, } from '../enemy/enemy';
 
-import { isInDistance, getDistance } from "../utils";
+import { isInDistance, getDistance } from '../utils';
 import { tower as settings } from '../settings';
 import { getArea, toogleAreaFactory, hideTowerArea } from './area';
 

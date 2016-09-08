@@ -1,6 +1,6 @@
-import createjs from "easel";
+import createjs from 'easel';
 
-import stage, { stageClick$, } from "../stage/stage";
+import stage, { stageClick$, } from '../stage/stage';
 import { getArea, } from './area';
 import { tower as settings } from '../settings';
 

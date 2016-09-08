@@ -1,5 +1,5 @@
 import createjs from 'easel';
-import Rx from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 
 import stage from '../stage/stage';
 import ticker from '../ticker';
@@ -48,4 +48,4 @@ export function enemyFactory() {
   return enemy;
 }
 
-export const enemiesMove$ = ticker.flatMap(() => Rx.Observable.from(enemies));
+export const enemiesMove$ = ticker.flatMap(() => Observable.from(enemies));

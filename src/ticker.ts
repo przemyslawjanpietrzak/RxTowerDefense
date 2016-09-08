@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Rx';
 
-import { playPauseButtonClick$ } from './menu/menu';
+import { playPauseButtonClick$ } from './menu/sinks';
 
 let isPlay: Boolean = true;
 playPauseButtonClick$
