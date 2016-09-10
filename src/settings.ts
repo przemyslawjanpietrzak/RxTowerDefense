@@ -23,3 +23,8 @@ export const bullet = {
 	speed: 10,
 	size: 5,
 };
+
+export const moneyOnBegin = 1000;
+export const livesOnBegin = 5;
+
+export const dieMessage = 'You died!';

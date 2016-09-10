@@ -7,6 +7,8 @@ import steps from '../mapPoint';
 import { getMove, getDistance } from '../utils';
 import { enemy as settings, } from '../settings';
 
+import { enemyPassAllPaths$ } from './sinks';
+
 const die = (enemy: Enemy) => {
   enemies.splice(enemies.indexOf(enemy), 1);
   stage.removeChild(enemy);
@@ -16,6 +18,7 @@ const die = (enemy: Enemy) => {
 const enemyMove = (enemy: Enemy) => {
   const nextStep = steps[enemy.step];
   if (!nextStep) {
+    enemyPassAllPaths$.next();
     enemy.die();
   } else {
     const newDirections = getMove(enemy, nextStep, enemy.speed);

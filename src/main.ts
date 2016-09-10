@@ -15,6 +15,8 @@ import './tower/index';
 import './enemy/index';
 import './bullet/index';
 
+import { stageClick$ } from './stage/stage';
+
 import { runWallet } from './wallet/index';
 import { changeWalletState$ } from './wallet/sinks';
 
@@ -26,11 +28,14 @@ import {
     playPauseButtonClick$,
 } from './menu/sinks';
 
+import { runTower } from './tower/index';
 import { newTower$, towerFireToEnemy$ } from './tower/sinks';
+
 import { runBullet } from './bullet/index';
 import { bulletHitEnemy$, bullets$ } from './bullet/sinks';
 
 import { enemyFactory } from "./enemy/enemy";
+import { enemyPassAllPaths$ } from './enemy/sinks';
 
 stage.addChild(path);
 
@@ -38,11 +43,15 @@ stage.addChild(path);
 const sinks = {
     ticker$,
 
+    stageClick$,
+
     newTower$,
     towerFireToEnemy$,
 
     bullets$,
     bulletHitEnemy$,
+
+    enemyPassAllPaths$,
 
     changeWalletState$,
 
@@ -55,6 +64,7 @@ const sinks = {
 runWallet(sinks);
 runMenu(sinks);
 runBullet(sinks);
+runTower(sinks);
 
 let counter = 0; // TODO move to ticker's modules
 ticker$

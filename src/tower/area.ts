@@ -1,4 +1,4 @@
-import createjs from "easel";
+import createjs from 'easel';
 
 import stage from "../stage/stage";
 import { tower as settings } from '../settings';
