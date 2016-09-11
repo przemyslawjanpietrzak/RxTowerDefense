@@ -163,8 +163,7 @@ $__System.register("e", [], function(exports_1, context_1) {
     setters: [],
     execute: function() {
       exports_1("default", {
-        moneyOnStart: 1000,
-        tickPerStep: 630,
+        tickPerStep: 500,
         parts: {
           '0': {tickPerEnemy: 330},
           '1': {tickPerEnemy: 250},
@@ -6308,7 +6307,7 @@ $__System.register("8", [], function(exports_1, context_1) {
       exports_1("tower", tower = {
         color: 'rgba(13,71,161 ,1)',
         range: 50,
-        reloadBulletTime: 250,
+        reloadBulletTime: 400,
         size: 5,
         areaColor: 'rgba(13,71,161 ,0.1)',
         cost: 500
@@ -6318,14 +6317,14 @@ $__System.register("8", [], function(exports_1, context_1) {
         size: 5,
         color: 'rgba(244,67,54 ,1)',
         speed: 2,
-        price: 50
+        price: 45
       });
       exports_1("bullet", bullet = {
         color: 'rgba(33,33,33 ,1)',
         speed: 10,
         size: 5
       });
-      exports_1("moneyOnBegin", moneyOnBegin = 1000);
+      exports_1("moneyOnBegin", moneyOnBegin = 500);
       exports_1("livesOnBegin", livesOnBegin = 5);
       exports_1("dieMessage", dieMessage = 'You died!');
     }
