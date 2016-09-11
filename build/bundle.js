@@ -164,7 +164,7 @@ $__System.register("e", [], function(exports_1, context_1) {
     execute: function() {
       exports_1("default", {
         moneyOnStart: 1000,
-        tickPerStep: 1000,
+        tickPerStep: 630,
         parts: {
           '0': {tickPerEnemy: 330},
           '1': {tickPerEnemy: 250},
@@ -182,16 +182,17 @@ $__System.register("e", [], function(exports_1, context_1) {
   };
 });
 
-$__System.register("f", ["3", "10", "11", "12", "8", "13", "14"], function(exports_1, context_1) {
+$__System.register("f", ["3", "10", "11", "12", "13", "8", "14", "15"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var easel_1,
       stage_1,
-      enemy_1,
+      sinks_1,
+      ticker_1,
       utils_1,
       settings_1,
       area_1,
-      sinks_1;
+      sinks_2;
   function towerFactory(x, y) {
     var reloadBulletTime = 100;
     var tower = new easel_1.default.Shape();
@@ -206,7 +207,7 @@ $__System.register("f", ["3", "10", "11", "12", "8", "13", "14"], function(expor
     tower.onClickHandler = area_1.toogleAreaFactory(tower);
     tower.addEventListener('click', tower.onClickHandler);
     tower.fireToEnemy = function towerFireToEnemy(enemy) {
-      sinks_1.towerFireToEnemy$.next({
+      sinks_2.towerFireToEnemy$.next({
         tower: tower,
         enemy: enemy
       });
@@ -214,25 +215,28 @@ $__System.register("f", ["3", "10", "11", "12", "8", "13", "14"], function(expor
     };
     tower.die = function() {
       stage_1.default.removeChild(tower);
-      tower.subscribsion.unsubscribe();
       tower.enemySubscription.unsubscribe();
+      "";
       tower.stageClickSubscription.unsubscribe();
+      tower.tickerSubscription.unsubscribe();
       tower.removeEventListener('click');
     };
-    tower.subscribsion = enemy_1.enemiesMove$.subscribe(function() {
+    tower.tickerSubscription = ticker_1.default.subscribe(function() {
+      if (tower.reloadBulletTime > 0) {
+        tower.reloadBulletTime--;
+      }
+    });
+    tower.enemySubscription = sinks_1.enemyMove$.filter(function() {
+      return tower.reloadBulletTime === 0;
+    }).subscribe(function(enemy) {
+      if (utils_1.isInDistance(tower, enemy)) {
+        tower.enemiesInRange.push(enemy);
+      }
       var firstEnemy = tower.enemiesInRange[0];
       if (firstEnemy) {
         tower.fireToEnemy(firstEnemy);
       }
-      if (tower.reloadBulletTime > 0) {
-        tower.reloadBulletTime--;
-      }
       tower.enemiesInRange = [];
-    });
-    tower.enemySubscription = enemy_1.enemiesMove$.subscribe(function(enemy) {
-      if (utils_1.isInDistance(tower, enemy) && tower.reloadBulletTime === 0) {
-        tower.enemiesInRange.push(enemy);
-      }
     });
     tower.stageClickSubscription = stage_1.stageClick$.filter(function(event) {
       return utils_1.getDistance(event.stageX, event.stageY, tower.x, tower.y) > settings_1.tower.size;
@@ -248,22 +252,24 @@ $__System.register("f", ["3", "10", "11", "12", "8", "13", "14"], function(expor
       easel_1 = easel_1_1;
     }, function(stage_1_1) {
       stage_1 = stage_1_1;
-    }, function(enemy_1_1) {
-      enemy_1 = enemy_1_1;
+    }, function(sinks_1_1) {
+      sinks_1 = sinks_1_1;
+    }, function(ticker_1_1) {
+      ticker_1 = ticker_1_1;
     }, function(utils_1_1) {
       utils_1 = utils_1_1;
     }, function(settings_1_1) {
       settings_1 = settings_1_1;
     }, function(area_1_1) {
       area_1 = area_1_1;
-    }, function(sinks_1_1) {
-      sinks_1 = sinks_1_1;
+    }, function(sinks_2_1) {
+      sinks_2 = sinks_2_1;
     }],
     execute: function() {}
   };
 });
 
-$__System.register("13", ["3", "10", "8"], function(exports_1, context_1) {
+$__System.register("14", ["3", "10", "8"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var easel_1,
@@ -304,7 +310,7 @@ $__System.register("13", ["3", "10", "8"], function(exports_1, context_1) {
   };
 });
 
-$__System.register("15", ["3", "10", "8", "13"], function(exports_1, context_1) {
+$__System.register("16", ["3", "10", "8", "14"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var easel_1,
@@ -344,7 +350,7 @@ $__System.register("15", ["3", "10", "8", "13"], function(exports_1, context_1) 
   };
 });
 
-$__System.register("16", ["8", "f", "15"], function(exports_1, context_1) {
+$__System.register("17", ["8", "f", "16"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var settings_1,
@@ -426,7 +432,7 @@ $__System.register("16", ["8", "f", "15"], function(exports_1, context_1) {
   };
 });
 
-$__System.register("17", ["16"], function(exports_1, context_1) {
+$__System.register("18", ["17"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var effects_1;
@@ -444,7 +450,7 @@ $__System.register("17", ["16"], function(exports_1, context_1) {
   };
 });
 
-$__System.register("18", ["12", "19"], function(exports_1, context_1) {
+$__System.register("19", ["13", "1a"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var utils_1,
@@ -463,16 +469,37 @@ $__System.register("18", ["12", "19"], function(exports_1, context_1) {
   };
 });
 
-$__System.register("1a", ["3", "10", "1b", "12", "8"], function(exports_1, context_1) {
+$__System.register("1b", ["13"], function(exports_1, context_1) {
+  "use strict";
+  var __moduleName = context_1 && context_1.id;
+  var utils_1;
+  var drivers;
+  return {
+    setters: [function(utils_1_1) {
+      utils_1 = utils_1_1;
+    }],
+    execute: function() {
+      drivers = {bulletHitEnemy$: function(_a) {
+          var bulletMove$ = _a.bulletMove$;
+          return bulletMove$.filter(function(bullet) {
+            return utils_1.getDistance(bullet.x, bullet.y, bullet.destinationX, bullet.destinationY) <= bullet.speed;
+          });
+        }};
+      exports_1("default", drivers);
+    }
+  };
+});
+
+$__System.register("1c", ["3", "10", "12", "13", "8", "1a"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var easel_1,
       stage_1,
       ticker_1,
       utils_1,
-      settings_1;
-  var die,
-      bullets;
+      settings_1,
+      sinks_1;
+  var die;
   function bulletFactory(tower, enemy) {
     var bullet = new easel_1.default.Shape();
     var positionX = tower.x,
@@ -496,8 +523,8 @@ $__System.register("1a", ["3", "10", "1b", "12", "8"], function(exports_1, conte
       }, bullet.speed);
       bullet.x = newDirections.x;
       bullet.y = newDirections.y;
+      sinks_1.bulletMove$.next(bullet);
     });
-    bullets.push(bullet);
     stage_1.default.addChild(bullet);
     return bullet;
   }
@@ -513,84 +540,59 @@ $__System.register("1a", ["3", "10", "1b", "12", "8"], function(exports_1, conte
       utils_1 = utils_1_1;
     }, function(settings_1_1) {
       settings_1 = settings_1_1;
+    }, function(sinks_1_1) {
+      sinks_1 = sinks_1_1;
     }],
     execute: function() {
       die = function(bullet) {
         stage_1.default.removeChild(bullet);
         bullet.subscription.unsubscribe();
       };
-      exports_1("bullets", bullets = []);
     }
   };
 });
 
-$__System.register("1c", ["7", "12", "1a"], function(exports_1, context_1) {
+$__System.register("1d", ["1c"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
-  var Rx_1,
-      utils_1,
-      bullet_1;
-  var bullets,
-      drivers;
+  var bullet_1;
+  var bulletToDie;
   return {
-    setters: [function(Rx_1_1) {
-      Rx_1 = Rx_1_1;
-    }, function(utils_1_1) {
-      utils_1 = utils_1_1;
-    }, function(bullet_1_1) {
+    setters: [function(bullet_1_1) {
       bullet_1 = bullet_1_1;
     }],
     execute: function() {
-      bullets = [];
-      drivers = {
-        bulletHitEnemy$: function(_a) {
-          var ticker$ = _a.ticker$;
-          return ticker$.flatMap(function() {
-            return Rx_1.Observable.from(bullets);
-          }).filter(function(bullet) {
-            return utils_1.getDistance(bullet.x, bullet.y, bullet.destinationX, bullet.destinationY) <= bullet.speed;
-          });
-        },
-        bullets$: function(_a) {
-          var bulletHitEnemy$ = _a.bulletHitEnemy$,
-              towerFireToEnemy$ = _a.towerFireToEnemy$;
-          return Rx_1.Observable.merge(bulletHitEnemy$.map(function(bullet) {
-            bullets.splice(bullets.indexOf(bullet), 1);
-            return bullets;
-          }), towerFireToEnemy$.map(function(_a) {
+      bulletToDie = null;
+      exports_1("default", {
+        towerFireToEnemy$: function(_a) {
+          var towerFireToEnemy$ = _a.towerFireToEnemy$;
+          towerFireToEnemy$.subscribe(function(_a) {
             var tower = _a.tower,
                 enemy = _a.enemy;
-            return bullet_1.bulletFactory(tower, enemy);
-          }).map(function(bullet) {
-            bullets.push(bullet);
-            return bullets;
-          }));
-        }
-      };
-      exports_1("default", drivers);
-    }
-  };
-});
-
-$__System.register("1d", [], function(exports_1, context_1) {
-  "use strict";
-  var __moduleName = context_1 && context_1.id;
-  return {
-    setters: [],
-    execute: function() {
-      exports_1("default", {bulletHitEnemy$: function(_a) {
+            bullet_1.bulletFactory(tower, enemy);
+          });
+        },
+        bulletHitEnemy$: function(_a) {
           var bulletHitEnemy$ = _a.bulletHitEnemy$;
           bulletHitEnemy$.subscribe(function(bullet) {
-            window.setTimeout(function() {
-              bullet.die();
-            });
+            bulletToDie = bullet;
           });
-        }});
+        },
+        ticker$: function(_a) {
+          var ticker$ = _a.ticker$;
+          ticker$.filter(function() {
+            return bulletToDie;
+          }).subscribe(function() {
+            bulletToDie.die();
+            bulletToDie = null;
+          });
+        }
+      });
     }
   };
 });
 
-$__System.register("1e", ["1c", "1d", "19"], function(exports_1, context_1) {
+$__System.register("1e", ["1b", "1d", "1a"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var drivers_1,
@@ -620,7 +622,7 @@ $__System.register("1e", ["1c", "1d", "19"], function(exports_1, context_1) {
     execute: function() {
       proxies = {
         bulletHitEnemy$: sinks_1.bulletHitEnemy$,
-        bullets$: sinks_1.bullets$
+        bulletMove$: sinks_1.bulletMove$
       };
     }
   };
@@ -641,7 +643,7 @@ $__System.register("a", ["7"], function(exports_1, context_1) {
   };
 });
 
-$__System.register("14", ["7"], function(exports_1, context_1) {
+$__System.register("15", ["7"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var Rx_1;
@@ -658,19 +660,19 @@ $__System.register("14", ["7"], function(exports_1, context_1) {
   };
 });
 
-$__System.register("19", ["7"], function(exports_1, context_1) {
+$__System.register("1a", ["7"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var Rx_1;
   var bulletHitEnemy$,
-      bullets$;
+      bulletMove$;
   return {
     setters: [function(Rx_1_1) {
       Rx_1 = Rx_1_1;
     }],
     execute: function() {
       exports_1("bulletHitEnemy$", bulletHitEnemy$ = new Rx_1.Subject());
-      exports_1("bullets$", bullets$ = new Rx_1.Subject());
+      exports_1("bulletMove$", bulletMove$ = new Rx_1.Subject());
     }
   };
 });
@@ -5828,7 +5830,7 @@ $__System.register("20", ["7"], function(exports_1, context_1) {
   };
 });
 
-$__System.register("1b", ["7", "20"], function(exports_1, context_1) {
+$__System.register("12", ["7", "20"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var Rx_1,
@@ -6247,7 +6249,7 @@ $__System.registerDynamic("22", ["21"], true, function($__require, exports, modu
   return module.exports;
 });
 
-$__System.register("12", ["22"], function(exports_1, context_1) {
+$__System.register("13", ["22"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var victor_1;
@@ -6330,11 +6332,10 @@ $__System.register("8", [], function(exports_1, context_1) {
   };
 });
 
-$__System.register("11", ["3", "7", "10", "1b", "4", "12", "8", "23"], function(exports_1, context_1) {
+$__System.register("23", ["3", "10", "12", "4", "13", "8", "11"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var easel_1,
-      Rx_1,
       stage_1,
       ticker_1,
       mapPoint_1,
@@ -6342,9 +6343,7 @@ $__System.register("11", ["3", "7", "10", "1b", "4", "12", "8", "23"], function(
       settings_1,
       sinks_1;
   var die,
-      enemyMove,
-      enemies,
-      enemiesMove$;
+      enemyMove;
   function enemyFactory() {
     var enemy = new easel_1.default.Shape();
     enemy.graphics.beginFill(settings_1.enemy.color).drawCircle(0, 0, settings_1.enemy.size);
@@ -6356,7 +6355,6 @@ $__System.register("11", ["3", "7", "10", "1b", "4", "12", "8", "23"], function(
     enemy.subscription = ticker_1.default.subscribe(function() {
       enemyMove(enemy);
     });
-    enemies.push(enemy);
     stage_1.default.addChild(enemy);
     return enemy;
   }
@@ -6364,8 +6362,6 @@ $__System.register("11", ["3", "7", "10", "1b", "4", "12", "8", "23"], function(
   return {
     setters: [function(easel_1_1) {
       easel_1 = easel_1_1;
-    }, function(Rx_1_1) {
-      Rx_1 = Rx_1_1;
     }, function(stage_1_1) {
       stage_1 = stage_1_1;
     }, function(ticker_1_1) {
@@ -6381,7 +6377,6 @@ $__System.register("11", ["3", "7", "10", "1b", "4", "12", "8", "23"], function(
     }],
     execute: function() {
       die = function(enemy) {
-        enemies.splice(enemies.indexOf(enemy), 1);
         stage_1.default.removeChild(enemy);
         enemy.subscription.unsubscribe();
       };
@@ -6397,12 +6392,9 @@ $__System.register("11", ["3", "7", "10", "1b", "4", "12", "8", "23"], function(
           if (utils_1.getDistance(enemy.x, enemy.y, nextStep.x, nextStep.y) < enemy.speed) {
             enemy.step++;
           }
+          sinks_1.enemyMove$.next(enemy);
         }
       };
-      enemies = [];
-      exports_1("enemiesMove$", enemiesMove$ = ticker_1.default.flatMap(function() {
-        return Rx_1.Observable.from(enemies);
-      }));
     }
   };
 });
@@ -21135,17 +21127,19 @@ $__System.registerDynamic("7", ["80", "25", "2a", "2d", "33", "36", "3b", "3e", 
   return module.exports;
 });
 
-$__System.register("23", ["7"], function(exports_1, context_1) {
+$__System.register("11", ["7"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var Rx_1;
-  var enemyPassAllPaths$;
+  var enemyPassAllPaths$,
+      enemyMove$;
   return {
     setters: [function(Rx_1_1) {
       Rx_1 = Rx_1_1;
     }],
     execute: function() {
       exports_1("enemyPassAllPaths$", enemyPassAllPaths$ = new Rx_1.Subject());
+      exports_1("enemyMove$", enemyMove$ = new Rx_1.Subject());
     }
   };
 });
@@ -21158,7 +21152,7 @@ $__System.registerDynamic("5", [], true, function($__require, exports, module) {
   return module.exports;
 });
 
-$__System.register("1", ["c2", "e9", "142", "10", "12", "1b", "2", "9", "d", "e", "17", "18", "1e", "a", "20", "14", "19", "11", "23"], function(exports_1, context_1) {
+$__System.register("1", ["c2", "e9", "142", "10", "13", "12", "2", "9", "d", "e", "18", "19", "1e", "a", "20", "15", "1a", "23", "11"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var stage_1,
@@ -21219,9 +21213,10 @@ $__System.register("1", ["c2", "e9", "142", "10", "12", "1b", "2", "9", "d", "e"
         stageClick$: stage_2.stageClick$,
         newTower$: sinks_3.newTower$,
         towerFireToEnemy$: sinks_3.towerFireToEnemy$,
-        bullets$: sinks_4.bullets$,
+        bulletMove$: sinks_4.bulletMove$,
         bulletHitEnemy$: sinks_4.bulletHitEnemy$,
         enemyPassAllPaths$: sinks_5.enemyPassAllPaths$,
+        enemyMove$: sinks_5.enemyMove$,
         changeWalletState$: sinks_1.changeWalletState$,
         addTowerButtonClick$: sinks_2.addTowerButtonClick$,
         cancelTowerButtonClick$: sinks_2.cancelTowerButtonClick$,
