@@ -32,10 +32,10 @@ import { runTower } from './tower/index';
 import { newTower$, towerFireToEnemy$ } from './tower/sinks';
 
 import { runBullet } from './bullet/index';
-import { bulletHitEnemy$, bullets$ } from './bullet/sinks';
+import { bulletHitEnemy$, bulletMove$ } from './bullet/sinks';
 
 import { enemyFactory } from "./enemy/enemy";
-import { enemyPassAllPaths$ } from './enemy/sinks';
+import { enemyPassAllPaths$, enemyMove$ } from './enemy/sinks';
 
 stage.addChild(path);
 
@@ -48,10 +48,11 @@ const sinks = {
     newTower$,
     towerFireToEnemy$,
 
-    bullets$,
+    bulletMove$,
     bulletHitEnemy$,
 
     enemyPassAllPaths$,
+    enemyMove$,
 
     changeWalletState$,
 

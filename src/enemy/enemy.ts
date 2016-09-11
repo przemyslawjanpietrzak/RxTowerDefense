@@ -1,16 +1,14 @@
 import createjs from 'easel';
-import { Observable } from 'rxjs/Rx';
 
 import stage from '../stage/stage';
-import ticker from '../ticker';
+import ticker$ from '../ticker';
 import steps from '../mapPoint';
 import { getMove, getDistance } from '../utils';
 import { enemy as settings, } from '../settings';
 
-import { enemyPassAllPaths$ } from './sinks';
+import { enemyPassAllPaths$, enemyMove$, } from './sinks';
 
 const die = (enemy: Enemy) => {
-  enemies.splice(enemies.indexOf(enemy), 1);
   stage.removeChild(enemy);
   enemy.subscription.unsubscribe();
 };
@@ -27,10 +25,9 @@ const enemyMove = (enemy: Enemy) => {
     if (getDistance(enemy.x, enemy.y, nextStep.x, nextStep.y) < enemy.speed) {
       enemy.step++;
     }
+    enemyMove$.next(enemy);
   }
 };
-
-const enemies: Array<Enemy> = [];
 
 export function enemyFactory() {
   const enemy: Enemy = new createjs.Shape();
@@ -41,14 +38,11 @@ export function enemyFactory() {
     die(enemy);
   };
 
-  enemy.subscription = ticker.subscribe(() => {
+  enemy.subscription = ticker$.subscribe(() => {
       enemyMove(enemy);
     }
   );
 
-  enemies.push(enemy);
   stage.addChild(enemy);
   return enemy;
 }
-
-export const enemiesMove$ = ticker.flatMap(() => Observable.from(enemies));

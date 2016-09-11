@@ -1,9 +1,25 @@
+import { bulletFactory } from './bullet';
+
+let bulletToDie: Bullet = null;
+
 export default {
+    towerFireToEnemy$: ({ towerFireToEnemy$ }) => {
+        towerFireToEnemy$
+            .subscribe(({ tower, enemy }: { tower: Tower, Enemy: Enemy }) => {
+                bulletFactory(tower, enemy)
+            });
+    },
     bulletHitEnemy$: ({ bulletHitEnemy$ }) => {
         bulletHitEnemy$.subscribe((bullet: Bullet) => {
-            window.setTimeout(() => { // TODO
-                bullet.die();
-            });
+            bulletToDie = bullet;
         });
     },
+    ticker$: ({ ticker$ }) => {
+        ticker$
+            .filter(() => bulletToDie)
+            .subscribe(() => {
+                bulletToDie.die();
+                bulletToDie = null;
+        })
+    }
 }

@@ -1,7 +1,8 @@
 import createjs from 'easel';
 
 import stage, { stageClick$ } from '../stage/stage';
-import { enemiesMove$, } from '../enemy/enemy';
+import { enemyMove$, } from '../enemy/sinks';
+import ticker$ from '../ticker';
 
 import { isInDistance, getDistance } from '../utils';
 import { tower as settings } from '../settings';
@@ -31,28 +32,31 @@ export function towerFactory(x: number, y: number): Tower {
 
     tower.die = () => {
         stage.removeChild(tower);
-        tower.subscribsion.unsubscribe();
-        tower.enemySubscription.unsubscribe();
+        tower.enemySubscription.unsubscribe();``
         tower.stageClickSubscription.unsubscribe();
+        tower.tickerSubscription.unsubscribe();
         tower.removeEventListener('click');
     };
 
-    tower.subscribsion = enemiesMove$.subscribe(() => {
-        const firstEnemy: Enemy = tower.enemiesInRange[0];
-        if (firstEnemy) {
-            tower.fireToEnemy(firstEnemy);
-        }
+    tower.tickerSubscription = ticker$.subscribe(() => {
         if (tower.reloadBulletTime > 0) {
             tower.reloadBulletTime--;
         }
-        tower.enemiesInRange = [];
     });
 
-    tower.enemySubscription = enemiesMove$.subscribe((enemy: Enemy) => {
-        if (isInDistance(tower, enemy) && tower.reloadBulletTime === 0) {
-            tower.enemiesInRange.push(enemy);
-        }
-    });
+    tower.enemySubscription = enemyMove$
+        .filter(() => tower.reloadBulletTime === 0)
+        .subscribe((enemy: Enemy) => {
+            if (isInDistance(tower, enemy)) {
+                tower.enemiesInRange.push(enemy);
+            }
+            const firstEnemy: Enemy = tower.enemiesInRange[0];
+            if (firstEnemy) {
+                tower.fireToEnemy(firstEnemy);
+            }
+
+            tower.enemiesInRange = [];
+        });
 
     tower.stageClickSubscription = stageClick$
       .filter((event) => getDistance(event.stageX, event.stageY, tower.x, tower.y) > settings.size) // click out of tower

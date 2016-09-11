@@ -4,8 +4,9 @@ interface Tower {
 	range: number;
 	reloadBulletTime: number;
 	graphics: Graphics;
-	subscribsion: any;
+	enemySubscription: any;
 	stageClickSubscription: any
+	tickerSubscription: any
 	enemiesInRange: Array<Enemy>;
 	enemySubscription: any
 	areaVisible: boolean

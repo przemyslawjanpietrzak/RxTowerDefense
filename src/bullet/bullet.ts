@@ -5,12 +5,14 @@ import ticker from './../ticker';
 import { getMove } from './../utils';
 import { bullet as settings } from '../settings';
 
+import { bulletMove$ } from './sinks';
+
+
 const die = (bullet: Bullet) => {
   stage.removeChild(bullet);
   bullet.subscription.unsubscribe();
 };
 
-export const bullets: Array<Bullet> = [];
 
 export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
   const bullet: Bullet = new createjs.Shape();
@@ -34,9 +36,10 @@ export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
     );
     bullet.x = newDirections.x;
     bullet.y = newDirections.y;
+
+    bulletMove$.next(bullet);
   });
 
-  bullets.push(bullet);
   stage.addChild(bullet);
   return bullet;
 }
