@@ -1,6 +1,5 @@
 export default {
-	moneyOnStart: 1000,
-	tickPerStep: 630,
+	tickPerStep: 500,
 	parts: {
 		'0': {
 			tickPerEnemy: 330
