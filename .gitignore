@@ -1,3 +1,4 @@
 node_modules
-jspm_packages/*
-.idea/*
+jspm_packages
+.idea
+build

@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+
+  </head>
+  <body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        </button>
+        <a class="brand"  >Bootstrap</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="active">
+              <a>Home</a>
+            </li>
+            <li class="">
+              <a>Get started</a>
+            </li>
+            <li class="">
+              <a>Scaffolding</a>
+            </li>
+            <li class="">
+              <a>Base CSS</a>
+            </li>
+            <li class="">
+              <a>Components</a>
+            </li>
+            <li class="">
+              <a>JavaScript</a>
+            </li>
+            <li class="">
+              <a>Customize</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <header class="jumbotron subhead" id="overview">
+    <div class="container">
+      <h1>Getting started</h1>
+      <p class="lead">Game status, some information ...</p>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row">
+      <div class="span3">
+        <div class="bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav affix-top">
+            <li><a><i class="icon-chevron-right"></i>Money: <span id="money-count"></span></a></li>
+            <li><a><i class="icon-chevron-right"></i>Lives: <span id="lives-count"></span></a></li>
+          </ul>
+        </div>
+        <div class=" bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav affix-top">
+            <li><a id="add-tower"><i class="icon-chevron-right"></i> Tower classic</a></li>
+            <li><a><i class="icon-chevron-right"></i> Some other tower</a></li>
+            <li><a><i class="icon-chevron-right"></i> Other other tower</a></li>
+            <li><a><i class="icon-chevron-right"></i> Pineapples?</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="span9">
+        <section id="download-bootstrap">
+          <canvas
+                  id="canvas"
+                  width="700px"
+                  height="500px"
+                  style="
+                width: 700px;
+                height: 500px;
+              "
+          ></canvas>
+          <div class="row-fluid">
+            <div class="span3">
+              <p><a class="btn btn-large btn-primary" id="confirm">Confirm</a></p>
+            </div>
+            <div class="span3">
+              <p><a class="btn btn-large" id="cancel">Cancel</a></p>
+            </div>
+            <div class="span3">
+              <p><a class="btn btn-large" id="play-pause">Play/Pause</a></p>
+            </div>
+          </div>
+        </section>
+        <section id="what-next">
+          <div class="page-header">
+            <h1>What next?</h1>
+          </div>
+          <p class="lead">Head to the docs for information, examples, and code snippets, or take the next leap and customize Bootstrap for any upcoming project.</p>
+          <a class="btn btn-large btn-primary"  >Visit the Bootstrap docs</a>
+          <a class="btn btn-large"  >Customize Bootstrap</a>
+        </section>
+      </div>
+    </div>
+  </div>
+  <script src="./bundle.js"></script>
+  </body>
+</html>

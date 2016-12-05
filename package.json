@@ -14,7 +14,8 @@
       "css": "github:systemjs/plugin-css@^0.1.26",
       "easel": "github:CreateJS/EaselJS@^0.8.2",
       "node-easel": "npm:node-easel@^0.1.2",
-      "ts": "github:frankwallis/plugin-typescript@^5.0.8",
+      "rxjs": "npm:rxjs@^5.0.0-rc.4",
+      "ts": "github:frankwallis/plugin-typescript@^5.3.1",
       "victor": "npm:victor@^1.1.0"
     },
     "devDependencies": {
@@ -26,6 +27,66 @@
     "buildConfig": {
       "transpileES6": true,
       "minify": true
+    },
+    "peerDependencies": {
+      "assert": "npm:jspm-nodelibs-assert@^0.2.0",
+      "buffer": "npm:jspm-nodelibs-buffer@^0.2.0",
+      "child_process": "npm:jspm-nodelibs-child_process@^0.2.0",
+      "constants": "npm:jspm-nodelibs-constants@^0.2.0",
+      "crypto": "npm:jspm-nodelibs-crypto@^0.2.0",
+      "events": "npm:jspm-nodelibs-events@^0.2.0",
+      "fs": "npm:jspm-nodelibs-fs@^0.2.0",
+      "module": "npm:jspm-nodelibs-module@^0.2.0",
+      "net": "npm:jspm-nodelibs-net@^0.2.0",
+      "os": "npm:jspm-nodelibs-os@^0.2.0",
+      "path": "npm:jspm-nodelibs-path@^0.2.0",
+      "process": "npm:jspm-nodelibs-process@^0.2.0",
+      "stream": "npm:jspm-nodelibs-stream@^0.2.0",
+      "string_decoder": "npm:jspm-nodelibs-string_decoder@^0.2.0",
+      "util": "npm:jspm-nodelibs-util@^0.2.0",
+      "vm": "npm:jspm-nodelibs-vm@^0.2.0"
+    },
+    "overrides": {
+      "npm:babel-core@5.8.38": {
+        "main": "browser.js",
+        "dependencies": {},
+        "jspmNodeConversion": false,
+        "map": {
+          "regenerator/runtime": "babel-runtime/regenerator/runtime"
+        },
+        "meta": {
+          "browser.js": {
+            "exports": "babel",
+            "format": "global"
+          }
+        }
+      },
+      "npm:babel-runtime@5.8.38": {
+        "main": false,
+        "dependencies": {},
+        "optionalDependencies": {
+          "core-js": "^1.2.0"
+        }
+      },
+      "npm:inherits@2.0.3": {
+        "ignore": [
+          "test.js"
+        ]
+      },
+      "npm:typescript@2.1.1": {
+        "browser": {},
+        "map": {
+          "buffer": "@empty",
+          "child_process": "@empty",
+          "fs": "@empty",
+          "path": "@empty",
+          "process": "@empty",
+          "readline": "@empty"
+        },
+        "dependencies": {
+          "source-map-support": "*"
+        }
+      }
     }
   },
   "devDependencies": {
