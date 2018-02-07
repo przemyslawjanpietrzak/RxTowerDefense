@@ -13,7 +13,7 @@ export default {
                 window.alert(dieMessage);
                 window.location.reload();
             } else {
-                document.getElementById('lives-count').innerHTML = livesCount - 1;
+                document.getElementById('lives-count').innerHTML = String(livesCount - 1);
             }
         })
     }

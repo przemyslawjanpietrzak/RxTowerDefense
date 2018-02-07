@@ -59,7 +59,7 @@ export function towerFactory(x: number, y: number): Tower {
         });
 
     tower.stageClickSubscription = stageClick$
-      .filter((event) => getDistance(event.stageX, event.stageY, tower.x, tower.y) > settings.size) // click out of tower
+      .filter((event: Event) => getDistance(event.stageX, event.stageY, tower.x, tower.y) > settings.size) // click out of tower
       .subscribe(() => {
         hideTowerArea(tower);
       });

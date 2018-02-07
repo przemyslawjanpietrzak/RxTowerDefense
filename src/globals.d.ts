@@ -93,3 +93,8 @@ interface Vector {
     angle(): number
     length(): number
 }
+
+interface Event {
+    stageX: number
+    stageY: number
+}

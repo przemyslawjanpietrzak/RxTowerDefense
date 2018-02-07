@@ -2,7 +2,7 @@ import { Observable } from 'rxjs/Rx';
 
 import { playPauseButtonClick$ } from './menu/sinks';
 
-let isPlay: Boolean = true;
+let isPlay: boolean = true;
 playPauseButtonClick$
 	.subscribe(() => {
 		isPlay = !isPlay;
