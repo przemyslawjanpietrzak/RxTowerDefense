@@ -1,4 +1,4 @@
-import createjs from "easel";
+import * as createjs from "easeljs/lib/easeljs";
 
 import steps from "./mapPoint";
 

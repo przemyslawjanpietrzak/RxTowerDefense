@@ -1,4 +1,4 @@
-import createjs from 'easel';
+import * as createjs from 'easeljs/lib/easeljs';
 
 import stage from '../stage/stage';
 import ticker$ from '../ticker';
@@ -8,7 +8,7 @@ import { enemy as settings, } from '../settings';
 
 import { enemyPassAllPaths$, enemyMove$, } from './sinks';
 
-const die = (enemy: Enemy) => {
+const die = (enemy) => {
   stage.removeChild(enemy);
   enemy.subscription.unsubscribe();
 };

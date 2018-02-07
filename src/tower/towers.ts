@@ -1,4 +1,4 @@
-import createjs from 'easel';
+import * as createjs from 'easeljs/lib/easeljs';
 
 import stage, { stageClick$ } from '../stage/stage';
 import { enemyMove$, } from '../enemy/sinks';
@@ -32,7 +32,7 @@ export function towerFactory(x: number, y: number): Tower {
 
     tower.die = () => {
         stage.removeChild(tower);
-        tower.enemySubscription.unsubscribe();``
+        tower.enemySubscription.unsubscribe();
         tower.stageClickSubscription.unsubscribe();
         tower.tickerSubscription.unsubscribe();
         tower.removeEventListener('click');

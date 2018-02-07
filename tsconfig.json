@@ -1,15 +1,16 @@
-
 {
     "compilerOptions": {
-        "module": "system",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "outFile": ".build.js",
-        "sourceMap": true
+      "sourceMap": true
     },
+    "files": [
+      "src/main.ts",
+      "src/globals.d.ts"
+    ],
     "exclude": [
-        "node_modules",
-        "jspm_packages"
-    ]
+      "node_modules",
+      "dist",
+      "**/*.spec.ts",
+    ],
+    "types": []
+    
 }

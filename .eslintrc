@@ -1,6 +1,0 @@
-{
-  "extends": ["eslint-config-airbnb", eslint-config-airbnb],
-  "rules" : {
-    "semi": [2],
-  }
-}

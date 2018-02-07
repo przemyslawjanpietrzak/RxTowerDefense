@@ -1,4 +1,4 @@
-import createjs from 'easel';
+import * as createjs from 'easeljs/lib/easeljs';
 
 import stage from "../stage/stage";
 import { tower as settings } from '../settings';
