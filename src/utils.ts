@@ -29,4 +29,4 @@ export function getTickerPerEnemy(counter: number, scenario): number {
 	return scenario.parts[currentPart].tickPerEnemy;
 }
 
-export const prop = (key: string) => (obj: Object) => obj[key];
+export const prop = (key: string) => (obj: object) => obj[key];

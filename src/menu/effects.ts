@@ -8,7 +8,7 @@ export default {
 		},
 		enemyPassAllPaths$: ({ enemyPassAllPaths$ }) => {
 				enemyPassAllPaths$.subscribe(() => {
-						const livesCount: number = parseInt(document.getElementById("lives-count").textContent);
+						const livesCount: number = parseInt(document.getElementById("lives-count").textContent, 10);
 						if (livesCount <= 1) {
 								window.alert(dieMessage);
 								window.location.reload();

@@ -29,20 +29,19 @@ const enemyMove = (enemy: Enemy) => {
 	}
 };
 
-export function enemyFactory() {
+export const enemyFactory = () => {
 	const enemy: Enemy = new createjs.Shape();
 	enemy.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
 	enemy.step = 0;
 	enemy.speed = settings.speed;
-	enemy.die = function() {
+	enemy.die = () => {
 		die(enemy);
 	};
 
 	enemy.subscription = ticker$.subscribe(() => {
-			enemyMove(enemy);
-		},
-	);
+		enemyMove(enemy);
+	});
 
 	stage.addChild(enemy);
 	return enemy;
-}
+};
