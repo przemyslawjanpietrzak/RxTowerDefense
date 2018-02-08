@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint": "tslint --config tslint.json --project tsconfig.json 'src/**/*.ts'",
     "build": "webpack --config ./webpack.config.js"
   },
   "author": "",

@@ -1,3 +1,3 @@
 interface Observable<T> {
-    next(any)
+    next(any);
 }

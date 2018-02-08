@@ -5,17 +5,17 @@ interface Tower {
 	reloadBulletTime: number;
 	graphics: Graphics;
 	enemySubscription: any;
-	stageClickSubscription: any
-	tickerSubscription: any
-	enemiesInRange: Array<Enemy>;
-	enemySubscription: any
-	areaVisible: boolean
-	area: Shape
-	die()
-	fireToEnemy(Enemy)
-	onClickHandler(Tower)
-	addEventListener(string, any)
-	removeEventListener(string)
+	stageClickSubscription: any;
+	tickerSubscription: any;
+	enemiesInRange: Enemy[];
+	enemySubscription: any;
+	areaVisible: boolean;
+	area: Shape;
+	die();
+	fireToEnemy(Enemy);
+	onClickHandler(Tower);
+	addEventListener(string, any);
+	removeEventListener(string);
 
 }
 
@@ -24,6 +24,6 @@ interface TowerShape {
 	y: number;
 	range: number;
 	graphics: Graphics;
-	areaVisible: boolean
-	area: Shape
+	areaVisible: boolean;
+	area: Shape;
 }

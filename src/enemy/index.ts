@@ -1,9 +1,8 @@
-import { prop } from '../utils';
-import { bulletHitEnemy$ } from '../bullet/sinks';
-
+import { bulletHitEnemy$ } from "../bullet/sinks";
+import { prop } from "../utils";
 
 bulletHitEnemy$
-	.map(prop('enemy'))
+	.map(prop("enemy"))
 	.subscribe((enemy: Enemy) => {
 		enemy.die();
 	});

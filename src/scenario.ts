@@ -1,35 +1,35 @@
 export default {
 	tickPerStep: 500,
 	parts: {
-		'0': {
-			tickPerEnemy: 330
+		0: {
+			tickPerEnemy: 330,
 		},
-		'1': {
-			tickPerEnemy: 250
+		1: {
+			tickPerEnemy: 250,
 		},
-		'2': {
-			tickPerEnemy: 200
+		2: {
+			tickPerEnemy: 200,
 		},
-		'3': {
-			tickPerEnemy: 150
+		3: {
+			tickPerEnemy: 150,
 		},
-		'4': {
-			tickPerEnemy: 150
+		4: {
+			tickPerEnemy: 150,
 		},
-		'5': {
-			tickPerEnemy: 120
+		5: {
+			tickPerEnemy: 120,
 		},
-		'6': {
-			tickPerEnemy: 90
+		6: {
+			tickPerEnemy: 90,
 		},
-		'7': {
-			tickPerEnemy: 60
+		7: {
+			tickPerEnemy: 60,
 		},
-		'8': {
-			tickPerEnemy: 33
+		8: {
+			tickPerEnemy: 33,
 		},
-		'9': {
-			tickPerEnemy: 17
+		9: {
+			tickPerEnemy: 17,
 		},
-	}
-}
+	},
+};

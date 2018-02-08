@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs/Rx';
+import { Observable } from "rxjs/Rx";
 
-import { playPauseButtonClick$ } from './menu/sinks';
+import { playPauseButtonClick$ } from "./menu/sinks";
 
 let isPlay: boolean = true;
 playPauseButtonClick$
@@ -8,8 +8,7 @@ playPauseButtonClick$
 		isPlay = !isPlay;
 	});
 
-
 export default Observable
-  .interval(17)
-  .timeInterval()
+	.interval(17)
+	.timeInterval()
 	.filter(() => isPlay);

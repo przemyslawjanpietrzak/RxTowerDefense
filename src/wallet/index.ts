@@ -1,12 +1,11 @@
-import { changeWalletState$ as changeWalletStateProxy$ } from './sinks';
-import drivers from './drivers';
-
+import drivers from "./drivers";
+import { changeWalletState$ as changeWalletStateProxy$ } from "./sinks";
 
 export function runWallet(sinks) {
-    Object.keys(drivers).forEach((key) => {
-        const source = drivers[key](sinks);
-        source.subscribe((value) => {
-            changeWalletStateProxy$.next(value);
-        })
-    })
+		Object.keys(drivers).forEach((key) => {
+				const source = drivers[key](sinks);
+				source.subscribe((value) => {
+						changeWalletStateProxy$.next(value);
+				});
+		});
 }

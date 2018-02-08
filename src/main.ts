@@ -1,65 +1,64 @@
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/merge';
-import 'rxjs/add/operator/timeInterval';
+import "rxjs/add/operator/filter";
+import "rxjs/add/operator/merge";
+import "rxjs/add/operator/timeInterval";
 
 import stage from "./stage/stage";
 
-import { getTickerPerEnemy } from './utils';
-import ticker$ from './ticker';
 import path from "./path";
+import ticker$ from "./ticker";
+import { getTickerPerEnemy } from "./utils";
 
-import './wallet/index';
-import './menu/index';
-import scenario from './scenario';
-import './tower/index';
-import './enemy/index';
-import './bullet/index';
+import "./bullet/index";
+import "./enemy/index";
+import "./menu/index";
+import scenario from "./scenario";
+import "./tower/index";
+import "./wallet/index";
 
-import { stageClick$ } from './stage/stage';
+import { stageClick$ } from "./stage/stage";
 
-import { runWallet } from './wallet/index';
-import { changeWalletState$ } from './wallet/sinks';
+import { runWallet } from "./wallet/index";
+import { changeWalletState$ } from "./wallet/sinks";
 
-import { runMenu } from './menu/index';
+import { runMenu } from "./menu/index";
 import {
-    addTowerButtonClick$,
-    cancelTowerButtonClick$,
-    confirmTowerButtonClick$,
-    playPauseButtonClick$,
-} from './menu/sinks';
+		addTowerButtonClick$,
+		cancelTowerButtonClick$,
+		confirmTowerButtonClick$,
+		playPauseButtonClick$,
+} from "./menu/sinks";
 
-import { runTower } from './tower/index';
-import { newTower$, towerFireToEnemy$ } from './tower/sinks';
+import { runTower } from "./tower/index";
+import { newTower$, towerFireToEnemy$ } from "./tower/sinks";
 
-import { runBullet } from './bullet/index';
-import { bulletHitEnemy$, bulletMove$ } from './bullet/sinks';
+import { runBullet } from "./bullet/index";
+import { bulletHitEnemy$, bulletMove$ } from "./bullet/sinks";
 
 import { enemyFactory } from "./enemy/enemy";
-import { enemyPassAllPaths$, enemyMove$ } from './enemy/sinks';
+import { enemyMove$, enemyPassAllPaths$ } from "./enemy/sinks";
 
 stage.addChild(path);
 
-
 const sinks = {
-    ticker$,
+		ticker$,
 
-    stageClick$,
+		stageClick$,
 
-    newTower$,
-    towerFireToEnemy$,
+		newTower$,
+		towerFireToEnemy$,
 
-    bulletMove$,
-    bulletHitEnemy$,
+		bulletMove$,
+		bulletHitEnemy$,
 
-    enemyPassAllPaths$,
-    enemyMove$,
+		enemyPassAllPaths$,
+		enemyMove$,
 
-    changeWalletState$,
+		changeWalletState$,
 
-    addTowerButtonClick$,
-    cancelTowerButtonClick$,
-    confirmTowerButtonClick$,
-    playPauseButtonClick$,
+		addTowerButtonClick$,
+		cancelTowerButtonClick$,
+		confirmTowerButtonClick$,
+		playPauseButtonClick$,
 };
 
 runWallet(sinks);
@@ -69,12 +68,12 @@ runTower(sinks);
 
 let counter = 0; // TODO move to ticker's modules
 ticker$
-  .filter(() => ++counter % getTickerPerEnemy(counter, scenario) === 0)
-  .subscribe(() => {
-    enemyFactory();
-  });
+	.filter(() => ++counter % getTickerPerEnemy(counter, scenario) === 0)
+	.subscribe(() => {
+		enemyFactory();
+	});
 
 ticker$
-  .subscribe(() => {
-    stage.update();
-  });
+	.subscribe(() => {
+		stage.update();
+	});

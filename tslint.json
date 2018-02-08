@@ -4,6 +4,9 @@
         "tslint:recommended"
     ],
     "jsRules": {},
-    "rules": {},
+    "rules": {
+        "indent": [true, "tabs", 2],
+        "interface-name": [true, "never-prefix"]
+    },
     "rulesDirectory": []
 }
