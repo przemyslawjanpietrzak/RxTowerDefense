@@ -1,12 +1,16 @@
 {
-  "name": "canvas",
+  "name": "RxTowerDefence",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "lint": "tslint --config tslint.json --project tsconfig.json 'src/**/*.ts'",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
-    "build": "webpack --config ./webpack.config.js"
+    "bundle": "webpack --config ./webpack.config.js",
+    "getTheme": "mkdir -p dist/fonts && wget https://raw.githubusercontent.com/kristopolous/BOOTSTRA.386/master/v2.3.1/bootstrap/css/bootstrap.css -O dist/bootstrap.css && wget https://github.com/kristopolous/BOOTSTRA.386/raw/master/v2.3.1/bootstrap/css/fonts/Fixedsys500c.woff -O dist/fonts/Fixedsys500c.woff",
+    "copy": "cp index.html dist/",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && npm run bundle && npm run getTheme && npm run copy"
   },
   "author": "Przemyslaw Jan Pietrzak",
   "license": "MIT",
@@ -24,7 +28,6 @@
   },
   "dependencies": {
     "easeljs": "1.0.2",
-    "rimraf": "2.6.2",
     "rxjs": "5.5.6",
     "victor": "1.1.0"
   }
