@@ -22,10 +22,10 @@ import { changeWalletState$ } from "./wallet/sinks";
 
 import { runMenu } from "./menu/index";
 import {
-		addTowerButtonClick$,
-		cancelTowerButtonClick$,
-		confirmTowerButtonClick$,
-		playPauseButtonClick$,
+	addTowerButtonClick$,
+	cancelTowerButtonClick$,
+	confirmTowerButtonClick$,
+	playPauseButtonClick$,
 } from "./menu/sinks";
 
 import { runTower } from "./tower/index";
@@ -40,25 +40,25 @@ import { enemyMove$, enemyPassAllPaths$ } from "./enemy/sinks";
 stage.addChild(path);
 
 const sinks = {
-		ticker$,
+	ticker$,
 
-		stageClick$,
+	stageClick$,
 
-		newTower$,
-		towerFireToEnemy$,
+	newTower$,
+	towerFireToEnemy$,
 
-		bulletMove$,
-		bulletHitEnemy$,
+	bulletMove$,
+	bulletHitEnemy$,
 
-		enemyPassAllPaths$,
-		enemyMove$,
+	enemyPassAllPaths$,
+	enemyMove$,
 
-		changeWalletState$,
+	changeWalletState$,
 
-		addTowerButtonClick$,
-		cancelTowerButtonClick$,
-		confirmTowerButtonClick$,
-		playPauseButtonClick$,
+	addTowerButtonClick$,
+	cancelTowerButtonClick$,
+	confirmTowerButtonClick$,
+	playPauseButtonClick$,
 };
 
 runWallet(sinks);
