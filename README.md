@@ -10,9 +10,9 @@ Tower defense engine game written in [TypeScript](https://github.com/Microsoft/T
 
 ## Production:
 
-[stable](https://s3.eu-central-1.amazonaws.com/rxtd-develop/index.html)
+[develop](https://s3.eu-central-1.amazonaws.com/rxtd-develop/index.html)
 
-[develop](https://s3.eu-central-1.amazonaws.com/rxtd-master/index.html)
+[stable](https://s3.eu-central-1.amazonaws.com/rxtd-master/index.html)
 
 ## Run:
 
