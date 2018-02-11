@@ -1,11 +1,11 @@
-import * as createjs from 'easeljs/lib/easeljsd';
+import * as createjs from 'easeljs/lib/easeljs';
 
-import { bullet as settings } from '../settingsd';
-import stage from './../stage/staged';
-import ticker from './../tickerd';
-import { getMove } from './../utilsd';
+import { bullet as settings } from '../settings';
+import stage from './../stage/stage';
+import ticker from './../ticker';
+import { getMove } from './../utils';
 
-import { bulletMove$ } from './sinksd';
+import { bulletMove$ } from './sinks';
 
 const die = (bullet: Bullet) => {
 	stage.removeChild(bullet);
