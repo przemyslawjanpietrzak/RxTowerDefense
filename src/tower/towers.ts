@@ -1,14 +1,14 @@
-import * as createjs from "easeljs/lib/easeljs";
+import * as createjs from 'easeljs/lib/easeljs';
 
-import { enemyMove$ } from "../enemy/sinks";
-import stage, { stageClick$ } from "../stage/stage";
-import ticker$ from "../ticker";
+import { enemyMove$ } from '../enemy/sinks';
+import stage, { stageClick$ } from '../stage/stage';
+import ticker$ from '../ticker';
 
-import { tower as settings } from "../settings";
-import { getDistance, isInDistance } from "../utils";
+import { tower as settings } from '../settings';
+import { getDistance, isInDistance } from '../utils';
 
-import { getArea, hideTowerArea, toogleAreaFactory } from "./area";
-import { towerFireToEnemy$ } from "./sinks";
+import { getArea, hideTowerArea, toogleAreaFactory } from './area';
+import { towerFireToEnemy$ } from './sinks';
 
 export function towerFactory(x: number, y: number): Tower {
 	const reloadBulletTime = 100;
@@ -23,7 +23,7 @@ export function towerFactory(x: number, y: number): Tower {
 	tower.area = getArea(tower);
 
 	tower.onClickHandler = toogleAreaFactory(tower);
-	tower.addEventListener("click", tower.onClickHandler);
+	tower.addEventListener('click', tower.onClickHandler);
 	tower.fireToEnemy = function towerFireToEnemy(enemy: Enemy) {
 		towerFireToEnemy$.next({ tower, enemy });
 		tower.reloadBulletTime = reloadBulletTime;
@@ -34,7 +34,7 @@ export function towerFactory(x: number, y: number): Tower {
 		tower.enemySubscription.unsubscribe();
 		tower.stageClickSubscription.unsubscribe();
 		tower.tickerSubscription.unsubscribe();
-		tower.removeEventListener("click");
+		tower.removeEventListener('click');
 	};
 
 	tower.tickerSubscription = ticker$.subscribe(() => {

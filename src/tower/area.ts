@@ -1,7 +1,7 @@
-import * as createjs from "easeljs/lib/easeljs";
+import * as createjs from 'easeljs/lib/easeljs';
 
-import { tower as settings } from "../settings";
-import stage from "../stage/stage";
+import { tower as settings } from '../settings';
+import stage from '../stage/stage';
 
 export function getArea(tower: Tower | TowerShape) {
 	const area: Shape = new createjs.Shape();

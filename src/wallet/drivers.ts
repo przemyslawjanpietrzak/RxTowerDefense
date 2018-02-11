@@ -1,5 +1,5 @@
-import { Observable } from "rxjs/Rx";
-import { enemy as enemySettings, moneyOnBegin, tower as towerSettings } from "../settings";
+import { Observable } from 'rxjs/Rx';
+import { enemy as enemySettings, moneyOnBegin, tower as towerSettings } from '../settings';
 
 let money = moneyOnBegin;
 const drivers = {

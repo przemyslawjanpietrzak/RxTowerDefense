@@ -1,5 +1,5 @@
-import drivers from "./drivers";
-import { changeWalletState$ as changeWalletStateProxy$ } from "./sinks";
+import drivers from './drivers';
+import { changeWalletState$ as changeWalletStateProxy$ } from './sinks';
 
 export const runWallet = (sinks) => {
 	Object.keys(drivers).forEach((key) => {

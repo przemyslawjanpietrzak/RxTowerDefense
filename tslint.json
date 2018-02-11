@@ -10,8 +10,8 @@
         "object-literal-sort-keys": false,
         "variable-name": false,
         "max-line-length": [true, 150],
-        "member-ordering": false
-        
+        "member-ordering": false,
+        "quotemark": [true, "single"]
     },
     "rulesDirectory": []
 }

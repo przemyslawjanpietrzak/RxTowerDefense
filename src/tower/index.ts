@@ -1,4 +1,4 @@
-import effects from "./effects";
+import effects from './effects';
 
 export function runTower(sinks) {
 	Object.keys(effects).forEach((key) => {

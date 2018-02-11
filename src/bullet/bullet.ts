@@ -1,18 +1,18 @@
-import * as createjs from "easeljs/lib/easeljs";
+import * as createjs from 'easeljs/lib/easeljsd';
 
-import { bullet as settings } from "../settings";
-import stage from "./../stage/stage";
-import ticker from "./../ticker";
-import { getMove } from "./../utils";
+import { bullet as settings } from '../settingsd';
+import stage from './../stage/staged';
+import ticker from './../tickerd';
+import { getMove } from './../utilsd';
 
-import { bulletMove$ } from "./sinks";
+import { bulletMove$ } from './sinksd';
 
 const die = (bullet: Bullet) => {
 	stage.removeChild(bullet);
 	bullet.subscription.unsubscribe();
 };
 
-export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
+export const bulletFactory = (tower: Tower, enemy: Enemy): Bullet => {
 	const bullet: Bullet = new createjs.Shape();
 	const { x: positionX, y: positionY } = tower;
 	const { x: destinationX, y: destinationY } = enemy;
@@ -39,5 +39,6 @@ export function bulletFactory(tower: Tower, enemy: Enemy): Bullet {
 	});
 
 	stage.addChild(bullet);
+
 	return bullet;
-}
+};

@@ -1,7 +1,7 @@
-import { moneyOnBegin, tower as towerSettigns } from "../settings";
+import { moneyOnBegin, tower as towerSettigns } from '../settings';
 
-import { hideTowerShape, showTowerShape } from "./shape";
-import { towerFactory } from "./towers";
+import { hideTowerShape, showTowerShape } from './shape';
+import { towerFactory } from './towers';
 
 let towerPropose = null;
 let showTowerPropose: boolean = false;

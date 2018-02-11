@@ -1,6 +1,6 @@
-import drivers from "./drivers";
-import effects from "./effects";
-import { bulletHitEnemy$ as bulletHitEnemyProxy$, bulletMove$ as bulletMoveProxy$ } from "./sinks";
+import drivers from './drivers';
+import effects from './effects';
+import { bulletHitEnemy$ as bulletHitEnemyProxy$, bulletMove$ as bulletMoveProxy$ } from './sinks';
 
 const proxies = {
 	bulletHitEnemy$: bulletHitEnemyProxy$,

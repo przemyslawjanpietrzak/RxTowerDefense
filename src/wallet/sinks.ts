@@ -1,3 +1,3 @@
-import { Subject } from "rxjs/Rx";
+import { Subject } from 'rxjs/Rx';
 
 export const changeWalletState$ = new Subject();
