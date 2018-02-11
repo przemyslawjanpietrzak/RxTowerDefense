@@ -9,3 +9,5 @@ script:
   - npm run lint
   - npm test
   - npm run build
+deploy:
+  - if [ "$TRAVIS_BRANCH" -eq "develop" ]; then npm run delpoy:develop; elif [ $TRAVIS_BRANCH == "master" ]; then npm run delpoy:master; else npm run deploy:pull-request; fi
