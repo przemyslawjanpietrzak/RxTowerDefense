@@ -14,13 +14,9 @@ before_deploy: "echo 'ready?'"
 
 deploy:
   provider: s3
-  access_key_id: "YOUR AWS ACCESS KEY"
-  secret_access_key: "YOUR AWS SECRET KEY"
+  access_key_id: "$access_key_id"
+  secret_access_key: "$secret_access_key"
   bucket: "rxtd-$TRAVIS_BRANCH"
-  skip_cleanup: true
   acl: public_read
   region: eu-central-1
   upload-dir: dist
-  # on:
-  #   branch: release
-  #   condition: $MY_ENV = super_awesome
