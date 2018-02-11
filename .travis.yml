@@ -19,4 +19,4 @@ deploy:
   bucket: "rxtd-$TRAVIS_BRANCH"
   acl: public_read
   region: eu-central-1
-  upload-dir: dist
+  local_dir: dist
