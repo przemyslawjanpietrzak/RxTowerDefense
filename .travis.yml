@@ -19,5 +19,6 @@ deploy:
   region: eu-central-1
   local_dir: dist
   on:
-    - master
-    - develop
+    branch:
+      - master
+      - develop
