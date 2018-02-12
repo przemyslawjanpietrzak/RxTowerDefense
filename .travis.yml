@@ -14,7 +14,8 @@ deploy:
   bucket: "rxtd-$TRAVIS_BRANCH"
   acl: public_read
   region: eu-central-1
-  upload-dir: dist
+  local-dir: dist
+  skip_cleanup: true
   on:
     branch:
       - master
