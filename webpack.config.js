@@ -1,6 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var env = process.env.npm_lifecycle_event;
+var isProduction = env.includes('production')
 
 module.exports = {
     entry: {
@@ -39,5 +41,5 @@ module.exports = {
         new webpack.ProvidePlugin({
           'createjs': 'easeljs/lib/easeljs'
         })
-    ]  
+    ].concat(isProduction ? new webpack.optimize.UglifyJsPlugin(): [])
 };
