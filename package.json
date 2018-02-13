@@ -1,8 +1,8 @@
 {
   "name": "RxTowerDefence",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/main.ts",
   "scripts": {
     "lint": "tslint --config tslint.json --project tsconfig.json 'src/**/*.ts'",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
