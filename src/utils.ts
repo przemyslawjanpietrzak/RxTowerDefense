@@ -24,7 +24,7 @@ export const isInDistance = (tower: Tower, destination: { x: number, y: number }
 	return getDistance(tower.x, tower.y, destination.x, destination.y) <= tower.range;
 };
 
-export const getTickerPerEnemy = (counter: number, scenario): number => {
+export const getTickerPerEnemy = (counter: number, scenario: Scenario): number => {
 	const currentPart = String(Math.floor(counter / scenario.tickPerStep));
 	return scenario.parts[currentPart].tickPerEnemy;
 };

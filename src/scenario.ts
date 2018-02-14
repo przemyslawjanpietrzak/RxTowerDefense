@@ -1,4 +1,4 @@
-export default {
+const scenario: Scenario =  {
 	tickPerStep: 500,
 	parts: {
 		0: {
@@ -33,3 +33,5 @@ export default {
 		},
 	},
 };
+
+export default scenario;
