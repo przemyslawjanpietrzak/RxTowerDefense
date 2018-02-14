@@ -81,7 +81,6 @@ ticker$
 		document.getElementById('current-level').innerHTML = String(currentStep);
 	});
 
-
 ticker$
 	.subscribe(() => {
 		stage.update();

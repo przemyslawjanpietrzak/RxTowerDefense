@@ -100,6 +100,6 @@ declare interface Scenario {
 	tickPerStep: number;
 	parts: {
 		[s: number]: { tickPerEnemy: number };
-	}
+	};
 
 }
