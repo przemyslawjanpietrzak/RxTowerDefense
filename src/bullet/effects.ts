@@ -7,7 +7,7 @@ let bulletToDie: Bullet = null;
 export default {
 	towerFireToEnemy$: ({ towerFireToEnemy$ }: { towerFireToEnemy$: Observable<{tower: Tower, enemy: Enemy}>}) => {
 		towerFireToEnemy$
-			.subscribe(({ tower, enemy }) => {
+			.subscribe(({ tower, enemy }: { tower: Tower, enemy: Enemy }) => {
 				bulletFactory(tower, enemy);
 			});
 	},

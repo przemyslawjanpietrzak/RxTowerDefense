@@ -1,4 +1,4 @@
-import { moneyOnBegin, tower as towerSettigns } from '../settings';
+import { moneyOnBegin, tower as towerSettings } from '../settings';
 
 import { hideTowerShape, showTowerShape } from './shape';
 import { towerFactory } from './towers';
@@ -8,19 +8,19 @@ let showTowerPropose: boolean = false;
 let money = moneyOnBegin;
 
 export default {
-		addTowerButtonClick$: ({ addTowerButtonClick$ }) => {
-			addTowerButtonClick$
-				.filter(() => money >= towerSettigns.cost)
-				.subscribe((event) => {
-						showTowerPropose = true;
-				});
+	addTowerButtonClick$: ({ addTowerButtonClick$ }) => {
+		addTowerButtonClick$
+			.filter(() => money >= towerSettings.cost)
+			.subscribe((event) => {
+				showTowerPropose = true;
+			});
 	},
 	stageClick$: ({ stageClick$ }) => {
 		stageClick$
 			.filter(() => showTowerPropose)
 			.subscribe((event) => {
 				if (towerPropose) {
-						hideTowerShape(towerPropose);
+					hideTowerShape(towerPropose);
 				}
 				towerPropose = showTowerShape(event.stageX, event.stageY);
 				showTowerPropose = true;
@@ -34,8 +34,8 @@ export default {
 				if (towerPropose) {
 					hideTowerShape(towerPropose);
 					towerPropose = null;
-					}
-				});
+				}
+			});
 	},
 	newTower$: ({ newTower$ }) => {
 		newTower$
@@ -49,12 +49,12 @@ export default {
 		confirmTowerButtonClick$
 			.filter(() => towerPropose && showTowerPropose)
 			.subscribe((value) => {
-					newTower$.next(value);
+				newTower$.next(value);
 			});
 
 	},
 	changeWalletState$: ({ changeWalletState$ }) => {
-		changeWalletState$.subscribe((newMoney) => {
+		changeWalletState$.subscribe((newMoney: number) => {
 			money = newMoney;
 		});
 	},

@@ -10,7 +10,7 @@ import { getDistance, isInDistance } from '../utils';
 import { getArea, hideTowerArea, toogleAreaFactory } from './area';
 import { towerFireToEnemy$ } from './sinks';
 
-export function towerFactory(x: number, y: number): Tower {
+export const towerFactory = (x: number, y: number): Tower => {
 	const reloadBulletTime = 100;
 	const tower: Tower = new createjs.Shape();
 	tower.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
@@ -24,7 +24,8 @@ export function towerFactory(x: number, y: number): Tower {
 
 	tower.onClickHandler = toogleAreaFactory(tower);
 	tower.addEventListener('click', tower.onClickHandler);
-	tower.fireToEnemy = function towerFireToEnemy(enemy: Enemy) {
+
+	tower.fireToEnemy = (enemy: Enemy) => {
 		towerFireToEnemy$.next({ tower, enemy });
 		tower.reloadBulletTime = reloadBulletTime;
 	};
@@ -47,11 +48,11 @@ export function towerFactory(x: number, y: number): Tower {
 		.filter(() => tower.reloadBulletTime === 0)
 		.subscribe((enemy: Enemy) => {
 			if (isInDistance(tower, enemy)) {
-					tower.enemiesInRange.push(enemy);
+				tower.enemiesInRange.push(enemy);
 			}
 			const firstEnemy: Enemy = tower.enemiesInRange[0];
 			if (firstEnemy) {
-					tower.fireToEnemy(firstEnemy);
+				tower.fireToEnemy(firstEnemy);
 			}
 
 			tower.enemiesInRange = [];
@@ -65,4 +66,4 @@ export function towerFactory(x: number, y: number): Tower {
 
 	stage.addChild(tower);
 	return tower;
-}
+};

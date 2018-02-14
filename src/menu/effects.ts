@@ -2,8 +2,8 @@ import { dieMessage } from '../settings';
 
 export default {
 	changeWalletState$: ({ changeWalletState$ }) => {
-		changeWalletState$.subscribe((money) => {
-			document.getElementById('money-count').innerHTML = money;
+		changeWalletState$.subscribe((money: number) => {
+			document.getElementById('money-count').innerHTML = String(money);
 		});
 	},
 	enemyPassAllPaths$: ({ enemyPassAllPaths$ }) => {
