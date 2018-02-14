@@ -36,7 +36,7 @@ module.exports = {
             ]
         },]
     },
-    devtool: 'source-map',
+    devtool: !isProduction ? 'source-map' : 'none',
     plugins: [
         new webpack.ProvidePlugin({
           'createjs': 'easeljs/lib/easeljs'
