@@ -66,12 +66,21 @@ runMenu(sinks);
 runBullet(sinks);
 runTower(sinks);
 
+let currentStep = 1;
 let counter = 0; // TODO move to ticker's modules
 ticker$
 	.filter(() => ++counter % getTickerPerEnemy(counter, scenario) === 0)
 	.subscribe(() => {
 		enemyFactory();
 	});
+
+ticker$
+	.filter(() => counter / scenario.tickPerStep > currentStep)
+	.subscribe(() => {
+		currentStep++;
+		document.getElementById('current-level').innerHTML = String(currentStep);
+	});
+
 
 ticker$
 	.subscribe(() => {
