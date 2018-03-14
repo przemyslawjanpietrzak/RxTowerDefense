@@ -18,22 +18,22 @@ Tower defense engine game written in [TypeScript](https://github.com/Microsoft/T
 
 #### Install packages:
 ```
-npm install
+yarn install --flat
 ```
 
 #### Build bundle
 ```
-npm run build
+yarn run build
 ```
 
 #### Run linter
 ```
-npm run lint
+yarn run lint
 ```
 
 #### Run unit tests
 ```
-npm tests
+yarn tests
 ```
 
 #### Run:
@@ -43,7 +43,7 @@ google-chrome dist/index.html
 
 #### Deploy on AWS S3
 ```
-npm run deploy:master
-npm run deploy:develop
-npm run deploy:pull-request
+yarn run deploy:master
+yarn run deploy:develop
+yarn run deploy:pull-request
 ```

@@ -11,11 +11,11 @@
     "getTheme": "mkdir -p dist/fonts && wget https://raw.githubusercontent.com/kristopolous/BOOTSTRA.386/master/v2.3.1/bootstrap/css/bootstrap.css -O dist/bootstrap.css && wget https://github.com/kristopolous/BOOTSTRA.386/raw/master/v2.3.1/bootstrap/css/fonts/Fixedsys500c.woff -O dist/fonts/Fixedsys500c.woff",
     "copy": "cp index.html dist/",
     "clean": "rm -rf dist",
-    "build": "npm run clean && npm run bundle:production && npm run getTheme && npm run copy",
+    "build": "yarn run clean && yarn run bundle:production && yarn run getTheme && yarn run copy",
     "deploy:develop": "aws s3 cp dist/ s3://rxtd-develop --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --recursive",
     "deploy:master": "aws s3 cp dist/ s3://rxtd-master --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --recursive",
     "deploy:pull-request": "aws s3 cp dist/ s3://rxtd-pr --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --recursive",
-    "deploy": "if [ \"$TRAVIS_BRANCH\" -eq \"develop\" ]; then npm run delpoy:develop; elif [ $TRAVIS_BRANCH == \"master\" ]; then npm run delpoy:master; else npm run deploy:pull-request; fi"
+    "deploy": "if [ \"$TRAVIS_BRANCH\" -eq \"develop\" ]; then yarn run delpoy:develop; elif [ $TRAVIS_BRANCH == \"master\" ]; then yarn run delpoy:master; else yarn run deploy:pull-request; fi"
   },
   "author": "Przemyslaw Jan Pietrzak",
   "license": "MIT",
