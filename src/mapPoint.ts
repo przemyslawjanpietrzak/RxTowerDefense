@@ -1,4 +1,4 @@
-const steps: Array<{ x: number,  y: number }> = [
+const steps: Array<{ x: number, y: number }> = [
 	{
 		x: 100,
 		y: 100,

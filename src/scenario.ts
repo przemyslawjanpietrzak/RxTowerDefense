@@ -1,4 +1,4 @@
-const scenario: Scenario =  {
+const scenario: Scenario = {
 	tickPerStep: 500,
 	parts: {
 		0: {

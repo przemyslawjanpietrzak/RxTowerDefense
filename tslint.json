@@ -1,7 +1,8 @@
 {
     "defaultSeverity": "error",
     "extends": [
-        "tslint:recommended"
+        "tslint:recommended",
+        "tslint-eslint-rules"
     ],
     "jsRules": {},
     "rules": {
@@ -11,7 +12,17 @@
         "variable-name": false,
         "max-line-length": [true, 150],
         "member-ordering": false,
-        "quotemark": [true, "single"]
+        "quotemark": [true, "single"],
+        "no-extra-semi": true,
+        "no-invalid-regexp": true,
+        "no-unexpected-multiline": true,
+        "valid-typeof": true,
+        "no-multi-spaces": true,
+        "brace-style": [true, "1tbs"],
+        "ter-func-call-spacing": true,
+        "ter-no-mixed-spaces-and-tabs": true,
+        "object-curly-spacing": true,
+        "space-in-parens": ["error", "always"]
     },
     "rulesDirectory": []
 }
