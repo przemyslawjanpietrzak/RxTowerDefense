@@ -10,6 +10,9 @@
         "interface-name": [true, "never-prefix"],
         "object-literal-sort-keys": false,
         "variable-name": false,
+        "no-ex-assign": true,
+        "no-extra-boolean-cast": true,
+        "ter-no-sparse-arrays": [true],
         "max-line-length": [true, 150],
         "member-ordering": false,
         "quotemark": [true, "single"],
@@ -22,7 +25,9 @@
         "ter-func-call-spacing": true,
         "ter-no-mixed-spaces-and-tabs": true,
         "object-curly-spacing": true,
-        "space-in-parens": ["error", "always"]
+        "space-in-parens": ["error", "always"],
+        "ter-arrow-body-style": ["error", "always"],
+        "ter-arrow-spacing": { "before": true, "after": true }
     },
     "rulesDirectory": []
 }
