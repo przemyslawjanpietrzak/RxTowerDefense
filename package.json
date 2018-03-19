@@ -81,6 +81,9 @@
     "cliui": "3.2.0",
     "is-glob": "4.0.0",
     "assert-plus": "0.2.0",
-    "extsprintf": "1.4.0"
+    "extsprintf": "1.4.0",
+    "isarray": "1.0.0",
+    "tsutils": "2.8.0",
+    "esutils": "2.0.2"
   }
 }
