@@ -12,5 +12,6 @@ const shape: Shape = new createjs.Shape();
 shape.graphics.beginFill(settings.color).drawRect(0, 0, SHAPE_WIDTH, SHAPE_HEIGHT);
 stage.addChild(shape);
 
-export default stage;
-export const stageClick$ = Observable.fromEvent(stage as any, 'click');
+const stageClick$ = Observable.fromEvent(stage as any, 'click');
+
+export { stageClick$, stage };

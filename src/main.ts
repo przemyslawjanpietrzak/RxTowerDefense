@@ -2,20 +2,15 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/timeInterval';
 
-import stage from './stage/stage';
-
 import path from './path';
 import ticker$ from './ticker';
 import { getTickerPerEnemy } from './utils';
 
-import './bullet/index';
 import './enemy/index';
-import './menu/index';
-import scenario from './scenario';
-import './tower/index';
-import './wallet/index';
 
-import { stageClick$ } from './stage/stage';
+import scenario from './scenario';
+
+import { stage, stageClick$ } from './stage/stage';
 
 import { runWallet } from './wallet/index';
 import { changeWalletState$ } from './wallet/sinks';

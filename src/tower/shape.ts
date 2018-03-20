@@ -1,7 +1,7 @@
 import * as createjs from 'easeljs/lib/easeljs';
 
 import { tower as settings } from '../settings';
-import stage from '../stage/stage';
+import { stage } from '../stage/stage';
 
 import { getArea } from './area';
 

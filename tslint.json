@@ -63,12 +63,10 @@
         "indent": [true, "tabs", 1],
         "max-classes-per-file": [true, 5],
         "max-line-length": [true, 150],
-
-
-
-
-
-
+        "no-duplicate-imports": true,
+        "prefer-const": true,
+        "prefer-readonly": true,
+        "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
 
         "interface-name": [true, "never-prefix"],
         "object-literal-sort-keys": false,

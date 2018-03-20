@@ -1,7 +1,7 @@
 import * as createjs from 'easeljs/lib/easeljs';
 
 import { enemyMove$ } from '../enemy/sinks';
-import stage, { stageClick$ } from '../stage/stage';
+import { stage, stageClick$ } from '../stage/stage';
 import ticker$ from '../ticker';
 
 import { tower as settings } from '../settings';
