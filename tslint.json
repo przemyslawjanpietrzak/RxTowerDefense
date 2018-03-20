@@ -31,18 +31,51 @@
         "no-floating-promises": true,
         "no-for-in-array": true,
         "no-inferred-empty-object-type": true,
+        "no-invalid-template-strings": true,
+        "no-invalid-this": true,
+        "no-misused-new": true,
+        "no-shadowed-variable": true,
+        "no-sparse-arrays": true,
+        "no-string-literal": true,
+        "no-switch-case-fall-through": true,
+        "no-this-assignment": true,
+        "no-unbound-method": false,
+        "no-unnecessary-class": true,
+        "no-unsafe-any": false,
+        "no-unsafe-finally": true,
+        "no-unused-expression": true,
+        "no-unused-variable": true,
+        "no-use-before-declare": true,
+        "no-var-keyword": true,
+        "prefer-conditional-expression": true,
+        "prefer-object-spread": true,
+        "radix": true,
+        "restrict-plus-operands": true,
+        "strict-boolean-expressions": false,
+        "strict-type-predicates": false,
+        "switch-default": true,
+        "triple-equals": true,
+        "use-default-type-parameter": true,
+        "use-isnan": true,
     
-
-
-
+        "cyclomatic-complexity": true,
+        "eofline": true,
         "indent": [true, "tabs", 1],
+        "max-classes-per-file": [true, 5],
+        "max-line-length": [true, 150],
+
+
+
+
+
+
+
         "interface-name": [true, "never-prefix"],
         "object-literal-sort-keys": false,
         "variable-name": false,
         "no-ex-assign": true,
         "no-extra-boolean-cast": true,
         "ter-no-sparse-arrays": [true],
-        "max-line-length": [true, 150],
         "member-ordering": false,
         "quotemark": [true, "single"],
         "no-extra-semi": true,
