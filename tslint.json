@@ -6,6 +6,35 @@
     ],
     "jsRules": {},
     "rules": {
+        "no-magic-numbers": true,
+        "no-namespace": true,
+        "no-parameter-reassignment": true,
+        "only-arrow-functions": true,
+        "prefer-for-of": true,
+        "unified-signatures": true,
+        
+        "ban-comma-operator": true,
+        "curly": true,
+        "label-position": true,
+        "no-arg": true,
+        "no-bitwise": true,
+        "no-conditional-assignment": true,
+        "no-console": [true, "log", "error", "warn", "debug"],
+        "no-construct": true,
+        "no-debugger": true,
+        "no-duplicate-super": true,
+        "no-duplicate-switch-case": true,
+        "no-duplicate-variable": true,
+        "no-dynamic-delete": true,
+        "no-empty": true,
+        "no-eval": true,
+        "no-floating-promises": true,
+        "no-for-in-array": true,
+        "no-inferred-empty-object-type": true,
+    
+
+
+
         "indent": [true, "tabs", 1],
         "interface-name": [true, "never-prefix"],
         "object-literal-sort-keys": false,

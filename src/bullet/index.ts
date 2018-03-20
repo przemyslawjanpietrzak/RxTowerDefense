@@ -7,7 +7,7 @@ const proxies = {
 	bulletMove$: bulletMoveProxy$,
 };
 
-export function runBullet(sinks) {
+export const runBullet = (sinks) => {
 	Object.keys(drivers).forEach((key) => {
 		const source = drivers[key](sinks);
 		source.subscribe((value) => {
@@ -17,4 +17,4 @@ export function runBullet(sinks) {
 	Object.keys(effects).forEach((key) => {
 		effects[key](sinks);
 	});
-}
+};

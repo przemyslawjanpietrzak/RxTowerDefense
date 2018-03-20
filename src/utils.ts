@@ -1,7 +1,9 @@
 import * as Victor from 'victor';
 
+const SQUERE_EXPONENT = 2;
+
 export const getDistance = (x1: number, y1: number, x2: number, y2: number): number =>
-	Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+	Math.sqrt(Math.pow(x1 - x2, SQUERE_EXPONENT) + Math.pow(y1 - y2, SQUERE_EXPONENT));
 
 export const getMove = (
 	position: {x: number, y: number},
