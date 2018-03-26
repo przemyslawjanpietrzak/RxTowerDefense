@@ -65,5 +65,6 @@ export const towerFactory = (x: number, y: number): Tower => {
 		});
 
 	stage.addChild(tower);
+
 	return tower;
 };

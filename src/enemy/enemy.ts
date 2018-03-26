@@ -43,5 +43,6 @@ export const enemyFactory = () => {
 	});
 
 	stage.addChild(enemy);
+
 	return enemy;
 };

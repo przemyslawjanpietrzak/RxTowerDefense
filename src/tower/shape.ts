@@ -16,6 +16,7 @@ export const showTowerShape = (x: number, y: number): TowerShape => {
 
 	stage.addChild(towerShape);
 	stage.addChild(towerShape.area);
+
 	return towerShape;
 };
 

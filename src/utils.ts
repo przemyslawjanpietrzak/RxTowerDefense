@@ -28,6 +28,7 @@ export const isInDistance = (tower: Tower, destination: { x: number, y: number }
 
 export const getTickerPerEnemy = (counter: number, scenario: Scenario): number => {
 	const currentPart = String(Math.floor(counter / scenario.tickPerStep));
+
 	return scenario.parts[currentPart].tickPerEnemy;
 };
 

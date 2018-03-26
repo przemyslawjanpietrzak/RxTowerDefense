@@ -1,6 +1,6 @@
 interface Graphics {
-	beginFill(string): Graphics;
-	beginStroke(string): Graphics;
+	beginFill (string): Graphics;
+	beginStroke (string): Graphics;
 	drawRect: any;
 	drawCircle: any;
 	moveTo: any;
@@ -15,14 +15,14 @@ interface Shape {
 
 interface Stage {
 	graphics: Graphics;
-	addChild(Shape);
-	removeChild(Shape);
-	update();
+	addChild (Shape);
+	removeChild (Shape);
+	update ();
 }
 
 interface Createjs {
-	Shape(): Shape;
-	Stage(string): Stage;
+	Shape (): Shape;
+	Stage (string): Stage;
 }
 
 declare interface Bullet {
@@ -36,7 +36,7 @@ declare interface Bullet {
 	subscription: any;
 	hitEnemySubscription: any;
 	enemy: Enemy;
-	die();
+	die ();
 }
 
 interface EnemyActions {
@@ -50,7 +50,7 @@ interface Enemy {
 	graphics: Graphics;
 	step: number;
 	speed: number;
-	die();
+	die ();
 	subscription: any;
 	actions: EnemyActions;
 }
@@ -63,16 +63,15 @@ interface Tower {
 	graphics: Graphics;
 	stageClickSubscription: any;
 	tickerSubscription: any;
-	enemiesInRange: Enemy[];
+	enemiesInRange: Array<Enemy>;
 	enemySubscription: any;
 	areaVisible: boolean;
 	area: Shape;
-	die();
-	fireToEnemy(Enemy);
-	onClickHandler(Tower);
-	addEventListener(string, any);
-	removeEventListener(string);
-
+	die ();
+	fireToEnemy (Enemy);
+	onClickHandler (Tower);
+	addEventListener (string, any);
+	removeEventListener (string);
 }
 
 interface TowerShape {
@@ -87,8 +86,8 @@ interface TowerShape {
 interface Vector {
 	x: number;
 	y: number;
-	angle(): number;
-	length(): number;
+	angle (): number;
+	length (): number;
 }
 
 interface Event {
