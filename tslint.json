@@ -93,23 +93,18 @@
         "variable-name": false,
         "whitespace": [true, "check-branch", "check-operator", "check-typecast"],
 
-        "object-literal-sort-keys": false,
+        "no-constant-condition": true,
+        "no-control-regex": true,
+        "no-empty-character-class": true,
         "no-ex-assign": true,
         "no-extra-boolean-cast": true,
-        "ter-no-sparse-arrays": [true],
-        "member-ordering": false,
-        "no-extra-semi": true,
-        "no-invalid-regexp": true,
+        "no-inner-declarations": true,
+        "no-regex-spaces": true,
         "no-unexpected-multiline": true,
         "valid-typeof": true,
-        "no-multi-spaces": true,
-        "brace-style": [true, "1tbs"],
-        "ter-func-call-spacing": true,
-        "ter-no-mixed-spaces-and-tabs": true,
-        "object-curly-spacing": true,
-        "space-in-parens": ["error", "always"],
-        "ter-arrow-body-style": ["error", "always"],
-        "ter-arrow-spacing": { "before": true, "after": true }
+
+        "object-literal-sort-keys": false,
+        "member-ordering": false
     },
     "rulesDirectory": []
 }
