@@ -47,7 +47,7 @@
         "no-this-assignment": true,
         "no-unbound-method": false,
         "no-unnecessary-class": true,
-        "no-unsafe-any": false,
+        "no-unsafe-any": { "severity": "warning" },
         "no-unsafe-finally": true,
         "no-unused-expression": true,
         "no-unused-variable": true,
@@ -90,8 +90,10 @@
         "return-undefined": true,
         "semicolon": [true, "always"],
         "space-before-function-paren": true,
+        "typedef-whitespace": true,
         "variable-name": false,
         "whitespace": [true, "check-branch", "check-operator", "check-typecast"],
+        
 
         "no-constant-condition": true,
         "no-control-regex": true,

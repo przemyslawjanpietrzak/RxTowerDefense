@@ -10,8 +10,8 @@ export const getArea = (tower: Tower | TowerShape) => {
 	return area;
 };
 
-export const toogleAreaFactory = (tower: Tower | TowerShape) => {
-	return (event) => {
+export const toggleAreaFactory = (tower: Tower | TowerShape) => {
+	return () => {
 		const areaWasVisible = tower.areaVisible;
 		if (areaWasVisible) {
 			stage.removeChild(tower.area);

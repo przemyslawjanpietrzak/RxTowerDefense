@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Rx';
+
 import { moneyOnBegin, tower as towerSettings } from '../settings';
 
 import { hideTowerShape, showTowerShape } from './shape';
@@ -11,14 +13,14 @@ export default {
 	addTowerButtonClick$: ({ addTowerButtonClick$ }) => {
 		addTowerButtonClick$
 			.filter(() => money >= towerSettings.cost)
-			.subscribe((event) => {
+			.subscribe(() => {
 				showTowerPropose = true;
 			});
 	},
 	stageClick$: ({ stageClick$ }) => {
 		stageClick$
 			.filter(() => showTowerPropose)
-			.subscribe((event) => {
+			.subscribe((event: Event) => {
 				if (towerPropose) {
 					hideTowerShape(towerPropose);
 				}
@@ -26,10 +28,10 @@ export default {
 				showTowerPropose = true;
 			});
 	},
-	cancelTowerButtonClick$: ({ cancelTowerButtonClick$ }) => {
+	cancelTowerButtonClick$: ({ cancelTowerButtonClick$ }: { cancelTowerButtonClick$: Observable<{}> }) => {
 		cancelTowerButtonClick$
 			.filter(() => towerPropose)
-			.subscribe((event) => {
+			.subscribe(() => {
 				showTowerPropose = false;
 				if (towerPropose) {
 					hideTowerShape(towerPropose);
@@ -37,9 +39,9 @@ export default {
 				}
 			});
 	},
-	newTower$: ({ newTower$ }) => {
+	newTower$: ({ newTower$ }: { newTower$: Observable<Tower> }) => {
 		newTower$
-			.subscribe((event) => {
+			.subscribe(() => {
 				hideTowerShape(towerPropose);
 				towerFactory(towerPropose.x, towerPropose.y);
 				showTowerPropose = false;
@@ -53,7 +55,7 @@ export default {
 			});
 
 	},
-	changeWalletState$: ({ changeWalletState$ }) => {
+	changeWalletState$: ({ changeWalletState$ }: { changeWalletState$: Observable<number> }) => {
 		changeWalletState$.subscribe((newMoney: number) => {
 			money = newMoney;
 		});
