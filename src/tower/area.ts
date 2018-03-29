@@ -1,10 +1,12 @@
-import * as createjs from 'easeljs/lib/easeljs';
+import { Shape } from 'easeljs/lib/easeljs';
 
 import { tower as settings } from '../settings';
 import { stage } from '../stage/stage';
 
+import { Tower, TowerShape } from './models';
+
 export const getArea = (tower: Tower | TowerShape) => {
-	const area: Shape = new createjs.Shape();
+	const area: Shape = new Shape();
 	area.graphics.beginFill(settings.areaColor).drawCircle(tower.x, tower.y, tower.range);
 
 	return area;

@@ -1,3 +1,5 @@
+import { Subject, Observable } from 'rxjs/Rx';
+
 export interface Subscription {
 	unsubscribe: () => void;
 }
@@ -28,4 +30,8 @@ export interface Stage {
 export interface Createjs {
 	Shape (): Shape;
 	Stage (string): Stage;
+}
+
+export interface Sinks {
+	[key: string]: Subject<any> | Observable<any>;
 }

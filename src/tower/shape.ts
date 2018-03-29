@@ -4,6 +4,7 @@ import { tower as settings } from '../settings';
 import { stage } from '../stage/stage';
 
 import { getArea } from './area';
+import { TowerShape } from './models';
 
 export const showTowerShape = (x: number, y: number): TowerShape => {
 	const towerShape: TowerShape = new createjs.Shape();
