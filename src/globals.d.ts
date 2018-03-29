@@ -31,69 +31,62 @@ interface Createjs {
 	Stage (string): Stage;
 }
 
-declare interface Bullet {
-	x: number;
-	y: number;
-	destinationX: number;
-	destinationY: number;
-	graphics: Graphics;
-	step: number;
-	speed: number;
-	subscription: Subscription;
-	enemy: Enemy;
-	die (): void;
-}
+// declare interface Bullet {
+// 	x: number;
+// 	y: number;
+// 	destinationX: number;
+// 	destinationY: number;
+// 	graphics: Graphics;
+// 	step: number;
+// 	speed: number;
+// 	subscription: Subscription;
+// 	enemy: Enemy;
+// 	die (): void;
+// }
 
-interface EnemyActions {
-	die: () => void;
-	move: () => void;
-}
+// interface EnemyActions {
+// 	die: () => void;
+// 	move: () => void;
+// }
 
-interface Enemy {
-	x: number;
-	y: number;
-	graphics: Graphics;
-	step: number;
-	speed: number;
-	die (): void;
-	subscription: Subscription;
-	actions: EnemyActions;
-}
+// interface Enemy {
+// 	x: number;
+// 	y: number;
+// 	graphics: Graphics;
+// 	step: number;
+// 	speed: number;
+// 	die (): void;
+// 	subscription: Subscription;
+// 	actions: EnemyActions;
+// }
 
-interface Tower {
-	x: number;
-	y: number;
-	range: number;
-	reloadBulletTime: number;
-	graphics: Graphics;
-	stageClickSubscription:  Subscription;
-	tickerSubscription:  Subscription;
-	enemiesInRange: Array<Enemy>;
-	enemySubscription:  Subscription;
-	areaVisible: boolean;
-	area: Shape;
-	die (): void;
-	fireToEnemy (Enemy): void;
-	onClickHandler (Tower): void;
-	addEventListener (string, Function): void;
-	removeEventListener (string): void;
-}
+// interface Tower {
+// 	x: number;
+// 	y: number;
+// 	range: number;
+// 	reloadBulletTime: number;
+// 	graphics: Graphics;
+// 	stageClickSubscription:  Subscription;
+// 	tickerSubscription:  Subscription;
+// 	enemiesInRange: Array<Enemy>;
+// 	enemySubscription:  Subscription;
+// 	areaVisible: boolean;
+// 	area: Shape;
+// 	die (): void;
+// 	fireToEnemy (Enemy): void;
+// 	onClickHandler (Tower): void;
+// 	addEventListener (string, Function): void;
+// 	removeEventListener (string): void;
+// }
 
-interface TowerShape {
-	x: number;
-	y: number;
-	range: number;
-	graphics: Graphics;
-	areaVisible: boolean;
-	area: Shape;
-}
-
-interface Vector {
-	x: number;
-	y: number;
-	angle (): number;
-	length (): number;
-}
+// interface TowerShape {
+// 	x: number;
+// 	y: number;
+// 	range: number;
+// 	graphics: Graphics;
+// 	areaVisible: boolean;
+// 	area: Shape;
+// }
 
 interface Event {
 	stageX: number;

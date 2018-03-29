@@ -7,7 +7,10 @@ import ticker$ from '../ticker';
 import { tower as settings } from '../settings';
 import { getDistance, isInDistance } from '../utils';
 
+import { Enemy } from '../enemy/models';
+
 import { getArea, hideTowerArea, toggleAreaFactory } from './area';
+import { Tower } from './models';
 import { towerFireToEnemy$ } from './sinks';
 
 export const towerFactory = (x: number, y: number): Tower => {

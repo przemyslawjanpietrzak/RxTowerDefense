@@ -1,8 +1,9 @@
 import { Observable } from 'rxjs';
 
-import { BulletHitEnemy$ } from '../bullet/models';
+import { Bullet, BulletHitEnemy$ } from '../bullet/models';
 import { Ticker$ } from '../common/models';
-import { TowerFireToEnemy$ } from '../tower/models';
+import { Enemy } from '../enemy/models';
+import { Tower, TowerFireToEnemy$ } from '../tower/models';
 
 import { bulletFactory } from './bullet';
 
@@ -22,7 +23,7 @@ export default {
 	},
 	ticker$: ({ ticker$ }: { ticker$: Ticker$ }) => {
 		ticker$
-			.filter(() => bulletToDie)
+			.filter(() => bulletToDie !== null)
 			.subscribe(() => {
 				bulletToDie.die();
 				bulletToDie = null;
