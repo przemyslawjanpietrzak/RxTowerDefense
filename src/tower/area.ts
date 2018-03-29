@@ -10,7 +10,7 @@ export const getArea = (tower: Tower | TowerShape) => {
 	return area;
 };
 
-export const toogleAreaFactory = (tower: Tower | TowerShape) => {
+export const toggleAreaFactory = (tower: Tower | TowerShape) => {
 	return () => {
 		const areaWasVisible = tower.areaVisible;
 		if (areaWasVisible) {

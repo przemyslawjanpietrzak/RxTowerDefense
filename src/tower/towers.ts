@@ -7,7 +7,7 @@ import ticker$ from '../ticker';
 import { tower as settings } from '../settings';
 import { getDistance, isInDistance } from '../utils';
 
-import { getArea, hideTowerArea, toogleAreaFactory } from './area';
+import { getArea, hideTowerArea, toggleAreaFactory } from './area';
 import { towerFireToEnemy$ } from './sinks';
 
 export const towerFactory = (x: number, y: number): Tower => {
@@ -22,7 +22,7 @@ export const towerFactory = (x: number, y: number): Tower => {
 	tower.areaVisible = false;
 	tower.area = getArea(tower);
 
-	tower.onClickHandler = toogleAreaFactory(tower);
+	tower.onClickHandler = toggleAreaFactory(tower);
 	tower.addEventListener('click', tower.onClickHandler);
 
 	tower.fireToEnemy = (enemy: Enemy) => {
