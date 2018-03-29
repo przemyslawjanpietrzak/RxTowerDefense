@@ -54,7 +54,7 @@ export const newTowerEffect$ = ({ newTower$ }: { newTower$: NewTower$ }) => {
 };
 
 export const confirmTowerButtonClickEffect$ = (
-	{ confirmTowerButtonClick$, newTower$ }: { confirmTowerButtonClick$: ConfirmTowerButtonClick$, newTower$: NewTower$ }
+	{ confirmTowerButtonClick$, newTower$ }: { confirmTowerButtonClick$: ConfirmTowerButtonClick$, newTower$: NewTower$ },
 ) => {
 	confirmTowerButtonClick$
 		.filter(() => towerPropose && showTowerPropose)

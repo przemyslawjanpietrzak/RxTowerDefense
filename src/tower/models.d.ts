@@ -1,7 +1,7 @@
 
 import { Subject } from 'rxjs/Rx';
 
-import { Graphics, Subscription, Shape } from '../common/models';
+import { Graphics, Shape, Subscription } from '../common/models';
 
 import { Enemy } from '../enemy/models';
 

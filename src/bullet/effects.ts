@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 
 import { Bullet, BulletHitEnemy$ } from '../bullet/models';
 import { Ticker$ } from '../common/models';

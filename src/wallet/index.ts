@@ -1,4 +1,3 @@
-import { Observable, Subject } from 'rxjs/Rx';
 
 import { Sinks } from '../common/models';
 

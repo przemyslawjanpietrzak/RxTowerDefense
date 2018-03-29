@@ -1,6 +1,6 @@
 import { Observable, Subject } from 'rxjs';
 
-import { Graphics, Subscription} from '../common/models';
+import { Graphics, Subscription } from '../common/models';
 import { Enemy} from '../enemy/models';
 import { Tower } from '../tower/models';
 
@@ -17,7 +17,7 @@ export interface Bullet {
 	die (): void;
 }
 
-export type TowerFireToEnemy$ = Observable<{tower: Tower, enemy: Enemy}>
+export type TowerFireToEnemy$ = Observable<{tower: Tower, enemy: Enemy}>;
 
 export type BulletHitEnemy$ = Subject<Bullet>;
 

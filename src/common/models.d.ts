@@ -1,4 +1,4 @@
-import { Subject, Observable } from 'rxjs/Rx';
+import { Observable, Subject } from 'rxjs/Rx';
 
 export interface Subscription {
 	unsubscribe: () => void;
@@ -34,6 +34,13 @@ export interface Createjs {
 
 export interface Sinks {
 	[key: string]: Subject<any> | Observable<any>;
+}
+
+export interface Vector {
+	x: number;
+	y: number;
+	angle (): number;
+	length (): number;
 }
 
 export type Ticker$ = Subject<number>;

@@ -1,8 +1,7 @@
-import { Subject } from 'rxjs/Subject';
 
 import { getDistance } from './../utils';
 
-import { BulletMove$ } from './models';
+import { Bullet, BulletMove$ } from './models';
 
 const drivers = {
 	bulletHitEnemy$: ({ bulletMove$ }: { bulletMove$: BulletMove$ }) => bulletMove$
