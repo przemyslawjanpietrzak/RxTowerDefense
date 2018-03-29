@@ -1,15 +1,11 @@
 import * as Victor from 'victor';
 
-const SQUERE_EXPONENT = 2;
+const SQUARE_EXPONENT = 2;
 
 export const getDistance = (x1: number, y1: number, x2: number, y2: number): number =>
-	Math.sqrt(Math.pow(x1 - x2, SQUERE_EXPONENT) + Math.pow(y1 - y2, SQUERE_EXPONENT));
+	Math.sqrt(Math.pow(x1 - x2, SQUARE_EXPONENT) + Math.pow(y1 - y2, SQUARE_EXPONENT));
 
-export const getMove = (
-	position: {x: number, y: number},
-	destination: {x: number, y: number},
-	speed: number,
-): {x: number, y: number} => {
+export const getMove = (position: StagePosition, destination: StagePosition, speed: number): StagePosition => {
 
 	const vector: Vector = new Victor(destination.x - position.x, destination.y - position.y);
 	const angle = vector.angle();
