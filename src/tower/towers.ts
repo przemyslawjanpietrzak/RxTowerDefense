@@ -7,6 +7,7 @@ import ticker$ from '../ticker';
 import { tower as settings } from '../settings';
 import { getDistance, isInDistance } from '../utils';
 
+import { Event } from '../common/models';
 import { Enemy } from '../enemy/models';
 
 import { getArea, hideTowerArea, toggleAreaFactory } from './area';

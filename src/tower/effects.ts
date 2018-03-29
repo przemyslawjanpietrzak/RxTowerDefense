@@ -2,6 +2,7 @@ import { Observable } from 'rxjs/Rx';
 
 import { moneyOnBegin, tower as towerSettings } from '../settings';
 
+import { Event } from '../common/models';
 import { AddTowerButtonClick$, CancelTowerButtonClick$, ConfirmTowerButtonClick$ } from '../menu/models';
 
 import { NewTower$ } from './models';

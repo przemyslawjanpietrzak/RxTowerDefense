@@ -1,6 +1,6 @@
 import * as Victor from 'victor';
 
-import { Vector } from './common/models';
+import { Scenario, StagePosition, Vector } from './common/models';
 import { Tower } from './tower/models';
 
 const SQUARE_EXPONENT = 2;

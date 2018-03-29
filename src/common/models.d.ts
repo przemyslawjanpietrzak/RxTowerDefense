@@ -43,4 +43,21 @@ export interface Vector {
 	length (): number;
 }
 
+export interface StagePosition {
+	x: number;
+	y: number;
+}
+
+export interface Scenario {
+	tickPerStep: number;
+	parts: {
+		[s: number]: { tickPerEnemy: number };
+	};
+}
+
+export interface Event {
+	stageX: number;
+	stageY: number;
+}
+
 export type Ticker$ = Subject<number>;
