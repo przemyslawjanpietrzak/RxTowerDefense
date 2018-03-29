@@ -2,6 +2,7 @@ import { Observable } from 'rxjs/Rx';
 
 import { moneyOnBegin, tower as towerSettings } from '../settings';
 
+// import { StageClick$ } from '../common/models';
 import { hideTowerShape, showTowerShape } from './shape';
 import { towerFactory } from './towers';
 
