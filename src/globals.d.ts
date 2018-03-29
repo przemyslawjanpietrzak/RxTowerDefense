@@ -1,12 +1,12 @@
 
 interface Subscription {
-	unsubscribe: () => void
-};
+	unsubscribe: () => void;
+}
 
 interface Graphics {
 	beginFill (string): Graphics;
 	beginStroke (string): Graphics;
-	drawRect: (startX: number, startY: number, endX: number, endY:number) => void;
+	drawRect: (startX: number, startY: number, endX: number, endY: number) => void;
 	drawCircle: (startX: number, startY: number, r: number) => void;
 	moveTo: (x: number, y: number) => void;
 	lineTo: (x: number, y: number) => void;
@@ -23,6 +23,7 @@ interface Stage {
 	addChild (Shape);
 	removeChild (Shape);
 	update (): void;
+	addEventListener (string, Function): void;
 }
 
 interface Createjs {
