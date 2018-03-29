@@ -35,3 +35,5 @@ export interface Createjs {
 export interface Sinks {
 	[key: string]: Subject<any> | Observable<any>;
 }
+
+export type Ticker$ = Subject<number>;

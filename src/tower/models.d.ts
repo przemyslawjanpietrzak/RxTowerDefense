@@ -34,3 +34,5 @@ export interface TowerShape {
 }
 
 export type TowerFireToEnemy$ = Subject<{tower: Tower, enemy: Enemy }>;
+
+export type NewTower$ = Subject<Tower>;
