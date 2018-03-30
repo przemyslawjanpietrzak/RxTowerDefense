@@ -60,7 +60,7 @@ export const confirmTowerButtonClickEffect$ = (
 	confirmTowerButtonClick$
 		.filter(() => towerPropose && showTowerPropose)
 		.subscribe((value) => {
-			newTower$.next(value as any);
+			newTower$.next();
 		});
 };
 

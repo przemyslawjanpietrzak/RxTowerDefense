@@ -21,7 +21,7 @@ export const getMove = (position: StagePosition, destination: StagePosition, spe
 	};
 };
 
-export const isInDistance = (tower: Tower, destination: { x: number, y: number }): boolean => {
+export const isInDistance = (tower: Tower, destination: StagePosition): boolean => {
 	return getDistance(tower.x, tower.y, destination.x, destination.y) <= tower.range;
 };
 

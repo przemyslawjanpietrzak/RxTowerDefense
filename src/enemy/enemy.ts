@@ -1,4 +1,4 @@
-import * as createjs from 'easeljs/lib/easeljs';
+import { Shape } from 'easeljs/lib/easeljs';
 
 import steps from '../mapPoint';
 import { enemy as settings } from '../settings';
@@ -32,7 +32,7 @@ const enemyMove = (enemy: Enemy) => {
 };
 
 export const enemyFactory = (): Enemy => {
-	const enemy: Enemy = new createjs.Shape();
+	const enemy: Enemy = new Shape();
 	enemy.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
 	enemy.step = 0;
 	enemy.speed = settings.speed;

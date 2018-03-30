@@ -5,7 +5,7 @@ import { stage } from '../stage/stage';
 
 import { Tower, TowerShape } from './models';
 
-export const getArea = (tower: Tower | TowerShape) => {
+export const getArea = (tower: Tower | TowerShape): Shape => {
 	const area: Shape = new Shape();
 	area.graphics.beginFill(settings.areaColor).drawCircle(tower.x, tower.y, tower.range);
 
