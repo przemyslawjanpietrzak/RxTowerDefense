@@ -5,6 +5,10 @@ import { stage } from './../stage/stage';
 import ticker from './../ticker';
 import { getMove } from './../utils';
 
+import { Enemy } from '../enemy/models';
+import { Tower } from '../tower/models';
+
+import { Bullet } from './models';
 import { bulletMove$ } from './sinks';
 
 const die = (bullet: Bullet) => {

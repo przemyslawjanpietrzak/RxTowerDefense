@@ -1,3 +1,6 @@
+
+import { Scenario } from './common/models';
+
 const scenario: Scenario = {
 	tickPerStep: 500,
 	parts: {

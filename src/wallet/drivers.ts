@@ -1,14 +1,12 @@
 import { Observable } from 'rxjs/Rx';
 import { enemy as enemySettings, moneyOnBegin, tower as towerSettings } from '../settings';
 
-declare interface Sources {
-	newTower$: Observable<Tower>;
-	bulletHitEnemy$: Observable<Bullet>;
-}
+import { BulletHitEnemy$ } from '../bullet/models';
+import { NewTower$ } from '../tower/models';
 
 let money = moneyOnBegin;
 const drivers = {
-	changeWalletState$: ({ newTower$, bulletHitEnemy$ }: Sources) => Observable.merge(
+	changeWalletState$: ({ newTower$, bulletHitEnemy$ }: { newTower$: NewTower$, bulletHitEnemy$: BulletHitEnemy$ }) => Observable.merge(
 		bulletHitEnemy$.map(() => money += enemySettings.price),
 		newTower$.map(() => money -= towerSettings.cost),
 	),

@@ -6,6 +6,8 @@ import { stage } from '../stage/stage';
 import ticker$ from '../ticker';
 import { getDistance, getMove } from '../utils';
 
+import { Enemy } from './models';
+
 import { enemyMove$, enemyPassAllPaths$ } from './sinks';
 
 const die = (enemy: Enemy) => {
@@ -29,7 +31,7 @@ const enemyMove = (enemy: Enemy) => {
 	}
 };
 
-export const enemyFactory = () => {
+export const enemyFactory = (): Enemy => {
 	const enemy: Enemy = new createjs.Shape();
 	enemy.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
 	enemy.step = 0;

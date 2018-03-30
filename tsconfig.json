@@ -3,8 +3,7 @@
       "sourceMap": true
     },
     "files": [
-      "src/main.ts",
-      "src/globals.d.ts"
+      "src/main.ts"
     ],
     "exclude": [
       "node_modules",

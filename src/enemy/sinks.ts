@@ -1,4 +1,6 @@
 import { Subject } from 'rxjs/Rx';
 
-export const enemyPassAllPaths$: Subject<object> = new Subject();
-export const enemyMove$: Subject<object> = new Subject();
+import { EnemyMove$, EnemyPassAllPaths$ } from './models';
+
+export const enemyPassAllPaths$: EnemyPassAllPaths$ = new Subject();
+export const enemyMove$: EnemyMove$ = new Subject();

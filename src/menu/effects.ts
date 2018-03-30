@@ -1,12 +1,15 @@
 import { dieMessage } from '../settings';
 
+import { EnemyPassAllPaths$ } from '../enemy/models';
+import { ChangeWalletState$ } from '../wallet/models';
+
 export default {
-	changeWalletState$: ({ changeWalletState$ }) => {
+	changeWalletState$: ({ changeWalletState$ }: { changeWalletState$: ChangeWalletState$ }) => {
 		changeWalletState$.subscribe((money: number) => {
 			document.getElementById('money-count').innerHTML = String(money);
 		});
 	},
-	enemyPassAllPaths$: ({ enemyPassAllPaths$ }) => {
+	enemyPassAllPaths$: ({ enemyPassAllPaths$ }: { enemyPassAllPaths$: EnemyPassAllPaths$}) => {
 		enemyPassAllPaths$.subscribe(() => {
 			const livesCount: number = parseInt(document.getElementById('lives-count').textContent, 10);
 			if (livesCount <= 1) {

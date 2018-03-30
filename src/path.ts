@@ -1,5 +1,7 @@
 import * as createjs from 'easeljs/lib/easeljs';
 
+import { Shape } from './common/models';
+
 import steps from './mapPoint';
 
 const line: Shape = new createjs.Shape();
