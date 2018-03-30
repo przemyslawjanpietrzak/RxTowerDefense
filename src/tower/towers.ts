@@ -1,4 +1,4 @@
-import * as createjs from 'easeljs/lib/easeljs';
+import { Shape } from 'easeljs/lib/easeljs';
 
 import { enemyMove$ } from '../enemy/sinks';
 import { stage, stageClick$ } from '../stage/stage';
@@ -16,7 +16,7 @@ import { towerFireToEnemy$ } from './sinks';
 
 export const towerFactory = (x: number, y: number): Tower => {
 	const reloadBulletTime = 100;
-	const tower: Tower = new createjs.Shape();
+	const tower: Tower = new Shape();
 	tower.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
 	tower.x = x;
 	tower.y = y;

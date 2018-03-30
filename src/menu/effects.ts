@@ -11,7 +11,7 @@ export default {
 	},
 	enemyPassAllPaths$: ({ enemyPassAllPaths$ }: { enemyPassAllPaths$: EnemyPassAllPaths$}) => {
 		enemyPassAllPaths$.subscribe(() => {
-			const livesCount: number = parseInt(document.getElementById('lives-count').textContent, 10);
+			const livesCount = parseInt(document.getElementById('lives-count').textContent, 10);
 			if (livesCount <= 1) {
 				window.alert(dieMessage);
 				window.location.reload();
