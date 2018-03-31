@@ -108,5 +108,11 @@
         "object-literal-sort-keys": false,
         "member-ordering": false
     },
-    "rulesDirectory": []
+    "rulesDirectory": [],
+    "linterOptions": {
+        "exclude": [
+            "bin",
+            "**/*spec.ts"
+        ]
+    }
 }

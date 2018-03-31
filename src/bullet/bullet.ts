@@ -1,4 +1,4 @@
-import * as createjs from 'easeljs/lib/easeljs';
+import { Shape } from 'easeljs/lib/easeljs';
 
 import { bullet as settings } from '../settings';
 import { stage } from './../stage/stage';
@@ -17,7 +17,7 @@ const die = (bullet: Bullet) => {
 };
 
 export const bulletFactory = (tower: Tower, enemy: Enemy): Bullet => {
-	const bullet: Bullet = new createjs.Shape();
+	const bullet: Bullet = new Shape();
 	const { x: positionX, y: positionY } = tower;
 	const { x: destinationX, y: destinationY } = enemy;
 

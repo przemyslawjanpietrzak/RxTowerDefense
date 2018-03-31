@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { getDistance, prop, getMove, isInDistance } from '../utils';
+import { getDistance, getMove, isInDistance, prop } from '../utils';
 
 describe('utils - ', () => {
 
