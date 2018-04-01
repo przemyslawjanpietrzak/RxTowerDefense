@@ -1,10 +1,9 @@
-import { bulletHitEnemy$ } from '../bullet/sinks';
-import { prop } from '../utils';
+import { Sinks } from '../common/models';
 
-import { Enemy } from './models';
+import { effects } from './effects';
 
-bulletHitEnemy$
-	.map(prop('enemy'))
-	.subscribe((enemy: Enemy) => {
-		enemy.die();
-	});
+export const runEnemy = (sinks: Sinks) => {
+    Object.keys(effects).forEach((key: string) => {
+        effects[key](sinks);
+    });
+};

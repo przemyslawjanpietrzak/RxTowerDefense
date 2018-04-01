@@ -4,9 +4,6 @@ import 'rxjs/add/operator/timeInterval';
 
 import path from './path';
 import ticker$ from './ticker';
-import { getTickerPerEnemy } from './utils';
-
-import './enemy/index';
 
 import scenario from './scenario';
 
@@ -17,10 +14,10 @@ import { changeWalletState$ } from './wallet/sinks';
 
 import { runMenu } from './menu/index';
 import {
-	addTowerButtonClick$,
-	cancelTowerButtonClick$,
-	confirmTowerButtonClick$,
-	playPauseButtonClick$,
+    addTowerButtonClick$,
+    cancelTowerButtonClick$,
+    confirmTowerButtonClick$,
+    playPauseButtonClick$,
 } from './menu/sinks';
 
 import { runTower } from './tower/index';
@@ -29,54 +26,48 @@ import { newTower$, towerFireToEnemy$ } from './tower/sinks';
 import { runBullet } from './bullet/index';
 import { bulletHitEnemy$, bulletMove$ } from './bullet/sinks';
 
-import { enemyFactory } from './enemy/enemy';
+import { runEnemy } from './enemy/index';
 import { enemyMove$, enemyPassAllPaths$ } from './enemy/sinks';
 
 stage.addChild(path);
 
 const sinks = {
-	ticker$,
+    ticker$,
 
-	stageClick$,
+    stageClick$,
 
-	newTower$,
-	towerFireToEnemy$,
+    newTower$,
+    towerFireToEnemy$,
 
-	bulletMove$,
-	bulletHitEnemy$,
+    bulletMove$,
+    bulletHitEnemy$,
 
-	enemyPassAllPaths$,
-	enemyMove$,
+    enemyPassAllPaths$,
+    enemyMove$,
 
-	changeWalletState$,
+    changeWalletState$,
 
-	addTowerButtonClick$,
-	cancelTowerButtonClick$,
-	confirmTowerButtonClick$,
-	playPauseButtonClick$,
+    addTowerButtonClick$,
+    cancelTowerButtonClick$,
+    confirmTowerButtonClick$,
+    playPauseButtonClick$,
 };
 
 runWallet(sinks);
 runMenu(sinks);
 runBullet(sinks);
 runTower(sinks);
+runEnemy(sinks);
 
 let currentStep = 1;
-let counter = 0; // TODO move to ticker's modules
 ticker$
-	.filter(() => ++counter % getTickerPerEnemy(counter, scenario) === 0)
-	.subscribe(() => {
-		enemyFactory();
-	});
+    .filter((counter) => counter / scenario.tickPerStep > currentStep)
+    .subscribe(() => {
+        currentStep++;
+        document.getElementById('current-level').innerHTML = String(currentStep);
+    });
 
 ticker$
-	.filter(() => counter / scenario.tickPerStep > currentStep)
-	.subscribe(() => {
-		currentStep++;
-		document.getElementById('current-level').innerHTML = String(currentStep);
-	});
-
-ticker$
-	.subscribe(() => {
-		stage.update();
-	});
+    .subscribe(() => {
+        stage.update();
+    });

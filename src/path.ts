@@ -9,7 +9,7 @@ line.graphics.beginStroke('black');
 line.graphics.moveTo(0, 0);
 
 steps.forEach(({ x, y }) => {
-	line.graphics.lineTo(x, y);
+    line.graphics.lineTo(x, y);
 });
 
 export default line;

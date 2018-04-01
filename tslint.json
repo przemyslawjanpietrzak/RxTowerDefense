@@ -18,7 +18,7 @@
         "cyclomatic-complexity": true,
         "eofline": true,
         "label-position": true,
-        "indent": [true, "tabs", 1],
+        "indent": [true, "spaces", 4],
         "max-classes-per-file": [true, 5],
         "max-line-length": [true, 150],
         "no-arg": true,

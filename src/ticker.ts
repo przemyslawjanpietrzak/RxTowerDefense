@@ -2,15 +2,17 @@ import { Observable } from 'rxjs/Rx';
 
 import { playPauseButtonClick$ } from './menu/sinks';
 
-const MILISECONDS_PER_TICK = 17;
+const MILLISECONDS_PER_TICK = 17;
 
+let counter = 0;
 let isPlay: boolean = true;
 playPauseButtonClick$
-	.subscribe(() => {
-		isPlay = !isPlay;
-	});
+    .subscribe(() => {
+        isPlay = !isPlay;
+    });
 
 export default Observable
-	.interval(MILISECONDS_PER_TICK)
-	.timeInterval()
-	.filter(() => isPlay);
+    .interval(MILLISECONDS_PER_TICK)
+    .timeInterval()
+    .filter(() => isPlay)
+    .map(() => ++counter);

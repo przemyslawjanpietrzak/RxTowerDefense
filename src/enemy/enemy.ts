@@ -11,40 +11,40 @@ import { Enemy } from './models';
 import { enemyMove$, enemyPassAllPaths$ } from './sinks';
 
 const die = (enemy: Enemy) => {
-	stage.removeChild(enemy);
-	enemy.subscription.unsubscribe();
+    stage.removeChild(enemy);
+    enemy.subscription.unsubscribe();
 };
 
 const enemyMove = (enemy: Enemy) => {
-	const nextStep = steps[enemy.step];
-	if (!nextStep) {
-		enemyPassAllPaths$.next();
-		enemy.die();
-	} else {
-		const newDirections = getMove(enemy, nextStep, enemy.speed);
-		enemy.x = newDirections.x;
-		enemy.y = newDirections.y;
-		if (getDistance(enemy.x, enemy.y, nextStep.x, nextStep.y) < enemy.speed) {
-			enemy.step++;
-		}
-		enemyMove$.next(enemy);
-	}
+    const nextStep = steps[enemy.step];
+    if (!nextStep) {
+        enemyPassAllPaths$.next();
+        enemy.die();
+    } else {
+        const newDirections = getMove(enemy, nextStep, enemy.speed);
+        enemy.x = newDirections.x;
+        enemy.y = newDirections.y;
+        if (getDistance(enemy.x, enemy.y, nextStep.x, nextStep.y) < enemy.speed) {
+            enemy.step++;
+        }
+        enemyMove$.next(enemy);
+    }
 };
 
 export const enemyFactory = (): Enemy => {
-	const enemy: Enemy = new Shape();
-	enemy.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
-	enemy.step = 0;
-	enemy.speed = settings.speed;
-	enemy.die = () => {
-		die(enemy);
-	};
+    const enemy: Enemy = new Shape();
+    enemy.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
+    enemy.step = 0;
+    enemy.speed = settings.speed;
+    enemy.die = () => {
+        die(enemy);
+    };
 
-	enemy.subscription = ticker$.subscribe(() => {
-		enemyMove(enemy);
-	});
+    enemy.subscription = ticker$.subscribe(() => {
+        enemyMove(enemy);
+    });
 
-	stage.addChild(enemy);
+    stage.addChild(enemy);
 
-	return enemy;
+    return enemy;
 };

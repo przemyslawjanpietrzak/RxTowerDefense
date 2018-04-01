@@ -6,10 +6,10 @@ import { NewTower$ } from '../tower/models';
 
 let money = moneyOnBegin;
 const drivers = {
-	changeWalletState$: ({ newTower$, bulletHitEnemy$ }: { newTower$: NewTower$, bulletHitEnemy$: BulletHitEnemy$ }) => Observable.merge(
-		bulletHitEnemy$.map(() => money += enemySettings.price),
-		newTower$.map(() => money -= towerSettings.cost),
-	),
+    changeWalletState$: ({ newTower$, bulletHitEnemy$ }: { newTower$: NewTower$, bulletHitEnemy$: BulletHitEnemy$ }) => Observable.merge(
+        bulletHitEnemy$.map(() => money += enemySettings.price),
+        newTower$.map(() => money -= towerSettings.cost),
+    ),
 };
 
 export default drivers;

@@ -1,9 +1,9 @@
 import { Sinks } from '../common/models';
 
-import * as effects from './effects';
+import { effects } from './effects';
 
 export const runBullet = (sinks: Sinks) => {
-	Object.keys(effects).forEach((key: string) => {
-		effects[key](sinks);
-	});
+    Object.keys(effects).forEach((key: string) => {
+        effects[key](sinks);
+    });
 };
