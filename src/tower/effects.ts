@@ -56,9 +56,7 @@ export const effects = {
     ) => {
         confirmTowerButtonClick$
             .filter(() => towerPropose && showTowerPropose)
-            .subscribe((value) => {
-                newTower$.next(value as any);
-            });
+            .subscribe(newTower$.next);
     },
     changeWalletState: ({ changeWalletState$ }: { changeWalletState$: Observable<number> }) => {
         changeWalletState$.subscribe((newMoney: number) => {
