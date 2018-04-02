@@ -19,10 +19,20 @@
 
             var renderer = new THREE.WebGLRenderer();
             renderer.shadowMap.type = THREE.BasicShadowMap;
+            renderer.setPixelRatio( window.devicePixelRatio );
             renderer.setSize(window.innerWidth, window.innerHeight);
-            document.body.appendChild( renderer.domElement );		
+            document.body.appendChild( renderer.domElement );
 
             controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+            controls.dampingFactor = 0.25;
+
+            controls.panningMode = THREE.HorizontalPanning; // default is THREE.ScreenSpacePanning
+
+            controls.minDistance = 10;
+            controls.maxDistance = 100
+
+            controls.maxPolarAngle = Math.PI / 2;
 
             var ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
             scene.add(ambientLight);
@@ -53,6 +63,8 @@
             function animate() {
                 cube.rotation.x += 0.01;
                 cube.rotation.y += 0.01;
+                cube.rotation.z += 0.01;
+
                 
                 controls.update();
 
