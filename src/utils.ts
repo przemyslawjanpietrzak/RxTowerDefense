@@ -17,7 +17,7 @@ export const getMove = (position: StagePosition, destination: StagePosition, spe
 
     return {
         x: newX,
-        y: newY,
+        z: newY, // TODO
     };
 };
 

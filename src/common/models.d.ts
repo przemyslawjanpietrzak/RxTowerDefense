@@ -45,7 +45,8 @@ export interface Vector {
 
 export interface StagePosition {
     x: number;
-    y: number;
+    y?: number;
+    z?: number;
 }
 
 export interface Scenario {

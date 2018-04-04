@@ -10,6 +10,7 @@ export interface EnemyActions {
 export interface Enemy {
     x: number;
     y: number;
+    z: number;
     graphics: Graphics;
     step: number;
     speed: number;

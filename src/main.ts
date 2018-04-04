@@ -2,10 +2,14 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/timeInterval';
 
+import './orbit.ts';
+
 import path from './path';
 import ticker$ from './ticker';
 
 import scenario from './scenario';
+
+import { scene, cube, controls, renderer, camera } from './scene';
 
 import { stage, stageClick$ } from './stage/stage';
 
@@ -27,7 +31,7 @@ import { runBullet } from './bullet/index';
 import { bulletHitEnemy$, bulletMove$ } from './bullet/sinks';
 
 import { runEnemy } from './enemy/index';
-import { enemyMove$, enemyPassAllPaths$ } from './enemy/sinks';
+import { enemyMove$, enemyPassAllPaths$, enemyCreate$ } from './enemy/sinks';
 
 stage.addChild(path);
 
@@ -71,3 +75,20 @@ ticker$
     .subscribe(() => {
         stage.update();
     });
+
+enemyCreate$.subscribe((enemy: any) => {
+    scene.add(enemy);
+});
+
+const animate = () => {
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+    cube.rotation.z += 0.01;
+
+    controls.update();
+
+    requestAnimationFrame( animate );
+    renderer.render(scene, camera);
+};
+
+animate();

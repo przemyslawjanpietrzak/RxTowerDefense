@@ -1,24 +1,28 @@
-const steps: Array<{ x: number, y: number }> = [
+const steps: Array<{ x: number, y: number, z: number }> = [
     {
-        x: 100,
-        y: 100,
+        x: 10,
+        y: 0,
+        z: 10,
     },
     {
-        x: 100,
-        y: 250,
-
+        x: 10,
+        y: 0,
+        z: 25,
     },
     {
-        x: 250,
-        y: 250,
+        x: 25,
+        y: 0,
+        z: 25,
     },
     {
-        x: 500,
-        y: 500,
+        x: 50,
+        y: 0,
+        z: 50,
     },
     {
-        x: 750,
-        y: 500,
+        x: 75,
+        y: 0,
+        z: 50,
     },
 ];
 

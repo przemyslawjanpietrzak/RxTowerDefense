@@ -36,6 +36,7 @@
   "dependencies": {
     "easeljs": "1.0.2",
     "rxjs": "5.5.6",
+    "three": "^0.91.0",
     "victor": "1.1.0"
   },
   "resolutions": {

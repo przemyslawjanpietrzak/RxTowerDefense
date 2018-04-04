@@ -1,4 +1,8 @@
+import * as THREE from 'three';
+
 import { Shape } from 'easeljs/lib/easeljs';
+
+import { scene } from '../scene';
 
 import steps from '../mapPoint';
 import { enemy as settings } from '../settings';
@@ -11,20 +15,22 @@ import { Enemy } from './models';
 import { enemyMove$, enemyPassAllPaths$ } from './sinks';
 
 const die = (enemy: Enemy) => {
-    stage.removeChild(enemy);
+    // stage.removeChild(enemy);
     enemy.subscription.unsubscribe();
 };
 
-const enemyMove = (enemy: Enemy) => {
+const enemyMove = (enemy: any) => { // TODO
     const nextStep = steps[enemy.step];
     if (!nextStep) {
         enemyPassAllPaths$.next();
         enemy.die();
     } else {
-        const newDirections = getMove(enemy, nextStep, enemy.speed);
-        enemy.x = newDirections.x;
-        enemy.y = newDirections.y;
-        if (getDistance(enemy.x, enemy.y, nextStep.x, nextStep.y) < enemy.speed) {
+        const newDirections = getMove({ x: enemy.position.x, y: enemy.position.z }, nextStep, enemy.speed);
+        console.log(newDirections);
+        console.log(enemy.position.x, enemy.position.y, enemy.position.z);
+        enemy.position.x = newDirections.x;
+        enemy.position.z = newDirections.z;
+        if (getDistance(enemy.position.x, enemy.position.z, nextStep.x, nextStep.z) < enemy.speed) {
             enemy.step++;
         }
         enemyMove$.next(enemy);
@@ -32,19 +38,23 @@ const enemyMove = (enemy: Enemy) => {
 };
 
 export const enemyFactory = (): Enemy => {
-    const enemy: Enemy = new Shape();
-    enemy.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
+    const geometry =  new THREE.SphereGeometry( 5, 32, 32 );
+    const material = new THREE.MeshPhongMaterial( {color: 0xffff00} );
+    const enemy = new THREE.Mesh( geometry, material );
+    enemy.scale.set(0.1, 0.1, 0.1);
+    enemy.position.x = 0;
+    enemy.position.y = 0;
+    enemy.position.z = 0;
+
     enemy.step = 0;
     enemy.speed = settings.speed;
     enemy.die = () => {
         die(enemy);
     };
 
-    enemy.subscription = ticker$.subscribe(() => {
+    enemy.subscription = ticker$.subscribe(() => { // TODO to effect
         enemyMove(enemy);
     });
-
-    stage.addChild(enemy);
 
     return enemy;
 };
