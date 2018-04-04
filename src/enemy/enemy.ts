@@ -26,8 +26,8 @@ const enemyMove = (enemy: any) => { // TODO
         enemy.die();
     } else {
         const newDirections = getMove({ x: enemy.position.x, y: enemy.position.z }, nextStep, enemy.speed);
-        console.log(newDirections);
-        console.log(enemy.position.x, enemy.position.y, enemy.position.z);
+        // console.log(newDirections);
+        // console.log(enemy.position.x, enemy.position.y, enemy.position.z);
         enemy.position.x = newDirections.x;
         enemy.position.z = newDirections.z;
         if (getDistance(enemy.position.x, enemy.position.z, nextStep.x, nextStep.z) < enemy.speed) {

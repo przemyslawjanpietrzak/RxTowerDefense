@@ -10,7 +10,7 @@ export const getDistance = (x1: number, y1: number, x2: number, y2: number): num
 
 export const getMove = (position: StagePosition, destination: StagePosition, speed: number): StagePosition => {
 
-    const vector: Vector = new Victor(destination.x - position.x, destination.y - position.y);
+    const vector: Vector = new Victor(destination.x - position.x, destination.z - position.y);
     const angle = vector.angle();
     const newX = position.x + speed * Math.cos(angle);
     const newY = position.y + speed * Math.sin(angle);

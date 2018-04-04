@@ -31,9 +31,9 @@ import { runBullet } from './bullet/index';
 import { bulletHitEnemy$, bulletMove$ } from './bullet/sinks';
 
 import { runEnemy } from './enemy/index';
-import { enemyMove$, enemyPassAllPaths$, enemyCreate$ } from './enemy/sinks';
+import { enemyCreate$, enemyMove$, enemyPassAllPaths$ } from './enemy/sinks';
 
-stage.addChild(path);
+scene.add(path);
 
 const sinks = {
     ticker$,
@@ -78,6 +78,10 @@ ticker$
 
 enemyCreate$.subscribe((enemy: any) => {
     scene.add(enemy);
+});
+
+enemyPassAllPaths$.subscribe((enemy) => {
+    stage.remove(enemy);
 });
 
 const animate = () => {
