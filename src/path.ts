@@ -16,7 +16,9 @@ const material = new LineBasicMaterial({
 });
 
 const geometry = new Geometry();
-
+geometry.vertices.push(
+    new Vector3(0, 0, 0), // TODO
+);
 steps.forEach(({ x, y, z }) => {
     geometry.vertices.push(
         new Vector3(x, y, z), // TODO

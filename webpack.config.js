@@ -15,7 +15,7 @@ module.exports = {
         extensions: ['.ts', '.js']
     },
     module: {
-        loaders: [{
+        rules: [{
             test: /\.ts$/,
             loader: 'ts-loader',
             include: [
@@ -41,5 +41,9 @@ module.exports = {
         new webpack.ProvidePlugin({
           'createjs': 'easeljs/lib/easeljs'
         })
-    ].concat(isProduction ? new webpack.optimize.UglifyJsPlugin(): [])
+    ].concat(isProduction ? new webpack.optimize.UglifyJsPlugin(): []),
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        port: 9000
+    }
 };

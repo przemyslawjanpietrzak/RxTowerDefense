@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/main.ts",
   "scripts": {
+    "start": "webpack-dev-server --config ./webpack.config.js",
     "lint": "tslint --config tslint.json --project tsconfig.json 'src/**/*.ts'",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "bundle": "webpack --config ./webpack.config.js",
@@ -31,7 +32,9 @@
     "tslint-sonarts": "^1.6.0",
     "typescript": "2.7.1",
     "typings": "2.1.1",
-    "webpack": "3.10.0"
+    "webpack": "4.5",
+    "webpack-cli": "^2.0.14",
+    "webpack-dev-server": "3.1.1"
   },
   "dependencies": {
     "easeljs": "1.0.2",
