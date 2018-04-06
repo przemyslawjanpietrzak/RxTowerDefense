@@ -13,18 +13,15 @@ import { scene } from '../scene/scene'; // TODO to effect
 
 import { getArea, hideTowerArea, toggleAreaFactory } from './area';
 import { Tower } from './models';
+import { TOWER_COLOR, RELOAD_BULLET_TIME } from './settings';
 import { towerFireToEnemy$ } from './sinks';
 
 export const towerFactory = (x: number, z: number): Tower => {
-    const reloadBulletTime = 100;
-    // const tower: Tower = new Shape();
-    // tower.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
-    // tower.x = x;
-    // tower.y = y;
+    const reloadBulletTime = RELOAD_BULLET_TIME;
 
     const tower = new Mesh(
         new BoxGeometry(1, 1, 1),
-        new MeshPhongMaterial({ color: 0x00ff00 })
+        new MeshPhongMaterial({ color: TOWER_COLOR })
     );
     tower.position.x = x;
     tower.position.y = 2;
@@ -54,6 +51,10 @@ export const towerFactory = (x: number, z: number): Tower => {
     };
 
     tower.tickerSubscription = ticker$.subscribe(() => {
+        tower.rotation.x += 0.2;
+        tower.rotation.y += 0.2;
+        tower.rotation.z += 0.2;
+
         if (tower.reloadBulletTime > 0) {
             tower.reloadBulletTime--;
         }
@@ -78,8 +79,6 @@ export const towerFactory = (x: number, z: number): Tower => {
         .subscribe(() => {
             hideTowerArea(tower);
         });
-
-    // stage.addChild(tower);
 
     return tower;
 };
