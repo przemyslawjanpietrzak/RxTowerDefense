@@ -1,4 +1,4 @@
-import { Shape } from 'easeljs/lib/easeljs';
+import { Mesh, BoxGeometry, MeshPhongMaterial } from 'three';
 
 import { enemyMove$ } from '../enemy/sinks';
 import { stage, stageClick$ } from '../stage/stage';
@@ -9,17 +9,28 @@ import { getDistance, isInDistance } from '../utils';
 
 import { Event } from '../common/models';
 import { Enemy } from '../enemy/models';
+import { scene } from '../scene/scene'; // TODO to effect
 
 import { getArea, hideTowerArea, toggleAreaFactory } from './area';
 import { Tower } from './models';
 import { towerFireToEnemy$ } from './sinks';
 
-export const towerFactory = (x: number, y: number): Tower => {
+export const towerFactory = (x: number, z: number): Tower => {
     const reloadBulletTime = 100;
-    const tower: Tower = new Shape();
-    tower.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
-    tower.x = x;
-    tower.y = y;
+    // const tower: Tower = new Shape();
+    // tower.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
+    // tower.x = x;
+    // tower.y = y;
+
+    const tower = new Mesh(
+        new BoxGeometry(1, 1, 1),
+        new MeshPhongMaterial({ color: 0x00ff00 })
+    );
+    tower.position.x = x;
+    tower.position.y = 2;
+    tower.position.z = z;
+    scene.add(tower);
+
     tower.range = settings.range;
     tower.reloadBulletTime = 0;
     tower.enemiesInRange = [];
@@ -68,7 +79,7 @@ export const towerFactory = (x: number, y: number): Tower => {
             hideTowerArea(tower);
         });
 
-    stage.addChild(tower);
+    // stage.addChild(tower);
 
     return tower;
 };

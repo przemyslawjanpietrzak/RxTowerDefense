@@ -1,7 +1,7 @@
 
 import { Subject } from 'rxjs/Rx';
 
-import { Graphics, Shape, Subscription } from '../common/models';
+import { Graphics, Point, Shape, Subscription } from '../common/models';
 
 import { Enemy } from '../enemy/models';
 
@@ -35,4 +35,4 @@ export interface TowerShape {
 
 export type TowerFireToEnemy$ = Subject<{tower: Tower, enemy: Enemy }>;
 
-export type NewTower$ = Subject<void>;
+export type NewTower$ = Subject<Point>;

@@ -11,6 +11,7 @@ import ticker$ from './ticker';
 import scenario from './scenario';
 
 import { runScene } from './scene/index';
+import { sceneClick$ } from './scene/sinks';
 
 import { stage, stageClick$ } from './stage/stage';
 
@@ -36,6 +37,8 @@ import { enemyCreate$, enemyMove$, enemyPassAllPaths$ } from './enemy/sinks';
 
 const sinks = { // TODO: spread
     ticker$,
+
+    sceneClick$,
 
     stageClick$,
 
