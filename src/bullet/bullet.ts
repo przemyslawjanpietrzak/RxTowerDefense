@@ -19,7 +19,7 @@ const die = (bullet: Bullet) => {
 export const bulletFactory = (tower: Tower, enemy: Enemy): Bullet => {
     const bullet: Bullet = new Shape();
     const { x: positionX, y: positionY } = tower;
-    const { x: destinationX, y: destinationY } = enemy;
+    const { x: destinationX, y: destinationY } = enemy.position;
 
     bullet.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
     bullet.x = positionX;

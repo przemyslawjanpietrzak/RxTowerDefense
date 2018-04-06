@@ -2,8 +2,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/timeInterval';
 
-import './orbit.ts';
-// import './canvasRenderer';
+import 'three/examples/js/controls/OrbitControls.js';
 import 'three/examples/js/renderers/Projector.js';
 import 'three/examples/js/renderers/CanvasRenderer'
 
@@ -11,7 +10,6 @@ import ticker$ from './ticker';
 
 import scenario from './scenario';
 
-// import { scene, cube, controls, renderer, camera } from './scene';
 import { runScene } from './scene/index';
 
 import { stage, stageClick$ } from './stage/stage';
@@ -35,8 +33,6 @@ import { bulletHitEnemy$, bulletMove$ } from './bullet/sinks';
 
 import { runEnemy } from './enemy/index';
 import { enemyCreate$, enemyMove$, enemyPassAllPaths$ } from './enemy/sinks';
-
-// scene.add(path);
 
 const sinks = { // TODO: spread
     ticker$,
@@ -75,15 +71,3 @@ ticker$
         currentStep++;
         document.getElementById('current-level').innerHTML = String(currentStep);
     });
-
-// ticker$
-//     .subscribe(() => {
-//         stage.update();
-//     });
-
-
-
-// enemyPassAllPaths$.subscribe((enemy) => {
-//     stage.remove(enemy);
-// });
-

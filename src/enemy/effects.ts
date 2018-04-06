@@ -17,7 +17,7 @@ export const effects = {
                 enemy.die();
             });
     },
-    ticker: ({ ticker$ }: { ticker$: Ticker$ }) => {
+    enemyCreate: ({ ticker$ }: { ticker$: Ticker$ }) => {
         ticker$
             .filter((counter) => counter % getTickerPerEnemy(counter, scenario) === 0)
             .subscribe(() => {

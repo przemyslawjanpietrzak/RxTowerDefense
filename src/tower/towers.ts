@@ -51,7 +51,7 @@ export const towerFactory = (x: number, y: number): Tower => {
     tower.enemySubscription = enemyMove$
         .filter(() => tower.reloadBulletTime === 0)
         .subscribe((enemy: Enemy) => {
-            if (isInDistance(tower, enemy)) {
+            if (isInDistance(tower, enemy.position)) {
                 tower.enemiesInRange.push(enemy);
             }
             const firstEnemy: Enemy = tower.enemiesInRange[0];

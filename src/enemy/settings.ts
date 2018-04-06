@@ -1,0 +1,1 @@
+export const ENEMY_COLOR = 0xffff00;
