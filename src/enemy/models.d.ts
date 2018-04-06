@@ -22,3 +22,4 @@ export interface Enemy {
 export type EnemyPassAllPaths$ = Subject<void>;
 
 export type EnemyMove$ = Subject<Enemy>;
+export type EnemyCreate$ = Subject<Enemy>;

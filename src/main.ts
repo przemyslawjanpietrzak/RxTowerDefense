@@ -7,12 +7,12 @@ import './orbit.ts';
 import 'three/examples/js/renderers/Projector.js';
 import 'three/examples/js/renderers/CanvasRenderer'
 
-import path from './path';
 import ticker$ from './ticker';
 
 import scenario from './scenario';
 
-import { scene, cube, controls, renderer, camera } from './scene';
+// import { scene, cube, controls, renderer, camera } from './scene';
+import { runScene } from './scene/index';
 
 import { stage, stageClick$ } from './stage/stage';
 
@@ -36,9 +36,9 @@ import { bulletHitEnemy$, bulletMove$ } from './bullet/sinks';
 import { runEnemy } from './enemy/index';
 import { enemyCreate$, enemyMove$, enemyPassAllPaths$ } from './enemy/sinks';
 
-scene.add(path);
+// scene.add(path);
 
-const sinks = {
+const sinks = { // TODO: spread
     ticker$,
 
     stageClick$,
@@ -51,6 +51,7 @@ const sinks = {
 
     enemyPassAllPaths$,
     enemyMove$,
+    enemyCreate$,
 
     changeWalletState$,
 
@@ -65,6 +66,7 @@ runMenu(sinks);
 runBullet(sinks);
 runTower(sinks);
 runEnemy(sinks);
+runScene(sinks);
 
 let currentStep = 1;
 ticker$
@@ -74,28 +76,14 @@ ticker$
         document.getElementById('current-level').innerHTML = String(currentStep);
     });
 
-ticker$
-    .subscribe(() => {
-        stage.update();
-    });
+// ticker$
+//     .subscribe(() => {
+//         stage.update();
+//     });
 
-enemyCreate$.subscribe((enemy: any) => {
-    scene.add(enemy);
-});
 
-enemyPassAllPaths$.subscribe((enemy) => {
-    stage.remove(enemy);
-});
 
-const animate = () => {
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-    cube.rotation.z += 0.01;
+// enemyPassAllPaths$.subscribe((enemy) => {
+//     stage.remove(enemy);
+// });
 
-    controls.update();
-
-    requestAnimationFrame( animate );
-    renderer.render(scene, camera);
-};
-
-animate();
