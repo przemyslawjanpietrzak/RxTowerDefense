@@ -3,6 +3,9 @@ import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/timeInterval';
 
 import './orbit.ts';
+// import './canvasRenderer';
+import 'three/examples/js/renderers/Projector.js';
+import 'three/examples/js/renderers/CanvasRenderer'
 
 import path from './path';
 import ticker$ from './ticker';

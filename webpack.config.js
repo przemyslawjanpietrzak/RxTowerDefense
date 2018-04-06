@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var env = process.env.npm_lifecycle_event;
 var isProduction = env.includes('production')
@@ -39,11 +40,20 @@ module.exports = {
     devtool: !isProduction ? 'source-map' : 'none',
     plugins: [
         new webpack.ProvidePlugin({
-          'createjs': 'easeljs/lib/easeljs'
+          'createjs': 'easeljs/lib/easeljs',
+          THREE: 'three',
         })
-    ].concat(isProduction ? new webpack.optimize.UglifyJsPlugin(): []),
+    ].concat(isProduction ? new webpack.optimize.UglifyJsPlugin(): [
+        new HtmlWebpackPlugin({
+            template: './index.html',
+            inject: 'body',
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+    ]),
     devServer: {
         contentBase: path.join(__dirname, "dist"),
-        port: 9000
-    }
+        port: 9000,
+        hot: true,
+        inline: true,
+    },
 };
