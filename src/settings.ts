@@ -1,6 +1,6 @@
 export const tower = {
     color: 'rgba(13,71,161 ,1)',
-    range: 50,
+    range: 10,
     reloadBulletTime: 400,
     size: 5,
     areaColor: 'rgba(13,71,161 ,0.1)',

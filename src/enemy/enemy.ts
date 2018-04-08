@@ -13,10 +13,10 @@ import { enemyMove$, enemyPassAllPaths$ } from './sinks';
 const enemyMove = (enemy: Enemy) => { // TODO
     const nextStep = steps[enemy.step];
     if (!nextStep) {
-        enemyPassAllPaths$.next();
+        enemyPassAllPaths$.next(enemy);
         enemy.die();
     } else {
-        const newDirections = getMove({ x: enemy.position.x, y: enemy.position.z }, nextStep, enemy.speed);
+        const newDirections = getMove(enemy.position, nextStep, enemy.speed);
         enemy.position.x = newDirections.x;
         enemy.position.z = newDirections.z;
         if (getDistance(enemy.position.x, enemy.position.z, nextStep.x, nextStep.z) < enemy.speed) {
@@ -27,10 +27,11 @@ const enemyMove = (enemy: Enemy) => { // TODO
 };
 
 export const enemyFactory = (): Enemy => {
-    const geometry =  new SphereGeometry(5, 32, 32);
-    const material = new MeshPhongMaterial( {color: ENEMY_COLOR} );
-    const enemy = new Mesh( geometry, material );
-    enemy.scale.set(0.1, 0.1, 0.1);
+    const enemy = new Mesh(
+        new SphereGeometry(5, 32, 32),
+        new MeshPhongMaterial({ color: ENEMY_COLOR })
+    );
+    enemy.scale.set(0.14, 0.14, 0.14);
     enemy.position.x = 0;
     enemy.position.y = 0;
     enemy.position.z = 0;

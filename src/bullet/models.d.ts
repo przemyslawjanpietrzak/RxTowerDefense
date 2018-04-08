@@ -5,10 +5,15 @@ import { Enemy} from '../enemy/models';
 import { Tower } from '../tower/models';
 
 export interface Bullet {
-    x: number;
-    y: number;
+    position: {
+        x: number;
+        y: number;
+        z: number;
+    }
+    scale: any;
     destinationX: number;
     destinationY: number;
+    destinationZ: number;
     graphics: Graphics;
     step: number;
     speed: number;

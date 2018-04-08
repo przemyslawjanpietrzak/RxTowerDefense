@@ -3,16 +3,16 @@ import { Shape } from 'easeljs/lib/easeljs';
 import { tower as settings } from '../settings';
 import { stage } from '../stage/stage';
 
-import { Tower, TowerShape } from './models';
+import { Tower } from './models';
 
-export const getArea = (tower: Tower | TowerShape): Shape => {
-    const area: Shape = new Shape();
-    area.graphics.beginFill(settings.areaColor).drawCircle(tower.x, tower.y, tower.range);
+// export const getArea = (tower: Tower): Shape => {
+//     const area: Shape = new Shape();
+//     area.graphics.beginFill(settings.areaColor).drawCircle(tower.x, tower.y, tower.range);
 
-    return area;
-};
+//     return area;
+// };
 
-export const toggleAreaFactory = (tower: Tower | TowerShape) => {
+export const toggleAreaFactory = (tower: Tower ) => {
     return () => {
         const areaWasVisible = tower.areaVisible;
         if (areaWasVisible) {
@@ -24,7 +24,7 @@ export const toggleAreaFactory = (tower: Tower | TowerShape) => {
     };
 };
 
-export const hideTowerArea = (tower: Tower | TowerShape) => {
+export const hideTowerArea = (tower: Tower ) => {
     tower.areaVisible = false;
     stage.removeChild(tower.area);
 };

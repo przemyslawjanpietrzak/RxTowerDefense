@@ -3,7 +3,7 @@ import { Shape } from 'easeljs/lib/easeljs';
 import { tower as settings } from '../settings';
 import { stage } from '../stage/stage';
 
-import { getArea } from './area';
+// import { getArea } from './area';
 import { TowerShape } from './models';
 
 export const showTowerShape = (x: number, y: number): TowerShape => {
@@ -13,7 +13,7 @@ export const showTowerShape = (x: number, y: number): TowerShape => {
     towerShape.y = y;
     towerShape.range = settings.range;
     towerShape.areaVisible = true;
-    towerShape.area = getArea(towerShape);
+    // towerShape.area = getArea(towerShape);
 
     stage.addChild(towerShape);
     stage.addChild(towerShape.area);

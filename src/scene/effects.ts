@@ -1,4 +1,7 @@
-import { Enemy, EnemyCreate$ } from '../enemy/models';
+import { prop } from '../utils';
+
+import { BulletHitEnemy$ } from '../bullet/models';
+import { Enemy, EnemyCreate$, EnemyPassAllPaths$ } from '../enemy/models';
 
 import { scene } from './scene';
 
@@ -6,5 +9,12 @@ export const effects = {
     enemyCreate: ({ enemyCreate$ }: { enemyCreate$: EnemyCreate$ }) => enemyCreate$.subscribe((enemy: Enemy) => {
         scene.add(enemy);
     }),
-    x: ({ ticker$ }) => ticker$.subscribe(a => console.log(a))
+    bulletHitEnemy: ({ bulletHitEnemy$ }: { bulletHitEnemy$: BulletHitEnemy$ }) => bulletHitEnemy$
+        .map(prop('enemy'))
+        .subscribe((enemy: Enemy) => {
+            scene.remove(enemy);
+        }),
+    enemyPassAllPaths: ({ enemyPassAllPaths$ }: { enemyPassAllPaths$: EnemyPassAllPaths$ }) => enemyPassAllPaths$.subscribe((enemy: Enemy) => {
+        scene.remove(enemy);
+    })
 };

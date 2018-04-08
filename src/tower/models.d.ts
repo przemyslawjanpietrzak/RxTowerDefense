@@ -6,8 +6,11 @@ import { Graphics, Point, Shape, Subscription } from '../common/models';
 import { Enemy } from '../enemy/models';
 
 export interface Tower {
-    x: number;
-    y: number;
+    position: {
+        x: number;
+        y: number;
+        z: number;
+    };
     range: number;
     reloadBulletTime: number;
     graphics: Graphics;

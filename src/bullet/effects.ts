@@ -15,15 +15,16 @@ export const effects = {
     towerFireToEnemy: ({ towerFireToEnemy$ }: { towerFireToEnemy$: TowerFireToEnemy$ }) => {
         towerFireToEnemy$
             .subscribe(({ tower, enemy }: { tower: Tower, enemy: Enemy }) => {
-                bulletFactory(tower, enemy);
+                const bullet = bulletFactory(tower.position, enemy);
             });
     },
     bulletHitEnemy: ({ bulletMove$ }: { bulletMove$: BulletMove$ }) => {
         bulletMove$
             .filter(
-                (bullet: Bullet) => getDistance(bullet.x, bullet.y, bullet.destinationX, bullet.destinationY) <= bullet.speed,
+                (bullet: Bullet) => getDistance(bullet.position.x, bullet.position.z, bullet.destinationX, bullet.destinationZ) <= bullet.speed,
             )
             .subscribe((bullet: Bullet) => {
+                console.warn('hit', bullet);
                 bulletHitEnemy$.next({ bullet, enemy: bullet.enemy });
                 bulletToDie = bullet;
             });

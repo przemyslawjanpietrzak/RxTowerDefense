@@ -11,7 +11,7 @@ import { Event } from '../common/models';
 import { Enemy } from '../enemy/models';
 import { scene } from '../scene/scene'; // TODO to effect
 
-import { getArea, hideTowerArea, toggleAreaFactory } from './area';
+import { hideTowerArea, toggleAreaFactory } from './area';
 import { Tower } from './models';
 import { TOWER_COLOR, RELOAD_BULLET_TIME } from './settings';
 import { towerFireToEnemy$ } from './sinks';
@@ -32,7 +32,7 @@ export const towerFactory = (x: number, z: number): Tower => {
     tower.reloadBulletTime = 0;
     tower.enemiesInRange = [];
     tower.areaVisible = false;
-    tower.area = getArea(tower);
+    // tower.area = getArea(tower);
 
     tower.onClickHandler = toggleAreaFactory(tower);
     tower.addEventListener('click', tower.onClickHandler);
