@@ -14,6 +14,7 @@ import { bulletMove$ } from './sinks';
 
 const die = (bullet: Bullet) => {
     bullet.subscription.unsubscribe();
+    scene.remove(bullet);
 };
 
 export const bulletFactory = ({ x, y, z }: Point, enemy: Enemy): Bullet => {
@@ -32,14 +33,14 @@ export const bulletFactory = ({ x, y, z }: Point, enemy: Enemy): Bullet => {
     bullet.position.z = z;
     bullet.destinationX = destinationX;
     bullet.destinationZ = destinationZ;
-    bullet.speed = 6;
+    bullet.speed = 1;
     bullet.enemy = enemy;
     bullet.die = () => die(bullet);
 
     bullet.subscription = ticker.subscribe(() => { // TODO move to file
         const newDirections = getMove(
             bullet.position,
-            { x: destinationX, y: destinationZ },
+            { x: destinationX, z: destinationZ },
             bullet.speed,
         );
 

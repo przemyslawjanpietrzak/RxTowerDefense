@@ -17,9 +17,9 @@ import { TOWER_COLOR, RELOAD_BULLET_TIME } from './settings';
 import { towerFireToEnemy$ } from './sinks';
 
 export const towerFactory = (x: number, z: number): Tower => {
-    const reloadBulletTime = RELOAD_BULLET_TIME;
+    const reloadBulletTime = RELOAD_BULLET_TIME / 10;
 
-    const tower = new Mesh(
+    const tower: Tower = new Mesh(
         new BoxGeometry(1, 1, 1),
         new MeshPhongMaterial({ color: TOWER_COLOR })
     );
@@ -31,7 +31,7 @@ export const towerFactory = (x: number, z: number): Tower => {
     tower.range = settings.range;
     tower.reloadBulletTime = 0;
     tower.enemiesInRange = [];
-    tower.areaVisible = false;
+    // tower.areaVisible = false;
     // tower.area = getArea(tower);
 
     tower.onClickHandler = toggleAreaFactory(tower);
@@ -43,7 +43,7 @@ export const towerFactory = (x: number, z: number): Tower => {
     };
 
     tower.die = () => {
-        stage.removeChild(tower);
+        // stage.removeChild(tower);
         tower.enemySubscription.unsubscribe();
         tower.stageClickSubscription.unsubscribe();
         tower.tickerSubscription.unsubscribe();
@@ -74,11 +74,11 @@ export const towerFactory = (x: number, z: number): Tower => {
             tower.enemiesInRange = [];
         });
 
-    tower.stageClickSubscription = stageClick$
-        .filter((event: Event) => getDistance(event.stageX, event.stageY, tower.x, tower.y) > settings.size) // click out of tower
-        .subscribe(() => {
-            hideTowerArea(tower);
-        });
+    // tower.stageClickSubscription = stageClick$
+    //     .filter((event: Event) => getDistance(event.stageX, event.stageY, tower.position.x, tower.position.z) > settings.size) // click out of tower
+    //     .subscribe(() => {
+    //         hideTowerArea(tower);
+    //     });
 
     return tower;
 };

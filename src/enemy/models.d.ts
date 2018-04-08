@@ -13,6 +13,7 @@ export interface Enemy {
         y: number;
         z: number;
     };
+    scale: any;
     graphics: Graphics;
     step: number;
     speed: number;

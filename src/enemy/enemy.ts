@@ -27,7 +27,7 @@ const enemyMove = (enemy: Enemy) => { // TODO
 };
 
 export const enemyFactory = (): Enemy => {
-    const enemy = new Mesh(
+    const enemy: Enemy = new Mesh(
         new SphereGeometry(5, 32, 32),
         new MeshPhongMaterial({ color: ENEMY_COLOR })
     );
@@ -36,7 +36,7 @@ export const enemyFactory = (): Enemy => {
     enemy.position.y = 0;
     enemy.position.z = 0;
     enemy.step = 0;
-    enemy.speed = settings.speed;
+    enemy.speed = 0.5;
     enemy.subscription = ticker$.subscribe(() => { // TODO to effect
         enemyMove(enemy);
     });

@@ -2,22 +2,22 @@
 import { Scenario } from './common/models';
 
 const scenario: Scenario = {
-    tickPerStep: 500,
+    tickPerStep: 400,
     parts: {
         0: {
-            tickPerEnemy: 330,
+            tickPerEnemy: 130,
         },
         1: {
-            tickPerEnemy: 250,
+            tickPerEnemy: 100,
         },
         2: {
-            tickPerEnemy: 200,
+            tickPerEnemy: 80,
         },
         3: {
-            tickPerEnemy: 150,
+            tickPerEnemy: 50,
         },
         4: {
-            tickPerEnemy: 150,
+            tickPerEnemy: 30,
         },
         5: {
             tickPerEnemy: 120,

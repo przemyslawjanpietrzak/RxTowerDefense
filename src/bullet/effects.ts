@@ -24,8 +24,8 @@ export const effects = {
                 (bullet: Bullet) => getDistance(bullet.position.x, bullet.position.z, bullet.destinationX, bullet.destinationZ) <= bullet.speed,
             )
             .subscribe((bullet: Bullet) => {
-                console.warn('hit', bullet);
                 bulletHitEnemy$.next({ bullet, enemy: bullet.enemy });
+
                 bulletToDie = bullet;
             });
     },
@@ -33,6 +33,7 @@ export const effects = {
         ticker$
             .filter(() => bulletToDie !== null)
             .subscribe(() => {
+                console.log('bullet die ', { ...bulletToDie });
                 bulletToDie.die();
                 bulletToDie = null;
         });

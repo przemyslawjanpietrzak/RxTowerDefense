@@ -2,7 +2,7 @@ import { Observable } from 'rxjs/Rx';
 
 import { playPauseButtonClick$ } from './menu/sinks';
 
-const MILLISECONDS_PER_TICK = 17;
+const MILLISECONDS_PER_TICK = 17 / 2;
 
 let counter = 0;
 let isPlay: boolean = true;
