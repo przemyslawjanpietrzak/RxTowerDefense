@@ -1,7 +1,6 @@
 import { Mesh, BoxGeometry, MeshPhongMaterial } from 'three';
 
 import { enemyMove$ } from '../enemy/sinks';
-import { stage, stageClick$ } from '../stage/stage';
 import ticker$ from '../ticker';
 
 import { tower as settings } from '../settings';
@@ -28,7 +27,7 @@ export const towerFactory = (x: number, z: number): Tower => {
     tower.position.z = z;
     scene.add(tower);
 
-    tower.range = settings.range;
+    tower.range = 3;
     tower.reloadBulletTime = 0;
     tower.enemiesInRange = [];
     // tower.areaVisible = false;
@@ -51,9 +50,9 @@ export const towerFactory = (x: number, z: number): Tower => {
     };
 
     tower.tickerSubscription = ticker$.subscribe(() => {
-        tower.rotation.x += 0.2;
-        tower.rotation.y += 0.2;
-        tower.rotation.z += 0.2;
+        tower.rotation.x += 0.1;
+        tower.rotation.y += 0.1;
+        tower.rotation.z += 0.1;
 
         if (tower.reloadBulletTime > 0) {
             tower.reloadBulletTime--;
@@ -73,12 +72,6 @@ export const towerFactory = (x: number, z: number): Tower => {
 
             tower.enemiesInRange = [];
         });
-
-    // tower.stageClickSubscription = stageClick$
-    //     .filter((event: Event) => getDistance(event.stageX, event.stageY, tower.position.x, tower.position.z) > settings.size) // click out of tower
-    //     .subscribe(() => {
-    //         hideTowerArea(tower);
-    //     });
 
     return tower;
 };

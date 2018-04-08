@@ -16,16 +16,16 @@ let showTowerPropose: boolean = false;
 let money = moneyOnBegin;
 
 export const effects = {
-    addTowerButtonClick: ({ addTowerButtonClick$ }: { addTowerButtonClick$: AddTowerButtonClick$ }) => {
-        addTowerButtonClick$
-            .filter(() => money >= towerSettings.cost)
-            .subscribe(() => {
-                showTowerPropose = true;
-            });
-    },
+    // addTowerButtonClick: ({ addTowerButtonClick$ }: { addTowerButtonClick$: AddTowerButtonClick$ }) => {
+    //     addTowerButtonClick$
+    //         .filter(() => money >= towerSettings.cost)
+    //         .subscribe(() => {
+    //             showTowerPropose = true;
+    //         });
+    // },
     sceneClick: ({ newTower$, sceneClick$ }: { newTower$: NewTower$, sceneClick$: SceneClick$ }) => {
         sceneClick$
-            .filter(() => showTowerPropose)
+            // .filter(() => showTowerPropose)
             .subscribe(({ x, y, z }) => {
                 newTower$.next({ x, y, z });
                 // if (towerPropose) {
@@ -48,7 +48,7 @@ export const effects = {
     // },
     newTower: ({ newTower$ }: { newTower$: NewTower$ }) => {
         newTower$
-            .subscribe(({ x, y, z }) => {
+            .subscribe(({ x, z }) => {
                 // hideTowerShape(towerPropose);
                 towerFactory(x, z);
                 // showTowerPropose = false;

@@ -1,7 +1,7 @@
 import { Shape } from 'easeljs/lib/easeljs';
 
 import { tower as settings } from '../settings';
-import { stage } from '../stage/stage';
+// import { stage } from '../stage/stage';
 
 import { Tower } from './models';
 
@@ -15,16 +15,16 @@ import { Tower } from './models';
 export const toggleAreaFactory = (tower: Tower ) => {
     return () => {
         const areaWasVisible = tower.areaVisible;
-        if (areaWasVisible) {
-            stage.removeChild(tower.area);
-        } else {
-            stage.addChild(tower.area);
-        }
+        // if (areaWasVisible) {
+        //     stage.removeChild(tower.area);
+        // } else {
+        //     stage.addChild(tower.area);
+        // }
         tower.areaVisible = !areaWasVisible;
     };
 };
 
 export const hideTowerArea = (tower: Tower ) => {
     tower.areaVisible = false;
-    stage.removeChild(tower.area);
+    // stage.removeChild(tower.area);
 };

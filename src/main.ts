@@ -13,7 +13,7 @@ import scenario from './scenario';
 import { runScene } from './scene/index';
 import { sceneClick$ } from './scene/sinks';
 
-import { stage, stageClick$ } from './stage/stage';
+// import { stage, stageClick$ } from './stage/stage';
 
 import { runWallet } from './wallet/index';
 import { changeWalletState$ } from './wallet/sinks';
@@ -40,7 +40,7 @@ const sinks = { // TODO: spread
 
     sceneClick$,
 
-    stageClick$,
+    // stageClick$,
 
     newTower$,
     towerFireToEnemy$,

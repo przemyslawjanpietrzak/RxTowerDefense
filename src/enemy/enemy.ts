@@ -2,7 +2,6 @@ import { Mesh, MeshPhongMaterial, SphereGeometry, } from 'three';
 
 import steps from '../mapPoint';
 import { enemy as settings } from '../settings';
-import { stage } from '../stage/stage';
 import ticker$ from '../ticker';
 import { getDistance, getMove } from '../utils';
 
