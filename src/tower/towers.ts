@@ -16,7 +16,6 @@ import { TOWER_COLOR, RELOAD_BULLET_TIME } from './settings';
 import { towerFireToEnemy$ } from './sinks';
 
 export const towerFactory = (x: number, z: number): Tower => {
-    const reloadBulletTime = RELOAD_BULLET_TIME / 10;
 
     const tower: Tower = new Mesh(
         new BoxGeometry(1, 1, 1),
@@ -38,15 +37,15 @@ export const towerFactory = (x: number, z: number): Tower => {
 
     tower.fireToEnemy = (enemy: Enemy) => {
         towerFireToEnemy$.next({ tower, enemy });
-        tower.reloadBulletTime = reloadBulletTime;
+        tower.reloadBulletTime = RELOAD_BULLET_TIME;
     };
 
     tower.die = () => {
         // stage.removeChild(tower);
-        tower.enemySubscription.unsubscribe();
-        tower.stageClickSubscription.unsubscribe();
-        tower.tickerSubscription.unsubscribe();
-        tower.removeEventListener('click');
+        // tower.enemySubscription.unsubscribe();
+        // tower.stageClickSubscription.unsubscribe();
+        // tower.tickerSubscription.unsubscribe();
+        // tower.removeEventListener('click');
     };
 
     tower.tickerSubscription = ticker$.subscribe(() => {

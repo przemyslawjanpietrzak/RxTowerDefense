@@ -7,60 +7,62 @@ import { AddTowerButtonClick$, CancelTowerButtonClick$, ConfirmTowerButtonClick$
 
 import { SceneClick$ } from '../scene/models';
 
-import { NewTower$ } from './models';
+import { NewTower$, TowerShape } from './models';
 import { hideTowerShape, showTowerShape } from './shape';
 import { towerFactory } from './towers';
 
-let towerPropose = null;
+let towerPropose: TowerShape | null = null;
 let showTowerPropose: boolean = false;
 let money = moneyOnBegin;
 
 export const effects = {
-    // addTowerButtonClick: ({ addTowerButtonClick$ }: { addTowerButtonClick$: AddTowerButtonClick$ }) => {
-    //     addTowerButtonClick$
-    //         .filter(() => money >= towerSettings.cost)
-    //         .subscribe(() => {
-    //             showTowerPropose = true;
-    //         });
-    // },
-    sceneClick: ({ newTower$, sceneClick$ }: { newTower$: NewTower$, sceneClick$: SceneClick$ }) => {
-        sceneClick$
-            // .filter(() => showTowerPropose)
-            .subscribe(({ x, y, z }) => {
-                newTower$.next({ x, y, z });
-                // if (towerPropose) {
-                //     hideTowerShape(towerPropose);
-                // }
-                // towerPropose = showTowerShape(event.stageX, event.stageY);
-                // showTowerPropose = true;
+    addTowerButtonClick: ({ addTowerButtonClick$ }: { addTowerButtonClick$: AddTowerButtonClick$ }) => {
+        addTowerButtonClick$
+            .filter(() => money >= towerSettings.cost)
+            .subscribe(() => {
+                showTowerPropose = true;
             });
     },
-    // cancelTowerButtonClick: ({ cancelTowerButtonClick$ }: { cancelTowerButtonClick$: CancelTowerButtonClick$ }) => {
-    //     cancelTowerButtonClick$
-    //         .filter(() => towerPropose)
-    //         .subscribe(() => {
-    //             showTowerPropose = false;
-    //             if (towerPropose) {
-    //                 hideTowerShape(towerPropose);
-    //                 towerPropose = null;
-    //             }
-    //         });
-    // },
+    sceneClick: ({ newTower$, sceneClick$ }: { newTower$: NewTower$, sceneClick$: SceneClick$ }) => {
+        sceneClick$
+            .filter(() => showTowerPropose)
+            .subscribe(({ x, z }) => {
+                if (towerPropose) {
+                    hideTowerShape(towerPropose);
+                }
+                towerPropose = showTowerShape(x, z);
+                showTowerPropose = true;
+            });
+    },
+    cancelTowerButtonClick: ({ cancelTowerButtonClick$ }: { cancelTowerButtonClick$: CancelTowerButtonClick$ }) => {
+        cancelTowerButtonClick$
+            .filter(() => !!towerPropose)
+            .subscribe(() => {
+                showTowerPropose = false;
+                if (towerPropose) {
+                    hideTowerShape(towerPropose);
+                    towerPropose = null;
+                }
+            });
+    },
     newTower: ({ newTower$ }: { newTower$: NewTower$ }) => {
         newTower$
             .subscribe(({ x, z }) => {
-                // hideTowerShape(towerPropose);
+                hideTowerShape(towerPropose);
                 towerFactory(x, z);
-                // showTowerPropose = false;
+                showTowerPropose = false;
             });
     },
-    // confirmTowerButtonClick: (
-    //     { confirmTowerButtonClick$, newTower$ }: { confirmTowerButtonClick$: ConfirmTowerButtonClick$, newTower$: NewTower$ },
-    // ) => {
-    //     confirmTowerButtonClick$
-    //         .filter(() => towerPropose && showTowerPropose)
-    //         .subscribe(newTower$.next);
-    // },
+    confirmTowerButtonClick: (
+        { confirmTowerButtonClick$, newTower$ }: { confirmTowerButtonClick$: ConfirmTowerButtonClick$, newTower$: NewTower$ },
+    ) => {
+        confirmTowerButtonClick$
+            .filter(() =>  showTowerPropose)
+            .filter(() => !!towerPropose)
+            .subscribe(() => {
+                newTower$.next(towerPropose.position)
+            });
+    },
     changeWalletState: ({ changeWalletState$ }: { changeWalletState$: Observable<number> }) => {
         changeWalletState$.subscribe((newMoney: number) => {
             money = newMoney;

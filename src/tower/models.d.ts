@@ -30,8 +30,11 @@ export interface Tower {
 }
 
 export interface TowerShape {
-    x: number;
-    y: number;
+    position: {
+        x: number;
+        y: number;
+        z: number;
+    }
     range: number;
     graphics: Graphics;
     areaVisible: boolean;
