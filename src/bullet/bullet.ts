@@ -38,6 +38,11 @@ export const bulletFactory = ({ x, y, z }: Point, enemy: Enemy): Bullet => {
     bullet.die = () => die(bullet);
 
     bullet.subscription = ticker.subscribe(() => { // TODO move to file
+        if (bullet.enemy.dead) {
+            bullet.die();
+            
+            return;
+        }
         const newDirections = getMove(
             bullet.position,
             { x: destinationX, z: destinationZ },

@@ -13,6 +13,7 @@ export interface Enemy {
         y: number;
         z: number;
     };
+    dead: boolean;
     scale: any;
     graphics: Graphics;
     step: number;

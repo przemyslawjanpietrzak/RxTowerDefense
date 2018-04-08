@@ -30,6 +30,7 @@ export const enemyFactory = (): Enemy => {
         new SphereGeometry(5, 32, 32),
         new MeshPhongMaterial({ color: ENEMY_COLOR })
     );
+    enemy.dead = false;
     enemy.scale.set(0.14, 0.14, 0.14);
     enemy.position.x = 0;
     enemy.position.y = 0;
@@ -39,7 +40,10 @@ export const enemyFactory = (): Enemy => {
     enemy.subscription = ticker$.subscribe(() => { // TODO to effect
         enemyMove(enemy);
     });
-    enemy.die = enemy.subscription.unsubscribe;
+    enemy.die = () => {
+        enemy.dead = true;
+        enemy.subscription.unsubscribe();
+    }
 
     return enemy;
 };
