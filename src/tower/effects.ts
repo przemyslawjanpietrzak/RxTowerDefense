@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Rx';
 
-import { moneyOnBegin, tower as towerSettings } from '../settings';
+import { moneyOnBegin } from '../settings';
 
 import { Event } from '../common/models';
 import { AddTowerButtonClick$, CancelTowerButtonClick$, ConfirmTowerButtonClick$ } from '../menu/models';
@@ -8,17 +8,18 @@ import { AddTowerButtonClick$, CancelTowerButtonClick$, ConfirmTowerButtonClick$
 import { SceneClick$ } from '../scene/models';
 
 import { NewTower$, TowerShape } from './models';
+import { TOWER_COST } from './settings';
 import { hideTowerShape, showTowerShape } from './shape';
 import { towerFactory } from './towers';
 
 let towerPropose: TowerShape | null = null;
 let showTowerPropose: boolean = false;
-let money = moneyOnBegin;
+let money: number = moneyOnBegin;
 
 export const effects = {
     addTowerButtonClick: ({ addTowerButtonClick$ }: { addTowerButtonClick$: AddTowerButtonClick$ }) => {
         addTowerButtonClick$
-            .filter(() => money >= towerSettings.cost)
+            .filter(() => money >= TOWER_COST)
             .subscribe(() => {
                 showTowerPropose = true;
             });

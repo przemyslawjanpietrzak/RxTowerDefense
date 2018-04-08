@@ -3,7 +3,6 @@ import { Mesh, BoxGeometry, MeshPhongMaterial } from 'three';
 import { enemyMove$ } from '../enemy/sinks';
 import ticker$ from '../ticker';
 
-import { tower as settings } from '../settings';
 import { getDistance, isInDistance } from '../utils';
 
 import { Event } from '../common/models';
@@ -12,21 +11,21 @@ import { scene } from '../scene/scene'; // TODO to effect
 
 import { hideTowerArea, toggleAreaFactory } from './area';
 import { Tower } from './models';
-import { TOWER_COLOR, RELOAD_BULLET_TIME } from './settings';
+import { TOWER_COLOR, RELOAD_BULLET_TIME, TOWER_RANGE, TOWER_ROTATION, TOWER_SIZE, TOWER_Y } from './settings';
 import { towerFireToEnemy$ } from './sinks';
 
 export const towerFactory = (x: number, z: number): Tower => {
 
     const tower: Tower = new Mesh(
-        new BoxGeometry(1, 1, 1),
+        new BoxGeometry(TOWER_SIZE, TOWER_SIZE, TOWER_SIZE),
         new MeshPhongMaterial({ color: TOWER_COLOR })
     );
     tower.position.x = x;
-    tower.position.y = 2;
+    tower.position.y = TOWER_Y;
     tower.position.z = z;
     scene.add(tower);
 
-    tower.range = 3;
+    tower.range = TOWER_RANGE;
     tower.reloadBulletTime = 0;
     tower.enemiesInRange = [];
     // tower.areaVisible = false;
@@ -49,9 +48,9 @@ export const towerFactory = (x: number, z: number): Tower => {
     };
 
     tower.tickerSubscription = ticker$.subscribe(() => {
-        tower.rotation.x += 0.1;
-        tower.rotation.y += 0.1;
-        tower.rotation.z += 0.1;
+        tower.rotation.x += TOWER_ROTATION;
+        tower.rotation.y += TOWER_ROTATION;
+        tower.rotation.z += TOWER_ROTATION;
 
         if (tower.reloadBulletTime > 0) {
             tower.reloadBulletTime--;

@@ -1,6 +1,5 @@
 import { Shape } from 'easeljs/lib/easeljs';
 
-import { tower as settings } from '../settings';
 // import { stage } from '../stage/stage';
 
 import { Tower } from './models';

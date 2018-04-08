@@ -1,12 +1,11 @@
 import { Mesh, MeshPhongMaterial, SphereGeometry, } from 'three';
 
 import steps from '../mapPoint';
-import { enemy as settings } from '../settings';
 import ticker$ from '../ticker';
 import { getDistance, getMove } from '../utils';
 
 import { Enemy } from './models';
-import { ENEMY_COLOR } from './settings';
+import { ENEMY_COLOR, ENEMY_SCALE, ENEMY_SPEED } from './settings';
 import { enemyMove$, enemyPassAllPaths$ } from './sinks';
 
 const enemyMove = (enemy: Enemy) => { // TODO
@@ -31,12 +30,12 @@ export const enemyFactory = (): Enemy => {
         new MeshPhongMaterial({ color: ENEMY_COLOR })
     );
     enemy.dead = false;
-    enemy.scale.set(0.14, 0.14, 0.14);
+    enemy.scale.set(ENEMY_SCALE, ENEMY_SCALE, ENEMY_SCALE);
     enemy.position.x = 0;
     enemy.position.y = 0;
     enemy.position.z = 0;
     enemy.step = 0;
-    enemy.speed = 0.5;
+    enemy.speed = ENEMY_SPEED;
     enemy.subscription = ticker$.subscribe(() => { // TODO to effect
         enemyMove(enemy);
     });

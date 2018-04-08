@@ -1,11 +1,9 @@
 import { Mesh, BoxGeometry, MeshPhongMaterial } from 'three';
 
-import { tower as settings } from '../settings';
-
 import { scene } from '../scene/scene';
 // import { getArea } from './area';
 import { TowerShape } from './models';
-import { TOWER_COLOR } from './settings';
+import { TOWER_COLOR, TOWER_SIZE, TOWER_Y } from './settings';
 
 export const showTowerShape = (x: number, z: number): TowerShape => {
     // const towerShape: TowerShape = new Shape();
@@ -17,11 +15,11 @@ export const showTowerShape = (x: number, z: number): TowerShape => {
     // towerShape.area = getArea(towerShape);
 
     const towerShape: TowerShape = new Mesh(
-        new BoxGeometry(1, 1, 1),
+        new BoxGeometry(TOWER_SIZE, TOWER_SIZE, TOWER_SIZE),
         new MeshPhongMaterial({ color: TOWER_COLOR, wireframe: true })
     );
     towerShape.position.x = x;
-    towerShape.position.y = 2;
+    towerShape.position.y = TOWER_Y;
     towerShape.position.z = z;
 
     scene.add(towerShape);
