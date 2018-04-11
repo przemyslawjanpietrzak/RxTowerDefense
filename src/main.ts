@@ -5,7 +5,7 @@ import 'rxjs/add/operator/timeInterval';
 import 'three/examples/js/controls/OrbitControls.js';
 import 'three/examples/js/renderers/Projector.js';
 import 'three/examples/js/renderers/CanvasRenderer'
-
+import 'three/examples/js/lines/LineMaterial';
 import ticker$ from './ticker';
 
 import scenario from './scenario';

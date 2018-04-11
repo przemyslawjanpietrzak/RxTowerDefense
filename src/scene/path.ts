@@ -8,13 +8,15 @@ import { scene } from './scene';
 
 const material = new LineBasicMaterial({
     color: 0x906090,
-    linewidth: 100,
+    // linewidth: 5,
+    linewidth: 2,
+
 });
 
 const geometry = new Geometry();
 steps.forEach(({ x, y, z }) => {
     geometry.vertices.push(
-        new Vector3(x, y, z),
+        new Vector3(x, y+0.1, z),
     );
 });
 

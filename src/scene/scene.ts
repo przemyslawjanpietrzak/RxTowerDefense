@@ -46,15 +46,15 @@ controls.maxDistance = 100
 controls.maxPolarAngle = Math.PI / 2;
 
 // light
-let ambientLight = new AmbientLight(LIGHT_COLOR, 0.6);
+let ambientLight = new AmbientLight(LIGHT_COLOR, 0.2);
 scene.add(ambientLight);
 
-const light = ambientLight = new PointLight(LIGHT_COLOR, 0.8, 36);
-light.position.set(-3, 6, -3);
-light.castShadow = true;
-light.shadow.camera.near = 0.1;
-light.shadow.camera.far = 25;
-scene.add(light);
+// const light =  new PointLight(LIGHT_COLOR, 0.8, 36);
+// light.position.set(-3, 6, -3);
+// light.castShadow = true;
+// light.shadow.camera.near = 0.1;
+// light.shadow.camera.far = 25;
+// scene.add(light);
 
 const cube = new Mesh(
     new BoxGeometry(1, 1, 1),
