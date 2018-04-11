@@ -13,8 +13,12 @@ import {
     Raycaster,
     Scene,
     SpriteCanvasMaterial,
+    SpotLight,
+    SpotLightHelper,
     Vector2,
     WebGLRenderer,
+    HemisphereLight,
+    HemisphereLightHelper,
 } from 'three';
 
 import { path } from './path';
@@ -49,12 +53,11 @@ controls.maxPolarAngle = Math.PI / 2;
 let ambientLight = new AmbientLight(LIGHT_COLOR, 0.2);
 scene.add(ambientLight);
 
-// const light =  new PointLight(LIGHT_COLOR, 0.8, 36);
-// light.position.set(-3, 6, -3);
-// light.castShadow = true;
-// light.shadow.camera.near = 0.1;
-// light.shadow.camera.far = 25;
-// scene.add(light);
+var hemiLight = new HemisphereLight( 0xffffff, 0xffffff, 0.3 ); 
+var helper = new HemisphereLightHelper( hemiLight, 5 );
+hemiLight.position.set(50, 50, 50);
+scene.add(hemiLight );
+scene.add(helper);
 
 const cube = new Mesh(
     new BoxGeometry(1, 1, 1),
@@ -80,7 +83,6 @@ camera.position.y = 25;
 camera.position.z = 50;
 controls.update();
 
-// var	projector = new Projector();
 var mouse = new Vector2();
 var raycaster = new Raycaster();
 
