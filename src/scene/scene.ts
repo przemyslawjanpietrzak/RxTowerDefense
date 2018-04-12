@@ -2,7 +2,7 @@ import {
     AmbientLight,
     BasicShadowMap,
     BoxGeometry,
-    HorizontalPanning,
+    // HorizontalPanning,
     Mesh,
     MeshPhongMaterial,
     OrbitControls,
@@ -44,7 +44,7 @@ document.body.appendChild( renderer.domElement );
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
 controls.dampingFactor = 0.25;
-controls.panningMode = HorizontalPanning; // default is ScreenSpacePanning
+// controls.panningMode = HorizontalPanning; // default is ScreenSpacePanning
 controls.minDistance = 0;
 controls.maxDistance = 100
 controls.maxPolarAngle = Math.PI / 2;

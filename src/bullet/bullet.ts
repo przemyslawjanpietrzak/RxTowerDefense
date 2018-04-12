@@ -1,16 +1,16 @@
-import { Mesh, MeshPhongMaterial, SphereGeometry, } from 'three';
+import { Mesh, MeshPhongMaterial, SphereGeometry } from 'three';
 
 import ticker from './../ticker';
 import { getMove } from './../utils';
 
 import { Point } from '../common/models';
 import { Enemy } from '../enemy/models';
-import { Tower } from '../tower/models';
 import { scene } from '../scene/scene'; 
+import { Tower } from '../tower/models';
 
 import { Bullet } from './models';
-import { bulletMove$ } from './sinks';
 import { BULLET_COLOR, BULLET_SCALE, BULLET_SPEED } from './settings';
+import { bulletMove$ } from './sinks';
 
 const die = (bullet: Bullet) => {
     bullet.subscription.unsubscribe();
@@ -21,10 +21,10 @@ export const bulletFactory = ({ x, y, z }: Point, enemy: Enemy): Bullet => {
 
     const { x: destinationX, z: destinationZ } = enemy.position;
 
-    const bullet: Bullet = new Mesh(
+    const bullet = new Mesh(
         new SphereGeometry(5, 32, 32),
-        new MeshPhongMaterial({ color: BULLET_COLOR })
-    );
+        new MeshPhongMaterial({ color: BULLET_COLOR }),
+    ) as Bullet;
     bullet.scale.set(BULLET_SCALE, BULLET_SCALE, BULLET_SCALE);
     
     bullet.position.x = x;

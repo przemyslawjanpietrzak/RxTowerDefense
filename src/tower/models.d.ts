@@ -1,16 +1,12 @@
 
 import { Subject } from 'rxjs/Rx';
+import { Mesh } from 'three';
 
 import { Graphics, Point, Shape, Subscription } from '../common/models';
 
 import { Enemy } from '../enemy/models';
 
-export interface Tower {
-    position: {
-        x: number;
-        y: number;
-        z: number;
-    };
+export interface Tower extends Mesh {
     range: number;
     reloadBulletTime: number;
     graphics: Graphics;
@@ -29,12 +25,7 @@ export interface Tower {
     rotation: any;
 }
 
-export interface TowerShape {
-    position: {
-        x: number;
-        y: number;
-        z: number;
-    }
+export interface TowerShape extends Mesh {
     range: number;
     graphics: Graphics;
     areaVisible: boolean;

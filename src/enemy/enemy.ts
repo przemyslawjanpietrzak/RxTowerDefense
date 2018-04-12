@@ -25,10 +25,10 @@ const enemyMove = (enemy: Enemy) => { // TODO
 };
 
 export const enemyFactory = (): Enemy => {
-    const enemy: Enemy = new Mesh(
+    const enemy = new Mesh(
         new SphereGeometry(5, 32, 32),
         new MeshPhongMaterial({ color: ENEMY_COLOR })
-    );
+    ) as Enemy;
     enemy.dead = false;
     enemy.scale.set(ENEMY_SCALE, ENEMY_SCALE, ENEMY_SCALE);
     enemy.position.x = 0;

@@ -16,10 +16,10 @@ import { towerFireToEnemy$ } from './sinks';
 
 export const towerFactory = (x: number, z: number): Tower => {
 
-    const tower: Tower = new Mesh(
+    const tower = new Mesh(
         new BoxGeometry(TOWER_SIZE, TOWER_SIZE, TOWER_SIZE),
         new MeshPhongMaterial({ color: TOWER_COLOR })
-    );
+    ) as Tower;
     tower.position.x = x;
     tower.position.y = TOWER_Y;
     tower.position.z = z;
@@ -28,8 +28,6 @@ export const towerFactory = (x: number, z: number): Tower => {
     tower.range = TOWER_RANGE;
     tower.reloadBulletTime = 0;
     tower.enemiesInRange = [];
-    // tower.areaVisible = false;
-    // tower.area = getArea(tower);
 
     tower.onClickHandler = toggleAreaFactory(tower);
     tower.addEventListener('click', tower.onClickHandler);
@@ -40,11 +38,7 @@ export const towerFactory = (x: number, z: number): Tower => {
     };
 
     tower.die = () => {
-        // stage.removeChild(tower);
-        // tower.enemySubscription.unsubscribe();
-        // tower.stageClickSubscription.unsubscribe();
-        // tower.tickerSubscription.unsubscribe();
-        // tower.removeEventListener('click');
+
     };
 
     tower.tickerSubscription = ticker$.subscribe(() => {

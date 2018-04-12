@@ -41,9 +41,9 @@ module.exports = {
     plugins: [
         new webpack.ProvidePlugin({
           'createjs': 'easeljs/lib/easeljs',
-          THREE: 'three',
+          THREE: 'three', // TODO
         })
-    ].concat(isProduction ? new webpack.optimize.UglifyJsPlugin(): [
+    ].concat(isProduction ? [] : [
         new HtmlWebpackPlugin({
             template: './index.html',
             inject: 'body',

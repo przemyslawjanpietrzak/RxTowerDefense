@@ -1,4 +1,5 @@
 import { Subject } from 'rxjs/Rx';
+import { Mesh } from 'three';
 
 import { Graphics, Subscription } from '../common/models';
 
@@ -7,12 +8,7 @@ export interface EnemyActions {
     move: () => void;
 }
 
-export interface Enemy {
-    position: {
-        x: number;
-        y: number;
-        z: number;
-    };
+export interface Enemy extends Mesh {
     dead: boolean;
     scale: any;
     graphics: Graphics;
