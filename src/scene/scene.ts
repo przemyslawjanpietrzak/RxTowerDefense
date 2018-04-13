@@ -2,7 +2,6 @@ import {
     AmbientLight,
     BasicShadowMap,
     BoxGeometry,
-    // HorizontalPanning,
     HemisphereLight,
     HemisphereLightHelper,
     Mesh,
@@ -14,11 +13,11 @@ import {
     Projector,
     Raycaster,
     Scene,
-    SpotLight,
-    SpotLightHelper,
     SpriteCanvasMaterial,
     Vector2,
     WebGLRenderer,
+    DirectionalLight,
+    DirectionalLightHelper,
 } from 'three';
 
 import { path } from './path';
@@ -44,7 +43,6 @@ document.body.appendChild( renderer.domElement );
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
 controls.dampingFactor = 0.25;
-// controls.panningMode = HorizontalPanning; // default is ScreenSpacePanning
 controls.minDistance = 0;
 controls.maxDistance = 100;
 controls.maxPolarAngle = Math.PI / 2;
@@ -53,20 +51,11 @@ controls.maxPolarAngle = Math.PI / 2;
 const ambientLight = new AmbientLight(LIGHT_COLOR, 0.2);
 scene.add(ambientLight);
 
-const hemiLight = new HemisphereLight( 0xffffff, 0xffffff, 0.3 );
-const helper = new HemisphereLightHelper( hemiLight, 5 );
+const hemiLight = new DirectionalLight(0xffffff, 0.42);
+const helper = new DirectionalLightHelper(hemiLight, 5);
 hemiLight.position.set(50, 50, 50);
 scene.add(hemiLight );
 scene.add(helper);
-
-const cube = new Mesh(
-    new BoxGeometry(1, 1, 1),
-    new MeshPhongMaterial({ color: FLOOR_COLOR }),
-);
-cube.position.x = 0;
-cube.position.y = 2;
-cube.position.z = 0;
-scene.add( cube );
 
 // Floor
 const meshFloor = new Mesh(
@@ -90,12 +79,12 @@ const onDocumentMouseDown = (event) => {
 
     event.preventDefault();
 
-    mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
-    mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+    mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+    mouse.y = - (event.clientY / renderer.domElement.clientHeight) * 2 + 1;
 
     raycaster.setFromCamera( mouse, camera );
 
-    const intersects = raycaster.intersectObjects( [ meshFloor ] );
+    const intersects = raycaster.intersectObjects([ meshFloor ]);
 
     if (intersects.length > 0) {
         sceneClick$.next({
@@ -110,10 +99,6 @@ document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 scene.add(path);
 
 const animate = () => {
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-    cube.rotation.z += 0.01;
-
     controls.update();
 
     requestAnimationFrame( animate );
@@ -122,4 +107,4 @@ const animate = () => {
 
 animate();
 
-export { scene, cube, controls, renderer, camera };
+export { scene };

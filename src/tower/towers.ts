@@ -7,7 +7,7 @@ import { getDistance, isInDistance } from '../utils';
 
 import { Event } from '../common/models';
 import { Enemy } from '../enemy/models';
-import { scene } from '../scene/scene'; // TODO to effect
+import { scene } from '../scene/scene';
 
 import { hideTowerArea, toggleAreaFactory } from './area';
 import { Tower } from './models';
@@ -20,9 +20,7 @@ export const towerFactory = (x: number, z: number): Tower => {
         new BoxGeometry(TOWER_SIZE, TOWER_SIZE, TOWER_SIZE),
         new MeshPhongMaterial({ color: TOWER_COLOR }),
     ) as Tower;
-    tower.position.x = x;
-    tower.position.y = TOWER_Y;
-    tower.position.z = z;
+    tower.position.set(x, TOWER_Y, z);
     scene.add(tower);
 
     tower.range = TOWER_RANGE;
@@ -39,8 +37,6 @@ export const towerFactory = (x: number, z: number): Tower => {
 
     tower.tickerSubscription = ticker$.subscribe(() => {
         tower.rotation.x += TOWER_ROTATION;
-        tower.rotation.y += TOWER_ROTATION;
-        tower.rotation.z += TOWER_ROTATION;
 
         if (tower.reloadBulletTime > 0) {
             tower.reloadBulletTime--;

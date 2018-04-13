@@ -20,8 +20,6 @@ export interface Tower extends Mesh {
     onClickHandler(Tower): void;
     addEventListener(string, Function): void;
     removeEventListener(string): void;
-
-    rotation: any;
 }
 
 export interface TowerShape extends Mesh {
