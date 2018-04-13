@@ -1,4 +1,4 @@
-import { Mesh, BoxGeometry, MeshPhongMaterial } from 'three';
+import { BoxGeometry, Mesh, MeshPhongMaterial } from 'three';
 
 import { scene } from '../scene/scene';
 
@@ -9,7 +9,7 @@ export const showTowerShape = (x: number, z: number): TowerShape => {
 
     const towerShape = new Mesh(
         new BoxGeometry(TOWER_SIZE, TOWER_SIZE, TOWER_SIZE),
-        new MeshPhongMaterial({ color: TOWER_COLOR, wireframe: true })
+        new MeshPhongMaterial({ color: TOWER_COLOR, wireframe: true }),
     ) as TowerShape;
     towerShape.position.x = x;
     towerShape.position.y = TOWER_Y;

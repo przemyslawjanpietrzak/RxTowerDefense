@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Rx';
-import { moneyOnBegin, } from '../settings';
+import { moneyOnBegin } from '../settings';
 
 import { BulletHitEnemy$ } from '../bullet/models';
 import { NewTower$ } from '../tower/models';

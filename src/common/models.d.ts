@@ -5,8 +5,8 @@ export interface Subscription {
 }
 
 export interface Graphics {
-    beginFill (string): Graphics;
-    beginStroke (string): Graphics;
+    beginFill(string): Graphics;
+    beginStroke(string): Graphics;
     drawRect: (startX: number, startY: number, endX: number, endY: number) => void;
     drawCircle: (startX: number, startY: number, r: number) => void;
     moveTo: (x: number, y: number) => void;
@@ -21,15 +21,15 @@ export interface Shape {
 
 export interface Stage {
     graphics: Graphics;
-    addChild (Shape);
-    removeChild (Shape);
-    update (): void;
-    addEventListener (string, Function): void;
+    addChild(Shape);
+    removeChild(Shape);
+    update(): void;
+    addEventListener(string, Function): void;
 }
 
 export interface Createjs {
-    Shape (): Shape;
-    Stage (string): Stage;
+    Shape(): Shape;
+    Stage(string): Stage;
 }
 
 export interface Sinks {
@@ -39,8 +39,8 @@ export interface Sinks {
 export interface Vector {
     x: number;
     y: number;
-    angle (): number;
-    length (): number;
+    angle(): number;
+    length(): number;
 }
 
 export interface StagePosition {
@@ -53,7 +53,7 @@ export interface Point {
     x: number;
     y: number;
     z: number;
-} 
+}
 
 export interface Scenario {
     tickPerStep: number;

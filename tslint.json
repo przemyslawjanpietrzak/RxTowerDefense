@@ -7,7 +7,7 @@
     ],
     "jsRules": {},
     "rules": {
-        "no-magic-numbers": true,
+        "no-magic-numbers": { "severity": "warning" },
         "no-namespace": true,
         "no-parameter-reassignment": true,
         "only-arrow-functions": true,

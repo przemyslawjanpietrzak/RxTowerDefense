@@ -3,30 +3,30 @@ import {
     BasicShadowMap,
     BoxGeometry,
     // HorizontalPanning,
+    HemisphereLight,
+    HemisphereLightHelper,
     Mesh,
     MeshPhongMaterial,
     OrbitControls,
-    PointLight,
     PerspectiveCamera,
     PlaneGeometry,
+    PointLight,
     Projector,
     Raycaster,
     Scene,
-    SpriteCanvasMaterial,
     SpotLight,
     SpotLightHelper,
+    SpriteCanvasMaterial,
     Vector2,
     WebGLRenderer,
-    HemisphereLight,
-    HemisphereLightHelper,
 } from 'three';
 
 import { path } from './path';
 import { sceneClick$ } from './sinks';
 
 import {
-    LIGHT_COLOR,
     FLOOR_COLOR,
+    LIGHT_COLOR,
     MESH_FLOOR_COLOR,
 } from './settings';
 
@@ -46,22 +46,22 @@ controls.enableDamping = true; // an animation loop is required when either damp
 controls.dampingFactor = 0.25;
 // controls.panningMode = HorizontalPanning; // default is ScreenSpacePanning
 controls.minDistance = 0;
-controls.maxDistance = 100
+controls.maxDistance = 100;
 controls.maxPolarAngle = Math.PI / 2;
 
 // light
-let ambientLight = new AmbientLight(LIGHT_COLOR, 0.2);
+const ambientLight = new AmbientLight(LIGHT_COLOR, 0.2);
 scene.add(ambientLight);
 
-var hemiLight = new HemisphereLight( 0xffffff, 0xffffff, 0.3 ); 
-var helper = new HemisphereLightHelper( hemiLight, 5 );
+const hemiLight = new HemisphereLight( 0xffffff, 0xffffff, 0.3 );
+const helper = new HemisphereLightHelper( hemiLight, 5 );
 hemiLight.position.set(50, 50, 50);
 scene.add(hemiLight );
 scene.add(helper);
 
 const cube = new Mesh(
     new BoxGeometry(1, 1, 1),
-    new MeshPhongMaterial({ color: FLOOR_COLOR })
+    new MeshPhongMaterial({ color: FLOOR_COLOR }),
 );
 cube.position.x = 0;
 cube.position.y = 2;
@@ -83,11 +83,10 @@ camera.position.y = 25;
 camera.position.z = 50;
 controls.update();
 
-var mouse = new Vector2();
-var raycaster = new Raycaster();
+const mouse = new Vector2();
+const raycaster = new Raycaster();
 
-document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-function onDocumentMouseDown(event) {
+const onDocumentMouseDown = (event) => {
 
     event.preventDefault();
 
@@ -96,7 +95,7 @@ function onDocumentMouseDown(event) {
 
     raycaster.setFromCamera( mouse, camera );
 
-    var intersects = raycaster.intersectObjects( [ meshFloor ] );
+    const intersects = raycaster.intersectObjects( [ meshFloor ] );
 
     if (intersects.length > 0) {
         sceneClick$.next({
@@ -106,6 +105,7 @@ function onDocumentMouseDown(event) {
         });
     }
 }
+document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 
 scene.add(path);
 

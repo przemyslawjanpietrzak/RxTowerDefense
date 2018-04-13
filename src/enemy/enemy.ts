@@ -1,4 +1,4 @@
-import { Mesh, MeshPhongMaterial, SphereGeometry, } from 'three';
+import { Mesh, MeshPhongMaterial, SphereGeometry } from 'three';
 
 import steps from '../mapPoint';
 import ticker$ from '../ticker';
@@ -27,7 +27,7 @@ const enemyMove = (enemy: Enemy) => { // TODO
 export const enemyFactory = (): Enemy => {
     const enemy = new Mesh(
         new SphereGeometry(5, 32, 32),
-        new MeshPhongMaterial({ color: ENEMY_COLOR })
+        new MeshPhongMaterial({ color: ENEMY_COLOR }),
     ) as Enemy;
     enemy.dead = false;
     enemy.scale.set(ENEMY_SCALE, ENEMY_SCALE, ENEMY_SCALE);
@@ -42,7 +42,7 @@ export const enemyFactory = (): Enemy => {
     enemy.die = () => {
         enemy.dead = true;
         enemy.subscription.unsubscribe();
-    }
+    };
 
     return enemy;
 };

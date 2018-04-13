@@ -5,7 +5,7 @@ import { Enemy, EnemyCreate$, EnemyPassAllPaths$ } from '../enemy/models';
 
 import { scene } from './scene';
 
-export const effects = {   
+export const effects = {
     enemyCreate: ({ enemyCreate$ }: { enemyCreate$: EnemyCreate$ }) => enemyCreate$.subscribe((enemy: Enemy) => {
         scene.add(enemy);
     }),
@@ -16,5 +16,5 @@ export const effects = {
         }),
     enemyPassAllPaths: ({ enemyPassAllPaths$ }: { enemyPassAllPaths$: EnemyPassAllPaths$ }) => enemyPassAllPaths$.subscribe((enemy: Enemy) => {
         scene.remove(enemy);
-    })
+    }),
 };

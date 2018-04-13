@@ -61,7 +61,7 @@ export const effects = {
             .filter(() =>  showTowerPropose)
             .filter(() => !!towerPropose)
             .subscribe(() => {
-                newTower$.next(towerPropose.position)
+                newTower$.next(towerPropose.position);
             });
     },
     changeWalletState: ({ changeWalletState$ }: { changeWalletState$: Observable<number> }) => {

@@ -16,11 +16,10 @@ export interface Tower extends Mesh {
     enemySubscription:  Subscription;
     areaVisible: boolean;
     area: Shape;
-    die (): void;
-    fireToEnemy (Enemy): void;
-    onClickHandler (Tower): void;
-    addEventListener (string, Function): void;
-    removeEventListener (string): void;
+    fireToEnemy(Enemy): void;
+    onClickHandler(Tower): void;
+    addEventListener(string, Function): void;
+    removeEventListener(string): void;
 
     rotation: any;
 }

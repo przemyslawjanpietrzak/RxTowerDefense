@@ -15,7 +15,7 @@ export interface Bullet extends Mesh {
     speed: number;
     subscription: Subscription;
     enemy: Enemy;
-    die (): void;
+    die(): void;
 }
 
 export type TowerFireToEnemy$ = Observable<{tower: Tower, enemy: Enemy}>;

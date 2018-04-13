@@ -15,7 +15,7 @@ export const effects = {
     towerFireToEnemy: ({ towerFireToEnemy$ }: { towerFireToEnemy$: TowerFireToEnemy$ }) => {
         towerFireToEnemy$
             .subscribe(({ tower, enemy }: { tower: Tower, enemy: Enemy }) => {
-                const bullet = bulletFactory(tower.position, enemy);
+                bulletFactory(tower.position, enemy);
             });
     },
     bulletHitEnemy: ({ bulletMove$ }: { bulletMove$: BulletMove$ }) => {
@@ -33,7 +33,6 @@ export const effects = {
         ticker$
             .filter(() => bulletToDie !== null)
             .subscribe(() => {
-                console.log('bullet die ', { ...bulletToDie });
                 bulletToDie.die();
                 bulletToDie = null;
         });

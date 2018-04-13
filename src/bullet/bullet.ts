@@ -5,7 +5,7 @@ import { getMove } from './../utils';
 
 import { Point } from '../common/models';
 import { Enemy } from '../enemy/models';
-import { scene } from '../scene/scene'; 
+import { scene } from '../scene/scene';
 import { Tower } from '../tower/models';
 
 import { Bullet } from './models';
@@ -26,7 +26,7 @@ export const bulletFactory = ({ x, y, z }: Point, enemy: Enemy): Bullet => {
         new MeshPhongMaterial({ color: BULLET_COLOR }),
     ) as Bullet;
     bullet.scale.set(BULLET_SCALE, BULLET_SCALE, BULLET_SCALE);
-    
+
     bullet.position.x = x;
     bullet.position.y = 0;
     bullet.position.z = z;
@@ -39,7 +39,7 @@ export const bulletFactory = ({ x, y, z }: Point, enemy: Enemy): Bullet => {
     bullet.subscription = ticker.subscribe(() => { // TODO move to file
         if (bullet.enemy.dead) {
             bullet.die();
-            
+
             return;
         }
         const newDirections = getMove(

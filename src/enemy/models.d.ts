@@ -14,7 +14,7 @@ export interface Enemy extends Mesh {
     graphics: Graphics;
     step: number;
     speed: number;
-    die (): void;
+    die(): void;
     subscription: Subscription;
     actions: EnemyActions;
 }
