@@ -36,7 +36,7 @@ export const towerFactory = (x: number, z: number): Tower => {
     };
 
     tower.tickerSubscription = ticker$.subscribe(() => {
-        tower.rotation.x += TOWER_ROTATION;
+        tower.rotation.y += TOWER_ROTATION;
 
         if (tower.reloadBulletTime > 0) {
             tower.reloadBulletTime--;

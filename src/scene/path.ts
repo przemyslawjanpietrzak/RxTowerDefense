@@ -1,4 +1,3 @@
-import * as createjs from 'easeljs/lib/easeljs';
 import { Geometry, Line, LineBasicMaterial, Vector3 } from 'three';
 
 import { Shape } from '../common/models';
@@ -8,7 +7,6 @@ import { scene } from './scene';
 
 const material = new LineBasicMaterial({
     color: 0x906090,
-    // linewidth: 5,
     linewidth: 2,
 
 });

@@ -38,10 +38,7 @@
     "webpack-dev-server": "3.1.1"
   },
   "dependencies": {
-    "@types/es6-promise": "^3.3.0",
-    "@types/node": "^9.6.4",
     "@types/three": "^0.91.7",
-    "easeljs": "1.0.2",
     "rxjs": "5.5.6",
     "three": "^0.91.0",
     "victor": "1.1.0"

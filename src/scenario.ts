@@ -5,34 +5,28 @@ const scenario: Scenario = {
     tickPerStep: 400,
     parts: {
         0: {
-            tickPerEnemy: 130,
+            tickPerEnemy: 500,
         },
         1: {
-            tickPerEnemy: 100,
+            tickPerEnemy: 450,
         },
         2: {
-            tickPerEnemy: 80,
+            tickPerEnemy: 300,
         },
         3: {
-            tickPerEnemy: 50,
+            tickPerEnemy: 100,
         },
         4: {
-            tickPerEnemy: 30,
+            tickPerEnemy: 50,
         },
         5: {
-            tickPerEnemy: 120,
+            tickPerEnemy: 30,
         },
         6: {
-            tickPerEnemy: 90,
+            tickPerEnemy: 20,
         },
         7: {
-            tickPerEnemy: 60,
-        },
-        8: {
-            tickPerEnemy: 33,
-        },
-        9: {
-            tickPerEnemy: 17,
+            tickPerEnemy: 5,
         },
     },
 };

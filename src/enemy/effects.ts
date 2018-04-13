@@ -19,9 +19,11 @@ export const effects = {
     },
     enemyCreate: ({ ticker$ }: { ticker$: Ticker$ }) => {
         ticker$
+        
             .filter((counter) => counter % getTickerPerEnemy(counter, scenario) === 0)
             .subscribe(() => {
                 const enemy = enemyFactory();
+                console.warn('create');
                 enemyCreate$.next(enemy);
             });
     },

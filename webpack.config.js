@@ -40,7 +40,6 @@ module.exports = {
     devtool: !isProduction ? 'source-map' : 'none',
     plugins: [
         new webpack.ProvidePlugin({
-          'createjs': 'easeljs/lib/easeljs',
           THREE: 'three', // TODO
         })
     ].concat(isProduction ? [] : [

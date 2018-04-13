@@ -27,11 +27,6 @@ export interface Stage {
     addEventListener(string, Function): void;
 }
 
-export interface Createjs {
-    Shape(): Shape;
-    Stage(string): Stage;
-}
-
 export interface Sinks {
     [key: string]: Subject<any> | Observable<any>;
 }
