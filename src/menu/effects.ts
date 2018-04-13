@@ -1,4 +1,4 @@
-import { dieMessage } from '../settings';
+import { LOOSE_MESSAGE } from './settings';
 
 import { EnemyPassAllPaths$ } from '../enemy/models';
 import { ChangeWalletState$ } from '../wallet/models';
@@ -12,9 +12,9 @@ export default {
     enemyPassAllPaths$: ({ enemyPassAllPaths$ }: { enemyPassAllPaths$: EnemyPassAllPaths$}) => {
         enemyPassAllPaths$.subscribe(() => {
             const livesCount = parseInt(document.getElementById('lives-count').textContent, 10);
-            if (livesCount <= 1) {
-                // window.alert(dieMessa`ge);
-                // window.location.reload();`
+            if (livesCount <= 0) {
+                window.alert(LOOSE_MESSAGE);
+                window.location.reload();
             } else {
                 document.getElementById('lives-count').innerHTML = String(livesCount - 1);
             }

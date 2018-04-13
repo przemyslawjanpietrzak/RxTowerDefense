@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs/Rx';
-import { moneyOnBegin } from '../settings';
+import { INITIAL_WALLET_STATE } from '../menu/settings';
 
 import { BulletHitEnemy$ } from '../bullet/models';
 import { NewTower$ } from '../tower/models';
 
-let money = moneyOnBegin;
+let money = INITIAL_WALLET_STATE;
 const drivers = {
     changeWalletState$: ({ newTower$, bulletHitEnemy$ }: { newTower$: NewTower$, bulletHitEnemy$: BulletHitEnemy$ }) => Observable.merge(
         bulletHitEnemy$.map(() => money += 50),

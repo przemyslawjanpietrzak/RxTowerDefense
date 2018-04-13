@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Rx';
 
-import { moneyOnBegin } from '../settings';
+import { INITIAL_WALLET_STATE } from '../menu/settings';
 
 import { Event } from '../common/models';
 import { AddTowerButtonClick$, CancelTowerButtonClick$, ConfirmTowerButtonClick$ } from '../menu/models';
@@ -14,7 +14,7 @@ import { towerFactory } from './towers';
 
 let towerPropose: TowerShape | null = null;
 let showTowerPropose: boolean = false;
-let money: number = moneyOnBegin;
+let money: number = INITIAL_WALLET_STATE;
 
 export const effects = {
     addTowerButtonClick: ({ addTowerButtonClick$ }: { addTowerButtonClick$: AddTowerButtonClick$ }) => {
