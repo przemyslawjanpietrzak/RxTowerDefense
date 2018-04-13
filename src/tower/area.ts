@@ -1,5 +1,3 @@
-import { Shape } from 'easeljs/lib/easeljs';
-
 // import { stage } from '../stage/stage';
 
 import { Tower } from './models';

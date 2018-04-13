@@ -4,10 +4,11 @@ import { Shape } from '../common/models';
 
 import steps from '../mapPoint';
 import { scene } from './scene';
+import { PATH_COLOR, PATH_WIDTH } from './settings';
 
 const material = new LineBasicMaterial({
-    color: 0x906090,
-    linewidth: 2,
+    color: PATH_COLOR,
+    linewidth: PATH_WIDTH,
 
 });
 
