@@ -4,11 +4,13 @@ import { Point } from '../common/models';
 
 import { Tower } from './models';
 
-export const getArea = ({ x, y, z }: Point): Mesh => {
+export const towerAreaFactory = ({ x, y, z }: Point, scene: Scene): Mesh => {
     const geometry = new CircleGeometry(5, 32); // TODO settings
     const material = new MeshBasicMaterial({ color: 0xffff00 }); // TODO settings
     const circle: Mesh = new Mesh(geometry, material);
     circle.position.set(x, y, z);
+
+    scene.add(circle);
 
     return circle;
 };
@@ -25,7 +27,7 @@ export const toggleAreaFactory = (tower: Tower, scene: Scene) => {
     };
 };
 
-export const hideTowerArea = (tower: Tower) => {
+export const hideTowerArea = (tower: Tower, scene: Scene) => {
     tower.areaVisible = false;
-    // stage.removeChild(tower.area);
+    scene.remove(tower.area);
 };

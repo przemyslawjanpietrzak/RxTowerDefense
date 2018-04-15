@@ -8,7 +8,7 @@ import { AddTowerButtonClick$, CancelTowerButtonClick$, ConfirmTowerButtonClick$
 import { SceneClick$ } from '../scene/models';
 import { scene } from '../scene/scene';
 
-import { getArea } from './area';
+import { hideTowerArea, towerAreaFactory } from './area';
 import { NewTower$, TowerShape } from './models';
 import { TOWER_COST } from './settings';
 import { hideTowerShape, showTowerShape } from './shape';
@@ -35,8 +35,12 @@ export const effects = {
                     hideTowerShape(towerPropose);
                 }
                 towerPropose = showTowerShape(x, z);
-                towerArea = getArea({ x, y: 0, z });
-                scene.add(towerArea);
+
+                if (towerArea) {
+                    hideTowerArea(towerArea, scene);
+                }
+                towerArea = towerAreaFactory({ x, y: 0, z }, scene);
+
                 showTowerPropose = true;
             });
     },
