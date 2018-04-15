@@ -12,4 +12,4 @@ playPauseButtonClick$
 
 export default Observable
     .interval(MILLISECONDS_PER_TICK)
-    .filter(() => isPlay)
+    .filter(() => isPlay);

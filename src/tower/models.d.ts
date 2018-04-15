@@ -2,7 +2,7 @@
 import { Subject } from 'rxjs/Rx';
 import { Mesh } from 'three';
 
-import { Graphics, Point, Shape, Subscription } from '../common/models';
+import { Graphics, Point, Subscription } from '../common/models';
 
 import { Enemy } from '../enemy/models';
 
@@ -15,7 +15,7 @@ export interface Tower extends Mesh {
     enemiesInRange: Array<Enemy>;
     enemySubscription:  Subscription;
     areaVisible: boolean;
-    area: Shape;
+    area: Mesh;
     fireToEnemy(Enemy): void;
     onClickHandler(Tower): void;
     addEventListener(string, Function): void;
@@ -26,7 +26,7 @@ export interface TowerShape extends Mesh {
     range: number;
     graphics: Graphics;
     areaVisible: boolean;
-    area: Shape;
+    area: Mesh;
 }
 
 export type TowerFireToEnemy$ = Subject<{tower: Tower, enemy: Enemy }>;

@@ -1,6 +1,8 @@
 import {
     AmbientLight,
     BasicShadowMap,
+    DirectionalLight,
+    DirectionalLightHelper,
     Mesh,
     MeshPhongMaterial,
     OrbitControls,
@@ -11,8 +13,6 @@ import {
     Scene,
     Vector2,
     WebGLRenderer,
-    DirectionalLight,
-    DirectionalLightHelper,
 } from 'three';
 
 import { path } from './path';
@@ -20,9 +20,9 @@ import { sceneClick$ } from './sinks';
 
 import {
     FLOOR_COLOR,
+    FLOOR_SIZE,
     LIGHT_COLOR,
     MESH_FLOOR_COLOR,
-    FLOOR_SIZE,
 } from './settings';
 
 const scene = new Scene();
@@ -42,6 +42,7 @@ controls.dampingFactor = 0.25;
 controls.minDistance = 0;
 controls.maxDistance = FLOOR_SIZE;
 controls.maxPolarAngle = Math.PI / 2;
+// (controls as any).panningMode = window['THREE'].HorizontalPanning; // default is ScreenSpacePanning
 
 // light
 const ambientLight = new AmbientLight(LIGHT_COLOR, 0.2);
@@ -83,10 +84,10 @@ const onDocumentMouseDown = (event) => {
     const intersects = raycaster.intersectObjects([ meshFloor ]);
 
     if (intersects.length > 0) {
-        const { point } = intersects[0]
+        const { point } = intersects[0];
         sceneClick$.next(point);
     }
-}
+};
 document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 
 scene.add(path);

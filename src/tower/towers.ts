@@ -27,7 +27,7 @@ export const towerFactory = (x: number, z: number): Tower => {
     tower.reloadBulletTime = 0;
     tower.enemiesInRange = [];
 
-    tower.onClickHandler = toggleAreaFactory(tower);
+    tower.onClickHandler = toggleAreaFactory(tower, scene);
     tower.addEventListener('click', tower.onClickHandler);
 
     tower.fireToEnemy = (enemy: Enemy) => {

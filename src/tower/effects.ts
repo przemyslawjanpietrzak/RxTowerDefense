@@ -6,13 +6,16 @@ import { Event } from '../common/models';
 import { AddTowerButtonClick$, CancelTowerButtonClick$, ConfirmTowerButtonClick$ } from '../menu/models';
 
 import { SceneClick$ } from '../scene/models';
+import { scene } from '../scene/scene';
 
+import { getArea } from './area';
 import { NewTower$, TowerShape } from './models';
 import { TOWER_COST } from './settings';
 import { hideTowerShape, showTowerShape } from './shape';
 import { towerFactory } from './towers';
 
 let towerPropose: TowerShape | null = null;
+let towerArea = null;
 let showTowerPropose: boolean = false;
 let money: number = INITIAL_WALLET_STATE;
 
@@ -32,6 +35,8 @@ export const effects = {
                     hideTowerShape(towerPropose);
                 }
                 towerPropose = showTowerShape(x, z);
+                towerArea = getArea({ x, y: 0, z });
+                scene.add(towerArea);
                 showTowerPropose = true;
             });
     },

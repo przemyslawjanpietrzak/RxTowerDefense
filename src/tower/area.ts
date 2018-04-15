@@ -1,27 +1,31 @@
-// import { stage } from '../stage/stage';
+import { CircleGeometry, Mesh, MeshBasicMaterial, Scene } from 'three';
+
+import { Point } from '../common/models';
 
 import { Tower } from './models';
 
-// export const getArea = (tower: Tower): Shape => {
-//     const area: Shape = new Shape();
-//     area.graphics.beginFill(settings.areaColor).drawCircle(tower.x, tower.y, tower.range);
+export const getArea = ({ x, y, z }: Point): Mesh => {
+    const geometry = new CircleGeometry(5, 32); // TODO settings
+    const material = new MeshBasicMaterial({ color: 0xffff00 }); // TODO settings
+    const circle: Mesh = new Mesh(geometry, material);
+    circle.position.set(x, y, z);
 
-//     return area;
-// };
+    return circle;
+};
 
-export const toggleAreaFactory = (tower: Tower ) => {
+export const toggleAreaFactory = (tower: Tower, scene: Scene) => {
     return () => {
         const areaWasVisible = tower.areaVisible;
-        // if (areaWasVisible) {
-        //     stage.removeChild(tower.area);
-        // } else {
-        //     stage.addChild(tower.area);
-        // }
+        if (areaWasVisible) {
+            scene.remove(tower.area);
+        } else {
+            scene.add(tower.area);
+        }
         tower.areaVisible = !areaWasVisible;
     };
 };
 
-export const hideTowerArea = (tower: Tower ) => {
+export const hideTowerArea = (tower: Tower) => {
     tower.areaVisible = false;
     // stage.removeChild(tower.area);
 };
