@@ -16,11 +16,11 @@ describe('utils - ', () => {
 
   it('getMove', () => {
     expect(
-      getMove({ x: 0, y: 0 }, {x: 10, y: 0}, 1)
-    ).to.deep.equal({ x: 1, y: 0 });
+      getMove({ x: 0, z: 0 }, {x: 10, z: 0}, 1)
+    ).to.deep.equal({ x: 1, z: 0 });
     expect(
-      getMove({ x: 0, y: 0 }, {x: 10, y: 10}, 1)
-    ).to.deep.equal({ x: 0.7071067811865476, y: 0.7071067811865475 });
+      getMove({ x: 0, z: 0 }, {x: 10, z: 10}, 1)
+    ).to.deep.equal({ x: 0.7071067811865476, z: 0.7071067811865475 });
   });
 
   it('prop', () => {
@@ -29,11 +29,13 @@ describe('utils - ', () => {
   });
 
   it('isInDistance', () => {
+    const towerMock = { position: { x: 1, z: 1 },  range: 1 };
+    const towerMock1 = { position: { x: 1, z: 1 }, range: 2 };
     expect(
-      isInDistance({x: 1, y: 1, range: 1} as any, { x: 0, y: 0})
+      isInDistance(towerMock as any, { x: 0, y: 0, z: 0})
     ).to.equal(false);
     expect(
-      isInDistance({x: 1, y: 1, range: 2} as any, { x: 0, y: 0})
+      isInDistance(towerMock1 as any, { x: 0, y: 0, z: 0})
     ).to.equal(true)
   });
 

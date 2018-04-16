@@ -86,7 +86,7 @@ const onDocumentMouseDown = (event) => {
         sceneClick$.next(point);
     }
 };
-document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+document.addEventListener('mousedown', onDocumentMouseDown, false);
 
 scene.add(path);
 

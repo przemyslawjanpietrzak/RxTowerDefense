@@ -1,9 +1,9 @@
 import { Mesh, MeshPhongMaterial, SphereGeometry } from 'three';
 
 import ticker from './../ticker';
-import { getMove } from './../utils';
 
 import { Point } from '../common/models';
+import { getMove } from '../common/utils';
 import { Enemy } from '../enemy/models';
 import { scene } from '../scene/scene';
 import { Tower } from '../tower/models';
