@@ -52,6 +52,7 @@ export const effects = {
                 if (towerPropose) {
                     hideTowerShape(towerPropose);
                     towerPropose = null;
+                    towerArea = hideTowerArea(towerArea, scene);
                 }
             });
     },
@@ -59,6 +60,7 @@ export const effects = {
         newTower$
             .subscribe(({ x, z }) => {
                 hideTowerShape(towerPropose);
+                towerArea = hideTowerArea(towerArea, scene);
                 towerFactory(x, z);
                 showTowerPropose = false;
             });
