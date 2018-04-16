@@ -1,4 +1,4 @@
-import { prop } from '../utils';
+import { prop } from '../common/utils';
 
 import { BulletHitEnemy$ } from '../bullet/models';
 import { Enemy, EnemyCreate$, EnemyPassAllPaths$ } from '../enemy/models';

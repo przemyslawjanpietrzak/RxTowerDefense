@@ -2,14 +2,13 @@
 import { Subject } from 'rxjs/Rx';
 import { Mesh } from 'three';
 
-import { Graphics, Point, Subscription } from '../common/models';
+import { Point, Subscription } from '../common/models';
 
 import { Enemy } from '../enemy/models';
 
 export interface Tower extends Mesh {
     range: number;
     reloadBulletTime: number;
-    graphics: Graphics;
     stageClickSubscription:  Subscription;
     tickerSubscription:  Subscription;
     enemiesInRange: Array<Enemy>;
@@ -22,12 +21,7 @@ export interface Tower extends Mesh {
     removeEventListener(string): void;
 }
 
-export interface TowerShape extends Mesh {
-    range: number;
-    graphics: Graphics;
-    areaVisible: boolean;
-    area: Mesh;
-}
+export type TowerShape = Mesh;
 
 export type TowerArea = Mesh;
 

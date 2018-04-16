@@ -1,6 +1,6 @@
-import { getTickerPerEnemy, prop } from '../utils';
-
 import { Ticker$ } from '../common/models';
+import { getTickerPerEnemy, prop } from '../common/utils';
+
 import scenario from '../scenario';
 
 import { BulletHitEnemy$ } from '../bullet/models';
@@ -19,7 +19,6 @@ export const effects = {
     },
     enemyCreate: ({ ticker$ }: { ticker$: Ticker$ }) => {
         ticker$
-
             .filter((counter) => counter % getTickerPerEnemy(counter, scenario) === 0)
             .subscribe(() => {
                 const enemy = enemyFactory();

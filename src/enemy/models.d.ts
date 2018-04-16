@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs/Rx';
 import { Mesh } from 'three';
 
-import { Graphics, Subscription } from '../common/models';
+import { Subscription } from '../common/models';
 
 export interface EnemyActions {
     die: () => void;
@@ -10,7 +10,6 @@ export interface EnemyActions {
 
 export interface Enemy extends Mesh {
     dead: boolean;
-    graphics: Graphics;
     step: number;
     speed: number;
     die(): void;

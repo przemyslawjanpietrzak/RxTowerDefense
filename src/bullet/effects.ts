@@ -1,5 +1,5 @@
 
-import { getDistance } from './../utils';
+import { getDistance } from '../common/utils';
 
 import { Ticker$ } from '../common/models';
 import { Enemy } from '../enemy/models';

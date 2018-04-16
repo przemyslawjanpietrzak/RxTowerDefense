@@ -6,7 +6,6 @@ import { TowerShape } from './models';
 import { TOWER_COLOR, TOWER_SIZE, TOWER_Y } from './settings';
 
 export const showTowerShape = (x: number, z: number): TowerShape => {
-
     const towerShape = new Mesh(
         new BoxGeometry(TOWER_SIZE, TOWER_SIZE, TOWER_SIZE),
         new MeshPhongMaterial({ color: TOWER_COLOR, wireframe: true }),

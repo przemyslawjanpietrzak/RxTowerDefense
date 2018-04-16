@@ -3,7 +3,7 @@ import { BoxGeometry, Mesh, MeshPhongMaterial } from 'three';
 import { enemyMove$ } from '../enemy/sinks';
 import ticker$ from '../ticker';
 
-import { getDistance, isInDistance } from '../utils';
+import { getDistance, isInDistance } from '../common/utils';
 
 import { Event } from '../common/models';
 import { Enemy } from '../enemy/models';
