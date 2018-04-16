@@ -13,20 +13,6 @@ export interface Graphics {
     lineTo: (x: number, y: number) => void;
 }
 
-// export interface Shape {
-//     graphics: Graphics;
-//     x: number;
-//     y: number;
-// }
-
-// export interface Stage {
-//     graphics: Graphics;
-//     addChild(Shape);
-//     removeChild(Shape);
-//     update(): void;
-//     addEventListener(string, Function): void;
-// }
-
 export interface Sinks {
     [key: string]: Subject<any> | Observable<any>;
 }

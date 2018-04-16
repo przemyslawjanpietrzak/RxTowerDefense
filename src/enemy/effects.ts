@@ -23,7 +23,6 @@ export const effects = {
             .filter((counter) => counter % getTickerPerEnemy(counter, scenario) === 0)
             .subscribe(() => {
                 const enemy = enemyFactory();
-                console.warn('create');
                 enemyCreate$.next(enemy);
             });
     },

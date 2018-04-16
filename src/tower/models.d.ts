@@ -29,7 +29,7 @@ export interface TowerShape extends Mesh {
     area: Mesh;
 }
 
-export interface TowerArea extends Mesh {}
+export type TowerArea = Mesh;
 
 export type TowerFireToEnemy$ = Subject<{tower: Tower, enemy: Enemy }>;
 

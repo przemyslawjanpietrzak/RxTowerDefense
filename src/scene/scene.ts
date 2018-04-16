@@ -8,7 +8,6 @@ import {
     OrbitControls,
     PerspectiveCamera,
     PlaneGeometry,
-    Projector,
     Raycaster,
     Scene,
     Vector2,
@@ -42,7 +41,6 @@ controls.dampingFactor = 0.25;
 controls.minDistance = 0;
 controls.maxDistance = FLOOR_SIZE;
 controls.maxPolarAngle = Math.PI / 2;
-// (controls as any).panningMode = window['THREE'].HorizontalPanning; // default is ScreenSpacePanning
 
 // light
 const ambientLight = new AmbientLight(LIGHT_COLOR, 0.2);

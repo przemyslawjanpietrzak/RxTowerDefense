@@ -10,7 +10,6 @@ export interface EnemyActions {
 
 export interface Enemy extends Mesh {
     dead: boolean;
-    scale: any;
     graphics: Graphics;
     step: number;
     speed: number;

@@ -9,13 +9,13 @@ import { SceneClick$ } from '../scene/models';
 import { scene } from '../scene/scene';
 
 import { hideTowerArea, towerAreaFactory } from './area';
-import { NewTower$, TowerShape } from './models';
+import { NewTower$, TowerArea, TowerShape } from './models';
 import { TOWER_COST } from './settings';
 import { hideTowerShape, showTowerShape } from './shape';
 import { towerFactory } from './towers';
 
 let towerPropose: TowerShape | null = null;
-let towerArea = null;
+let towerArea: TowerArea | null = null;
 let showTowerPropose: boolean = false;
 let money: number = INITIAL_WALLET_STATE;
 
