@@ -1,9 +1,6 @@
 import { Sinks } from '../common/models';
+import { runEffects } from '../common/utils';
 
 import { effects } from './effects';
 
-export const runScene = (sinks: Sinks) => {
-    Object.keys(effects).forEach((key: string) => {
-        effects[key](sinks);
-    });
-};
+export const runScene = runEffects(effects);
