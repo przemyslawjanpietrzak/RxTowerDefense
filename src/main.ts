@@ -2,7 +2,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/timeInterval';
 
-import 'three/examples/js/controls/OrbitControls.js';
+import 'three/examples/js/controls/OrbitControls';
 import 'three/examples/js/lines/LineMaterial';
 import 'three/examples/js/renderers/CanvasRenderer';
 import 'three/examples/js/renderers/Projector.js';
