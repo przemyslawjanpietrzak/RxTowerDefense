@@ -4,9 +4,9 @@
 
 # RX Tower Defense
 
-Tower defense engine game written in [TypeScript](https://github.com/Microsoft/TypeScript) with [rx.js5](https://github.com/ReactiveX/rxjs), and pattern from [Cycle.js](https://github.com/cyclejs/cyclejs).
+Tower defense engine game written in [TypeScript](https://github.com/Microsoft/TypeScript) with [rx.js5](https://github.com/ReactiveX/rxjs), [three.js](https://github.com/mrdoob/three.js/) and pattern from [Cycle.js](https://github.com/cyclejs/cyclejs).
 
-![alt tag](https://przemyslawjanpietrzak.github.io/rxTD-screenshot.jpg)
+![alt tag](https://przemyslawjanpietrzak.github.io/rxtd1.png)
 
 ## Production:
 
@@ -18,27 +18,27 @@ Tower defense engine game written in [TypeScript](https://github.com/Microsoft/T
 
 #### Install packages:
 ```
-yarn install --flat
+yarn install
 ```
 
 #### Build bundle
 ```
-yarn run build
+yarn build
 ```
 
 #### Run linter
 ```
-yarn run lint
+yarn lint
 ```
 
 #### Run unit tests
 ```
-yarn tests
+yarn test
 ```
 
-#### Run:
+#### Run dev server:
 ```
-google-chrome dist/index.html
+yarn start
 ```
 
 #### Deploy on AWS S3
