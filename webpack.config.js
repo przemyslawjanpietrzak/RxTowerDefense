@@ -37,6 +37,7 @@ module.exports = {
             ]
         },]
     },
+    optimization: {},
     devtool: !isProduction ? 'source-map' : 'none',
     plugins: [
         new webpack.ProvidePlugin({
