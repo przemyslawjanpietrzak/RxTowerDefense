@@ -10,7 +10,7 @@ module.exports = {
         app: './src/main.ts'
     },
     output: {
-        filename: './dist/bundle.js'
+        filename: './bundle.js'
     },
     resolve: {
         extensions: ['.ts', '.js']
@@ -41,7 +41,7 @@ module.exports = {
     devtool: !isProduction ? 'source-map' : 'none',
     plugins: [
         new webpack.ProvidePlugin({
-          THREE: 'three', // TODO
+          THREE: 'three',
         })
     ].concat(isProduction ? [] : [
         new HtmlWebpackPlugin({
