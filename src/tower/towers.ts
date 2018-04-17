@@ -1,48 +1,43 @@
-import { Shape } from 'easeljs/lib/easeljs';
+import { BoxGeometry, Mesh, MeshPhongMaterial } from 'three';
 
 import { enemyMove$ } from '../enemy/sinks';
-import { stage, stageClick$ } from '../stage/stage';
 import ticker$ from '../ticker';
 
-import { tower as settings } from '../settings';
-import { getDistance, isInDistance } from '../utils';
+import { getDistance, isInDistance } from '../common/utils';
 
 import { Event } from '../common/models';
 import { Enemy } from '../enemy/models';
+import { scene } from '../scene/scene';
 
-import { getArea, hideTowerArea, toggleAreaFactory } from './area';
+import { hideTowerArea, toggleAreaFactory } from './area';
 import { Tower } from './models';
+import { RELOAD_BULLET_TIME, TOWER_COLOR, TOWER_RANGE, TOWER_ROTATION, TOWER_SIZE, TOWER_Y } from './settings';
 import { towerFireToEnemy$ } from './sinks';
 
-export const towerFactory = (x: number, y: number): Tower => {
-    const reloadBulletTime = 100;
-    const tower: Tower = new Shape();
-    tower.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
-    tower.x = x;
-    tower.y = y;
-    tower.range = settings.range;
+export const towerFactory = (x: number, z: number): Tower => {
+
+    const tower = new Mesh(
+        new BoxGeometry(TOWER_SIZE, TOWER_SIZE, TOWER_SIZE),
+        new MeshPhongMaterial({ color: TOWER_COLOR }),
+    ) as Tower;
+    tower.position.set(x, TOWER_Y, z);
+    scene.add(tower);
+
+    tower.range = TOWER_RANGE;
     tower.reloadBulletTime = 0;
     tower.enemiesInRange = [];
-    tower.areaVisible = false;
-    tower.area = getArea(tower);
 
-    tower.onClickHandler = toggleAreaFactory(tower);
+    tower.onClickHandler = toggleAreaFactory(tower, scene);
     tower.addEventListener('click', tower.onClickHandler);
 
     tower.fireToEnemy = (enemy: Enemy) => {
         towerFireToEnemy$.next({ tower, enemy });
-        tower.reloadBulletTime = reloadBulletTime;
-    };
-
-    tower.die = () => {
-        stage.removeChild(tower);
-        tower.enemySubscription.unsubscribe();
-        tower.stageClickSubscription.unsubscribe();
-        tower.tickerSubscription.unsubscribe();
-        tower.removeEventListener('click');
+        tower.reloadBulletTime = RELOAD_BULLET_TIME;
     };
 
     tower.tickerSubscription = ticker$.subscribe(() => {
+        tower.rotation.y += TOWER_ROTATION;
+
         if (tower.reloadBulletTime > 0) {
             tower.reloadBulletTime--;
         }
@@ -51,7 +46,7 @@ export const towerFactory = (x: number, y: number): Tower => {
     tower.enemySubscription = enemyMove$
         .filter(() => tower.reloadBulletTime === 0)
         .subscribe((enemy: Enemy) => {
-            if (isInDistance(tower, enemy)) {
+            if (isInDistance(tower, enemy.position)) {
                 tower.enemiesInRange.push(enemy);
             }
             const firstEnemy: Enemy = tower.enemiesInRange[0];
@@ -61,14 +56,6 @@ export const towerFactory = (x: number, y: number): Tower => {
 
             tower.enemiesInRange = [];
         });
-
-    tower.stageClickSubscription = stageClick$
-        .filter((event: Event) => getDistance(event.stageX, event.stageY, tower.x, tower.y) > settings.size) // click out of tower
-        .subscribe(() => {
-            hideTowerArea(tower);
-        });
-
-    stage.addChild(tower);
 
     return tower;
 };

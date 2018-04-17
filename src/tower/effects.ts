@@ -1,53 +1,67 @@
 import { Observable } from 'rxjs/Rx';
 
-import { moneyOnBegin, tower as towerSettings } from '../settings';
+import { INITIAL_WALLET_STATE } from '../menu/settings';
 
 import { Event } from '../common/models';
 import { AddTowerButtonClick$, CancelTowerButtonClick$, ConfirmTowerButtonClick$ } from '../menu/models';
 
-import { NewTower$ } from './models';
+import { SceneClick$ } from '../scene/models';
+import { scene } from '../scene/scene';
+
+import { hideTowerArea, towerAreaFactory } from './area';
+import { NewTower$, TowerArea, TowerShape } from './models';
+import { TOWER_COST } from './settings';
 import { hideTowerShape, showTowerShape } from './shape';
 import { towerFactory } from './towers';
 
-let towerPropose = null;
+let towerPropose: TowerShape | null = null;
+let towerArea: TowerArea | null = null;
 let showTowerPropose: boolean = false;
-let money = moneyOnBegin;
+let money: number = INITIAL_WALLET_STATE;
 
 export const effects = {
     addTowerButtonClick: ({ addTowerButtonClick$ }: { addTowerButtonClick$: AddTowerButtonClick$ }) => {
         addTowerButtonClick$
-            .filter(() => money >= towerSettings.cost)
+            .filter(() => money >= TOWER_COST)
             .subscribe(() => {
                 showTowerPropose = true;
             });
     },
-    stageClick: ({ stageClick$ }) => {
-        stageClick$
+    sceneClick: ({ newTower$, sceneClick$ }: { newTower$: NewTower$, sceneClick$: SceneClick$ }) => {
+        sceneClick$
             .filter(() => showTowerPropose)
-            .subscribe((event: Event) => {
+            .subscribe(({ x, z }) => {
                 if (towerPropose) {
                     hideTowerShape(towerPropose);
                 }
-                towerPropose = showTowerShape(event.stageX, event.stageY);
+                towerPropose = showTowerShape(x, z);
+
+                if (towerArea) {
+                    hideTowerArea(towerArea, scene);
+                }
+                towerArea = towerAreaFactory({ x, y: 0, z }, scene);
+
                 showTowerPropose = true;
             });
     },
     cancelTowerButtonClick: ({ cancelTowerButtonClick$ }: { cancelTowerButtonClick$: CancelTowerButtonClick$ }) => {
         cancelTowerButtonClick$
-            .filter(() => towerPropose)
+            .filter(() => !!towerPropose)
             .subscribe(() => {
                 showTowerPropose = false;
                 if (towerPropose) {
                     hideTowerShape(towerPropose);
                     towerPropose = null;
+                    towerArea = hideTowerArea(towerArea, scene);
                 }
             });
     },
     newTower: ({ newTower$ }: { newTower$: NewTower$ }) => {
         newTower$
-            .subscribe(() => {
+            .subscribe(({ x, z }) => {
                 hideTowerShape(towerPropose);
-                towerFactory(towerPropose.x, towerPropose.y);
+                towerArea = hideTowerArea(towerArea, scene);
+                towerFactory(x, z);
                 showTowerPropose = false;
             });
     },
@@ -55,8 +69,11 @@ export const effects = {
         { confirmTowerButtonClick$, newTower$ }: { confirmTowerButtonClick$: ConfirmTowerButtonClick$, newTower$: NewTower$ },
     ) => {
         confirmTowerButtonClick$
-            .filter(() => towerPropose && showTowerPropose)
-            .subscribe(newTower$.next);
+            .filter(() =>  showTowerPropose)
+            .filter(() => !!towerPropose)
+            .subscribe(() => {
+                newTower$.next(towerPropose.position);
+            });
     },
     changeWalletState: ({ changeWalletState$ }: { changeWalletState$: Observable<number> }) => {
         changeWalletState$.subscribe((newMoney: number) => {

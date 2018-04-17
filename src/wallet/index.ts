@@ -1,14 +1,8 @@
 
 import { Sinks } from '../common/models';
+import { runEffects } from '../common/utils';
 
-import drivers from './drivers';
+import effects from './effects';
 import { changeWalletState$ as changeWalletStateProxy$ } from './sinks';
 
-export const runWallet = (sinks: Sinks) => {
-    Object.keys(drivers).forEach((key: string) => {
-        const source = drivers[key](sinks);
-        source.subscribe((value) => {
-            changeWalletStateProxy$.next(value);
-        });
-    });
-};
+export const runWallet = runEffects(effects);

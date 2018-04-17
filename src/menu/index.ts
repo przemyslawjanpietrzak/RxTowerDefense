@@ -1,13 +1,11 @@
-import { livesOnBegin, moneyOnBegin } from '../settings';
+import { INITIAL_LIVES_COUNT, INITIAL_WALLET_STATE } from './settings';
 
 import { Sinks } from '../common/models';
+import { runEffects } from '../common/utils';
+
 import effects from './effects';
 
-document.getElementById('money-count').innerHTML = String(moneyOnBegin);
-document.getElementById('lives-count').innerHTML = String(livesOnBegin);
+document.getElementById('money-count').innerHTML = String(INITIAL_WALLET_STATE);
+document.getElementById('lives-count').innerHTML = String(INITIAL_LIVES_COUNT);
 
-export const runMenu = (sinks: Sinks) => {
-    Object.keys(effects).forEach((key) => {
-        effects[key](sinks);
-    });
-};
+export const runMenu = runEffects(effects);

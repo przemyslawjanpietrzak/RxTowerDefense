@@ -1,48 +1,60 @@
-import { Shape } from 'easeljs/lib/easeljs';
+import { Mesh, MeshPhongMaterial, SphereGeometry } from 'three';
 
-import { bullet as settings } from '../settings';
-import { stage } from './../stage/stage';
 import ticker from './../ticker';
-import { getMove } from './../utils';
 
+import { Point } from '../common/models';
+import { getMove } from '../common/utils';
 import { Enemy } from '../enemy/models';
+import { scene } from '../scene/scene';
 import { Tower } from '../tower/models';
 
 import { Bullet } from './models';
+import { BULLET_COLOR, BULLET_SCALE, BULLET_SPEED } from './settings';
 import { bulletMove$ } from './sinks';
 
 const die = (bullet: Bullet) => {
-    stage.removeChild(bullet);
     bullet.subscription.unsubscribe();
+    scene.remove(bullet);
 };
 
-export const bulletFactory = (tower: Tower, enemy: Enemy): Bullet => {
-    const bullet: Bullet = new Shape();
-    const { x: positionX, y: positionY } = tower;
-    const { x: destinationX, y: destinationY } = enemy;
+export const bulletFactory = ({ x, y, z }: Point, enemy: Enemy): Bullet => {
 
-    bullet.graphics.beginFill(settings.color).drawCircle(0, 0, settings.size);
-    bullet.x = positionX;
-    bullet.y = positionY;
+    const { x: destinationX, z: destinationZ } = enemy.position;
+
+    const bullet = new Mesh(
+        new SphereGeometry(5, 32, 32),
+        new MeshPhongMaterial({ color: BULLET_COLOR }),
+    ) as Bullet;
+    bullet.scale.set(BULLET_SCALE, BULLET_SCALE, BULLET_SCALE);
+
+    bullet.position.x = x;
+    bullet.position.y = 0;
+    bullet.position.z = z;
     bullet.destinationX = destinationX;
-    bullet.destinationY = destinationY;
-    bullet.speed = settings.speed;
+    bullet.destinationZ = destinationZ;
+    bullet.speed = BULLET_SPEED;
     bullet.enemy = enemy;
     bullet.die = () => die(bullet);
 
     bullet.subscription = ticker.subscribe(() => { // TODO move to file
+        if (bullet.enemy.dead) {
+            bullet.die();
+
+            return;
+        }
         const newDirections = getMove(
-            bullet,
-            { x: destinationX, y: destinationY },
+            bullet.position,
+            { x: destinationX, z: destinationZ },
             bullet.speed,
         );
-        bullet.x = newDirections.x;
-        bullet.y = newDirections.y;
+
+        bullet.position.x = newDirections.x;
+        bullet.position.z = newDirections.z;
 
         bulletMove$.next(bullet);
     });
 
-    stage.addChild(bullet);
+    scene.add(bullet);
 
     return bullet;
 };

@@ -1,30 +1,37 @@
-import { Shape } from 'easeljs/lib/easeljs';
+import { CircleGeometry, Mesh, MeshBasicMaterial, Scene } from 'three';
 
-import { tower as settings } from '../settings';
-import { stage } from '../stage/stage';
+import { RIGHT_ANGLE } from '../common/constants';
+import { Point } from '../common/models';
 
-import { Tower, TowerShape } from './models';
+import { Tower, TowerArea } from './models';
+import { TOWER_AREA_RADIUS, TOWER_AREA_SEGMENTS, TOWER_AREA_Y, TOWER_COLOR } from './settings';
 
-export const getArea = (tower: Tower | TowerShape): Shape => {
-    const area: Shape = new Shape();
-    area.graphics.beginFill(settings.areaColor).drawCircle(tower.x, tower.y, tower.range);
+export const towerAreaFactory = ({ x, y, z }: Point, scene: Scene): Mesh => {
+    const geometry = new CircleGeometry(TOWER_AREA_RADIUS, TOWER_AREA_SEGMENTS);
+    const material = new MeshBasicMaterial({ color: TOWER_COLOR, wireframe: true });
+    const circle: Mesh = new Mesh(geometry, material);
+    circle.position.set(x, y + TOWER_AREA_Y, z);
+    circle.rotation.x = -RIGHT_ANGLE;
 
-    return area;
+    scene.add(circle);
+
+    return circle;
 };
 
-export const toggleAreaFactory = (tower: Tower | TowerShape) => {
+export const toggleAreaFactory = (tower: Tower, scene: Scene) => {
     return () => {
         const areaWasVisible = tower.areaVisible;
         if (areaWasVisible) {
-            stage.removeChild(tower.area);
+            scene.remove(tower.area);
         } else {
-            stage.addChild(tower.area);
+            scene.add(tower.area);
         }
         tower.areaVisible = !areaWasVisible;
     };
 };
 
-export const hideTowerArea = (tower: Tower | TowerShape) => {
-    tower.areaVisible = false;
-    stage.removeChild(tower.area);
+export const hideTowerArea = (towerArea: TowerArea, scene: Scene): null => {
+    scene.remove(towerArea);
+
+    return null;
 };

@@ -2,12 +2,16 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/timeInterval';
 
-import path from './path';
+import 'three/examples/js/controls/OrbitControls';
+import 'three/examples/js/lines/LineMaterial';
+import 'three/examples/js/renderers/CanvasRenderer';
+import 'three/examples/js/renderers/Projector.js';
 import ticker$ from './ticker';
 
 import scenario from './scenario';
 
-import { stage, stageClick$ } from './stage/stage';
+import { runScene } from './scene/index';
+import { sceneClick$ } from './scene/sinks';
 
 import { runWallet } from './wallet/index';
 import { changeWalletState$ } from './wallet/sinks';
@@ -27,14 +31,12 @@ import { runBullet } from './bullet/index';
 import { bulletHitEnemy$, bulletMove$ } from './bullet/sinks';
 
 import { runEnemy } from './enemy/index';
-import { enemyMove$, enemyPassAllPaths$ } from './enemy/sinks';
-
-stage.addChild(path);
+import { enemyCreate$, enemyMove$, enemyPassAllPaths$ } from './enemy/sinks';
 
 const sinks = {
     ticker$,
 
-    stageClick$,
+    sceneClick$,
 
     newTower$,
     towerFireToEnemy$,
@@ -44,6 +46,7 @@ const sinks = {
 
     enemyPassAllPaths$,
     enemyMove$,
+    enemyCreate$,
 
     changeWalletState$,
 
@@ -58,6 +61,7 @@ runMenu(sinks);
 runBullet(sinks);
 runTower(sinks);
 runEnemy(sinks);
+runScene(sinks);
 
 let currentStep = 1;
 ticker$
@@ -65,9 +69,4 @@ ticker$
     .subscribe(() => {
         currentStep++;
         document.getElementById('current-level').innerHTML = String(currentStep);
-    });
-
-ticker$
-    .subscribe(() => {
-        stage.update();
     });
