@@ -1,3 +1,5 @@
 import { Subject } from 'rxjs/Rx';
 
-export const changeWalletState$: Subject<number> = new Subject();
+import { ChangeWalletState$ } from './models';
+
+export const changeWalletState$: ChangeWalletState$ = new Subject();

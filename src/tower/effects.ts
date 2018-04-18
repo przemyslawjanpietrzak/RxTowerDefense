@@ -1,61 +1,83 @@
-import { moneyOnBegin, tower as towerSettings } from '../settings';
+import { Observable } from 'rxjs/Rx';
 
+import { INITIAL_WALLET_STATE } from '../menu/settings';
+
+import { Event } from '../common/models';
+import { AddTowerButtonClick$, CancelTowerButtonClick$, ConfirmTowerButtonClick$ } from '../menu/models';
+
+import { SceneClick$ } from '../scene/models';
+import { scene } from '../scene/scene';
+
+import { hideTowerArea, towerAreaFactory } from './area';
+import { NewTower$, TowerArea, TowerShape } from './models';
+import { TOWER_COST } from './settings';
 import { hideTowerShape, showTowerShape } from './shape';
 import { towerFactory } from './towers';
 
-let towerPropose = null;
+let towerPropose: TowerShape | null = null;
+let towerArea: TowerArea | null = null;
 let showTowerPropose: boolean = false;
-let money = moneyOnBegin;
+let money: number = INITIAL_WALLET_STATE;
 
-export default {
-	addTowerButtonClick$: ({ addTowerButtonClick$ }) => {
-		addTowerButtonClick$
-			.filter(() => money >= towerSettings.cost)
-			.subscribe((event) => {
-				showTowerPropose = true;
-			});
-	},
-	stageClick$: ({ stageClick$ }) => {
-		stageClick$
-			.filter(() => showTowerPropose)
-			.subscribe((event) => {
-				if (towerPropose) {
-					hideTowerShape(towerPropose);
-				}
-				towerPropose = showTowerShape(event.stageX, event.stageY);
-				showTowerPropose = true;
-			});
-	},
-	cancelTowerButtonClick$: ({ cancelTowerButtonClick$ }) => {
-		cancelTowerButtonClick$
-			.filter(() => towerPropose)
-			.subscribe((event) => {
-				showTowerPropose = false;
-				if (towerPropose) {
-					hideTowerShape(towerPropose);
-					towerPropose = null;
-				}
-			});
-	},
-	newTower$: ({ newTower$ }) => {
-		newTower$
-			.subscribe((event) => {
-				hideTowerShape(towerPropose);
-				towerFactory(towerPropose.x, towerPropose.y);
-				showTowerPropose = false;
-			});
-	},
-	confirmTowerButtonClick$: ({ confirmTowerButtonClick$, newTower$ }) => {
-		confirmTowerButtonClick$
-			.filter(() => towerPropose && showTowerPropose)
-			.subscribe((value) => {
-				newTower$.next(value);
-			});
+export const effects = {
+    addTowerButtonClick: ({ addTowerButtonClick$ }: { addTowerButtonClick$: AddTowerButtonClick$ }) => {
+        addTowerButtonClick$
+            .filter(() => money >= TOWER_COST)
+            .subscribe(() => {
+                showTowerPropose = true;
+            });
+    },
+    sceneClick: ({ newTower$, sceneClick$ }: { newTower$: NewTower$, sceneClick$: SceneClick$ }) => {
+        sceneClick$
+            .filter(() => showTowerPropose)
+            .subscribe(({ x, z }) => {
+                if (towerPropose) {
+                    hideTowerShape(towerPropose);
+                }
+                towerPropose = showTowerShape(x, z);
 
-	},
-	changeWalletState$: ({ changeWalletState$ }) => {
-		changeWalletState$.subscribe((newMoney: number) => {
-			money = newMoney;
-		});
-	},
+                if (towerArea) {
+                    hideTowerArea(towerArea, scene);
+                }
+                towerArea = towerAreaFactory({ x, y: 0, z }, scene);
+
+                showTowerPropose = true;
+            });
+    },
+    cancelTowerButtonClick: ({ cancelTowerButtonClick$ }: { cancelTowerButtonClick$: CancelTowerButtonClick$ }) => {
+        cancelTowerButtonClick$
+            .filter(() => !!towerPropose)
+            .subscribe(() => {
+                showTowerPropose = false;
+                if (towerPropose) {
+                    hideTowerShape(towerPropose);
+                    towerPropose = null;
+                    towerArea = hideTowerArea(towerArea, scene);
+                }
+            });
+    },
+    newTower: ({ newTower$ }: { newTower$: NewTower$ }) => {
+        newTower$
+            .subscribe(({ x, z }) => {
+                hideTowerShape(towerPropose);
+                towerArea = hideTowerArea(towerArea, scene);
+                towerFactory(x, z);
+                showTowerPropose = false;
+            });
+    },
+    confirmTowerButtonClick: (
+        { confirmTowerButtonClick$, newTower$ }: { confirmTowerButtonClick$: ConfirmTowerButtonClick$, newTower$: NewTower$ },
+    ) => {
+        confirmTowerButtonClick$
+            .filter(() =>  showTowerPropose)
+            .filter(() => !!towerPropose)
+            .subscribe(() => {
+                newTower$.next(towerPropose.position);
+            });
+    },
+    changeWalletState: ({ changeWalletState$ }: { changeWalletState$: Observable<number> }) => {
+        changeWalletState$.subscribe((newMoney: number) => {
+            money = newMoney;
+        });
+    },
 };

@@ -2,30 +2,26 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/timeInterval';
 
-import stage from './stage/stage';
-
-import path from './path';
+import 'three/examples/js/controls/OrbitControls';
+import 'three/examples/js/lines/LineMaterial';
+import 'three/examples/js/renderers/CanvasRenderer';
+import 'three/examples/js/renderers/Projector.js';
 import ticker$ from './ticker';
-import { getTickerPerEnemy } from './utils';
 
-import './bullet/index';
-import './enemy/index';
-import './menu/index';
 import scenario from './scenario';
-import './tower/index';
-import './wallet/index';
 
-import { stageClick$ } from './stage/stage';
+import { runScene } from './scene/index';
+import { sceneClick$ } from './scene/sinks';
 
 import { runWallet } from './wallet/index';
 import { changeWalletState$ } from './wallet/sinks';
 
 import { runMenu } from './menu/index';
 import {
-	addTowerButtonClick$,
-	cancelTowerButtonClick$,
-	confirmTowerButtonClick$,
-	playPauseButtonClick$,
+    addTowerButtonClick$,
+    cancelTowerButtonClick$,
+    confirmTowerButtonClick$,
+    playPauseButtonClick$,
 } from './menu/sinks';
 
 import { runTower } from './tower/index';
@@ -34,54 +30,43 @@ import { newTower$, towerFireToEnemy$ } from './tower/sinks';
 import { runBullet } from './bullet/index';
 import { bulletHitEnemy$, bulletMove$ } from './bullet/sinks';
 
-import { enemyFactory } from './enemy/enemy';
-import { enemyMove$, enemyPassAllPaths$ } from './enemy/sinks';
-
-stage.addChild(path);
+import { runEnemy } from './enemy/index';
+import { enemyCreate$, enemyMove$, enemyPassAllPaths$ } from './enemy/sinks';
 
 const sinks = {
-	ticker$,
+    ticker$,
 
-	stageClick$,
+    sceneClick$,
 
-	newTower$,
-	towerFireToEnemy$,
+    newTower$,
+    towerFireToEnemy$,
 
-	bulletMove$,
-	bulletHitEnemy$,
+    bulletMove$,
+    bulletHitEnemy$,
 
-	enemyPassAllPaths$,
-	enemyMove$,
+    enemyPassAllPaths$,
+    enemyMove$,
+    enemyCreate$,
 
-	changeWalletState$,
+    changeWalletState$,
 
-	addTowerButtonClick$,
-	cancelTowerButtonClick$,
-	confirmTowerButtonClick$,
-	playPauseButtonClick$,
+    addTowerButtonClick$,
+    cancelTowerButtonClick$,
+    confirmTowerButtonClick$,
+    playPauseButtonClick$,
 };
 
 runWallet(sinks);
 runMenu(sinks);
 runBullet(sinks);
 runTower(sinks);
+runEnemy(sinks);
+runScene(sinks);
 
 let currentStep = 1;
-let counter = 0; // TODO move to ticker's modules
 ticker$
-	.filter(() => ++counter % getTickerPerEnemy(counter, scenario) === 0)
-	.subscribe(() => {
-		enemyFactory();
-	});
-
-ticker$
-	.filter(() => counter / scenario.tickPerStep > currentStep)
-	.subscribe(() => {
-		currentStep++;
-		document.getElementById('current-level').innerHTML = String(currentStep);
-	});
-
-ticker$
-	.subscribe(() => {
-		stage.update();
-	});
+    .filter((counter) => counter / scenario.tickPerStep > currentStep)
+    .subscribe(() => {
+        currentStep++;
+        document.getElementById('current-level').innerHTML = String(currentStep);
+    });

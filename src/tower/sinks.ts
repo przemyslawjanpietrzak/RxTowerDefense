@@ -1,4 +1,6 @@
-import { Observable, Subject } from 'rxjs/Rx';
+import { Subject } from 'rxjs/Rx';
 
-export const newTower$ = new Subject();
-export const towerFireToEnemy$: Subject<{tower: Tower, enemy: Enemy }> = new Subject();
+import { NewTower$, TowerFireToEnemy$ } from './models';
+
+export const newTower$: NewTower$ = new Subject();
+export const towerFireToEnemy$: TowerFireToEnemy$  = new Subject();

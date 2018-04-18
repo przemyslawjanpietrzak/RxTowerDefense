@@ -1,7 +1,6 @@
-import effects from './effects';
+import { effects } from './effects';
 
-export function runTower(sinks) {
-	Object.keys(effects).forEach((key) => {
-		effects[key](sinks);
-	});
-}
+import { Sinks } from '../common/models';
+import { runEffects } from '../common/utils';
+
+export const runTower = runEffects(effects);

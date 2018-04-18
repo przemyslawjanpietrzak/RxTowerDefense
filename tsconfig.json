@@ -1,10 +1,16 @@
 {
     "compilerOptions": {
-      "sourceMap": true
+      "sourceMap": true,
+      "lib": [
+        "dom",
+        "es5",
+        "es2018"
+      ]
     },
+    "baseUrl": "types",
+    "typeRoots": ["types"],
     "files": [
-      "src/main.ts",
-      "src/globals.d.ts"
+      "src/main.ts"
     ],
     "exclude": [
       "node_modules",
