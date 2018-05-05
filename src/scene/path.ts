@@ -1,7 +1,6 @@
 import { Geometry, Line, LineBasicMaterial, Vector3 } from 'three';
 
 import steps from '../mapPoint';
-import { scene } from './scene';
 import { PATH_COLOR, PATH_WIDTH } from './settings';
 
 const material = new LineBasicMaterial({

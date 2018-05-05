@@ -6,7 +6,6 @@ import { Point } from '../common/models';
 import { getMove } from '../common/utils';
 import { Enemy } from '../enemy/models';
 import { scene } from '../scene/scene';
-import { Tower } from '../tower/models';
 
 import { Bullet } from './models';
 import { BULLET_COLOR, BULLET_SCALE, BULLET_SPEED } from './settings';

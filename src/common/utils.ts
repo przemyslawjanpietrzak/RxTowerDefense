@@ -1,6 +1,6 @@
 import { Tower } from '../tower/models';
 
-import { Point, Scenario, Sinks, StagePosition, Vector } from './models';
+import { Point, Scenario, Sinks, StagePosition } from './models';
 
 const SQUARE_EXPONENT = 2;
 

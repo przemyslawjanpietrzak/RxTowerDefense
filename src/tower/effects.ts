@@ -2,7 +2,6 @@ import { Observable } from 'rxjs/Rx';
 
 import { INITIAL_WALLET_STATE } from '../menu/settings';
 
-import { Event } from '../common/models';
 import { AddTowerButtonClick$, CancelTowerButtonClick$, ConfirmTowerButtonClick$ } from '../menu/models';
 
 import { SceneClick$ } from '../scene/models';
