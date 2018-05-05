@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { getDistance, getMove, isInDistance, prop } from '../utils';
+import { getDistance, getMove, isInDistance } from '../utils';
 
 describe('utils - ', () => {
 
@@ -21,11 +21,6 @@ describe('utils - ', () => {
     expect(
       getMove({ x: 0, z: 0 }, {x: 10, z: 10}, 1)
     ).to.deep.equal({ x: 0.7071067811865476, z: 0.7071067811865475 });
-  });
-
-  it('prop', () => {
-    expect(prop('key')({ key: 42})).to.equal(42);
-    expect(prop('key1')({ key: 42})).to.equal(undefined);
   });
 
   it('isInDistance', () => {
