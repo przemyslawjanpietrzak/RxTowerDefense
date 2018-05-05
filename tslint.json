@@ -12,7 +12,6 @@
         "no-parameter-reassignment": true,
         "only-arrow-functions": true,
         "prefer-for-of": true,
-        
         "ban-comma-operator": true,
         "curly": true,
         "cyclomatic-complexity": true,
@@ -47,7 +46,7 @@
         "no-this-assignment": true,
         "no-unbound-method": false,
         "no-unnecessary-class": true,
-        "no-unsafe-any": { "severity": "warning" },
+        "no-unsafe-any": true,
         "no-unsafe-finally": true,
         "no-unused-expression": false,
         "no-unused-variable": false,
