@@ -18,7 +18,6 @@ import { path } from './path';
 import { sceneClick$ } from './sinks';
 
 import {
-    FLOOR_COLOR,
     FLOOR_SIZE,
     LIGHT_COLOR,
     MESH_FLOOR_COLOR,

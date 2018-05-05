@@ -1,6 +1,5 @@
 import { INITIAL_LIVES_COUNT, INITIAL_WALLET_STATE } from './settings';
 
-import { Sinks } from '../common/models';
 import { runEffects } from '../common/utils';
 
 import effects from './effects';

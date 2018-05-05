@@ -3,13 +3,12 @@ import { BoxGeometry, Mesh, MeshPhongMaterial } from 'three';
 import { enemyMove$ } from '../enemy/sinks';
 import ticker$ from '../ticker';
 
-import { getDistance, isInDistance } from '../common/utils';
+import { isInDistance } from '../common/utils';
 
-import { Event } from '../common/models';
 import { Enemy } from '../enemy/models';
 import { scene } from '../scene/scene';
 
-import { hideTowerArea, toggleAreaFactory } from './area';
+import { toggleAreaFactory } from './area';
 import { Tower } from './models';
 import { RELOAD_BULLET_TIME, TOWER_COLOR, TOWER_RANGE, TOWER_ROTATION, TOWER_SIZE, TOWER_Y } from './settings';
 import { towerFireToEnemy$ } from './sinks';

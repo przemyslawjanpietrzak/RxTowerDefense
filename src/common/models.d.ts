@@ -8,13 +8,6 @@ export interface Sinks {
     [key: string]: Subject<any> | Observable<any>;
 }
 
-export interface Vector {
-    x: number;
-    y: number;
-    angle(): number;
-    length(): number;
-}
-
 export interface StagePosition {
     x: number;
     z: number;
