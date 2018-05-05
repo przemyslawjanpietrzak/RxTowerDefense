@@ -49,7 +49,7 @@
         "no-unsafe-any": true,
         "no-unsafe-finally": true,
         "no-unused-expression": false,
-        "no-unused-variable": true,
+        "no-unused-variable": false,
         "no-use-before-declare": true,
         "no-var-keyword": true,
         "prefer-conditional-expression": true,
