@@ -1,16 +1,14 @@
 import { Observable, Subject } from 'rxjs';
-import { Mesh } from 'three';
+import { Mesh, Vector3 } from 'three';
 
-import { Graphics, Subscription } from '../common/models';
+import { Subscription } from '../common/models';
 import { Enemy} from '../enemy/models';
 import { Tower } from '../tower/models';
 
 export interface Bullet extends Mesh {
-    scale: any;
     destinationX: number;
     destinationY: number;
     destinationZ: number;
-    graphics: Graphics;
     step: number;
     speed: number;
     subscription: Subscription;

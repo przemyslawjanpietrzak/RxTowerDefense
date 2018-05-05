@@ -14,6 +14,7 @@
     "clean": "rm -rf dist",
     "build": "yarn run clean && yarn run bundle:production && yarn run getTheme && yarn run copy",
     "deploy:develop": "aws s3 cp dist/ s3://rxtd-develop --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --recursive",
+    "bundleSize": "bundlesize",
     "deploy:master": "aws s3 cp dist/ s3://rxtd-master --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --recursive",
     "deploy:pull-request": "aws s3 cp dist/ s3://rxtd-pr --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --recursive",
     "deploy": "if [ \"$TRAVIS_BRANCH\" -eq \"develop\" ]; then yarn run delpoy:develop; elif [ $TRAVIS_BRANCH == \"master\" ]; then yarn run delpoy:master; else yarn run deploy:pull-request; fi"
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@types/chai": "4.1.2",
     "@types/mocha": "2.2.48",
+    "bundlesize": "^0.17.0",
     "chai": "4.1.2",
     "html-webpack-plugin": "^3.2.0",
     "mocha": "5.0.0",
@@ -42,5 +44,11 @@
     "rxjs": "5.5.6",
     "three": "^0.91.0",
     "victor": "1.1.0"
-  }
+  },
+  "bundlesize": [
+    {
+      "path": "./dist/bundle.js",
+      "maxSize": "200 kB"
+    }
+  ]
 }
