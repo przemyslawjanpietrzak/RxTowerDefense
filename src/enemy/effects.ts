@@ -1,5 +1,5 @@
 import { Ticker$ } from '../common/models';
-import { getTickerPerEnemy, prop } from '../common/utils';
+import { getTickerPerEnemy } from '../common/utils';
 
 import scenario from '../scenario';
 
@@ -12,7 +12,7 @@ import { enemyCreate$ } from './sinks';
 export const effects = {
     bulletHitEnemy: ({ bulletHitEnemy$ }: { bulletHitEnemy$: BulletHitEnemy$ }) => {
         bulletHitEnemy$
-            .map(prop('enemy'))
+            .map(({ enemy }) => enemy)
             .subscribe((enemy: Enemy) => {
                 enemy.die();
             });

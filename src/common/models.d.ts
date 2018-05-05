@@ -17,8 +17,7 @@ export interface Vector {
 
 export interface StagePosition {
     x: number;
-    y?: number;
-    z?: number;
+    z: number;
 }
 
 export interface Point {

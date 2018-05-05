@@ -71,7 +71,7 @@ controls.update();
 const mouse = new Vector2();
 const raycaster = new Raycaster();
 
-const onDocumentMouseDown = (event) => {
+const onDocumentMouseDown = (event: MouseEvent) => {
 
     event.preventDefault();
 
