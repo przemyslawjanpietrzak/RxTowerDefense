@@ -47,6 +47,21 @@ export const effects = {
                 showTowerPropose = true;
             });
     },
+    toggleTowerArea: ({ sceneClick$ }: { sceneClick$: SceneClick$ }) => {
+        sceneClick$
+            .map(position => towerNet.findTowerInRange(position))
+            .subscribe(position => {
+                if (towerArea && !showTowerPropose) {
+                    towerArea = hideTowerArea(towerArea, scene);
+                }
+                if (position) {
+                    hideTowerArea(towerArea, scene);
+                    hideTowerShape(towerPropose);
+                    towerArea = towerAreaFactory({ x: position.x, y: 0, z: position.z }, scene);
+                }
+                
+            })
+    },
     cancelTowerButtonClick: ({ cancelTowerButtonClick$ }: { cancelTowerButtonClick$: CancelTowerButtonClick$ }) => {
         cancelTowerButtonClick$
             .filter(() => !!towerPropose)

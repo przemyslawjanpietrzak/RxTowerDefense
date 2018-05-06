@@ -17,7 +17,7 @@ export class TowerNet {
       return !this.findTowerInRange(position);
     }
 
-    public findTowerInRange(position: StagePosition): StagePosition {
+    public findTowerInRange(position: StagePosition): StagePosition | undefined {
         return this.towers.find(({ x, z }) => areInDistance(x, position.x, MIN_TOWER_DISTANE) && areInDistance(z, position.z, MIN_TOWER_DISTANE))
     }
 
