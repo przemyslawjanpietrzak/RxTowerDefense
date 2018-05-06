@@ -1,28 +1,24 @@
 import { FLOOR_SIZE } from '../scene/settings';
 
-import { Tower } from './models';
 import { StagePosition } from '../common/models';
+import { areInDistance } from '../common/utils';
+
+import { MIN_TOWER_DISTANE } from './settings';
 
 export class TowerNet {
 
     private towers: Array<StagePosition> = [];
 
     public addTower(position: StagePosition): void {
-        this.towers.push(
-            this.roundPosition(position)
-        );
+        this.towers.push(position);
     }
 
     public canAdd(position: StagePosition): boolean {
-        const { x, z } = this.roundPosition(position);
-
-        return !this.towers.find(({ x: towerX, z: towerZ }) => towerX === x && towerZ === z);
+      return !this.findTowerInRange(position);
     }
 
-    private roundPosition({ x, z }: StagePosition): StagePosition {
-        return {
-            x: Math.round(x),
-            z: Math.round(z),
-        }
+    public findTowerInRange(position: StagePosition): StagePosition {
+        return this.towers.find(({ x, z }) => areInDistance(x, position.x, MIN_TOWER_DISTANE) && areInDistance(z, position.z, MIN_TOWER_DISTANE))
     }
+
 }

@@ -9,6 +9,7 @@ import { scene } from '../scene/scene';
 
 import { hideTowerArea, towerAreaFactory } from './area';
 import { NewTower$, TowerArea, TowerShape } from './models';
+import { TowerNet } from './net';
 import { TOWER_COST } from './settings';
 import { hideTowerShape, showTowerShape } from './shape';
 import { towerFactory } from './towers';
@@ -18,6 +19,8 @@ let towerArea: TowerArea | null = null;
 let showTowerPropose: boolean = false;
 let money: number = INITIAL_WALLET_STATE;
 
+const towerNet = new TowerNet();
+
 export const effects = {
     addTowerButtonClick: ({ addTowerButtonClick$ }: { addTowerButtonClick$: AddTowerButtonClick$ }) => {
         addTowerButtonClick$
@@ -26,9 +29,10 @@ export const effects = {
                 showTowerPropose = true;
             });
     },
-    sceneClick: ({ newTower$, sceneClick$ }: { newTower$: NewTower$, sceneClick$: SceneClick$ }) => {
+    setTowerProposal: ({ newTower$, sceneClick$ }: { newTower$: NewTower$, sceneClick$: SceneClick$ }) => {
         sceneClick$
             .filter(() => showTowerPropose)
+            .filter(position => towerNet.canAdd(position))
             .subscribe(({ x, z }) => {
                 if (towerPropose) {
                     hideTowerShape(towerPropose);
@@ -61,6 +65,7 @@ export const effects = {
                 hideTowerShape(towerPropose);
                 towerArea = hideTowerArea(towerArea, scene);
                 towerFactory(x, z);
+                towerNet.addTower({ x, z });
                 showTowerPropose = false;
             });
     },

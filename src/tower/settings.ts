@@ -9,3 +9,5 @@ export const TOWER_COST = 500;
 export const TOWER_AREA_RADIUS = 5;
 export const TOWER_AREA_SEGMENTS = 32;
 export const TOWER_AREA_Y = 0.1;
+
+export const MIN_TOWER_DISTANE = 5;
