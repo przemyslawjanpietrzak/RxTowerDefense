@@ -13,10 +13,10 @@ export class TowerNet {
         );
     }
 
-    public isSpaceForTower(position: StagePosition): boolean {
+    public canAdd(position: StagePosition): boolean {
         const { x, z } = this.roundPosition(position);
 
-        return !!this.towers.find(({ x: towerX, z: towerZ }) => towerX === x && towerZ === z);
+        return !this.towers.find(({ x: towerX, z: towerZ }) => towerX === x && towerZ === z);
     }
 
     private roundPosition({ x, z }: StagePosition): StagePosition {
