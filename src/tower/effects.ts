@@ -32,7 +32,7 @@ export const effects = {
     setTowerProposal: ({ newTower$, sceneClick$ }: { newTower$: NewTower$, sceneClick$: SceneClick$ }) => {
         sceneClick$
             .filter(() => showTowerPropose)
-            .filter(position => towerNet.canAdd(position))
+            .filter((position) => towerNet.canAdd(position))
             .subscribe(({ x, z }) => {
                 if (towerPropose) {
                     hideTowerShape(towerPropose);
@@ -49,8 +49,8 @@ export const effects = {
     },
     toggleTowerArea: ({ sceneClick$ }: { sceneClick$: SceneClick$ }) => {
         sceneClick$
-            .map(position => towerNet.findTowerInRange(position))
-            .subscribe(position => {
+            .map((position) => towerNet.findTowerInRange(position))
+            .subscribe((position) => {
                 if (towerArea && !showTowerPropose) {
                     towerArea = hideTowerArea(towerArea, scene);
                 }
@@ -59,8 +59,8 @@ export const effects = {
                     hideTowerShape(towerPropose);
                     towerArea = towerAreaFactory({ x: position.x, y: 0, z: position.z }, scene);
                 }
-                
-            })
+
+            });
     },
     cancelTowerButtonClick: ({ cancelTowerButtonClick$ }: { cancelTowerButtonClick$: CancelTowerButtonClick$ }) => {
         cancelTowerButtonClick$
