@@ -33,5 +33,3 @@ export const runEffects = (effects: { [key: string]: (sinks: Sinks) => void}) =>
         effects[key](sinks);
     });
 };
-
-export const areInDistance = (x1: number, x2: number, minDistance: number): boolean => Math.abs(x1 - x2) <= minDistance;
