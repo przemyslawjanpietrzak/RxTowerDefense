@@ -5,7 +5,10 @@
         "dom",
         "es5",
         "es2018"
-      ]
+      ],
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "strictPropertyInitialization": true
     },
     "baseUrl": "types",
     "typeRoots": ["types"],
