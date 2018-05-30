@@ -1,12 +1,10 @@
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/merge';
-import 'rxjs/add/operator/timeInterval';
-
 import 'three/examples/js/controls/OrbitControls';
 import 'three/examples/js/lines/LineMaterial';
 import 'three/examples/js/renderers/CanvasRenderer';
 import 'three/examples/js/renderers/Projector.js';
 import ticker$ from './ticker';
+
+import { filter } from 'rxjs/operators';
 
 import scenario from './scenario';
 
@@ -65,7 +63,7 @@ runScene(sinks);
 
 let currentStep = 1;
 ticker$
-    .filter((counter) => counter / scenario.tickPerStep > currentStep)
+    .pipe(filter((counter) => counter / scenario.tickPerStep > currentStep))
     .subscribe(() => {
         currentStep++;
         document.getElementById('current-level').innerHTML = String(currentStep);

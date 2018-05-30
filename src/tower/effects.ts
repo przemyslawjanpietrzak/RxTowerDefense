@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 import { INITIAL_WALLET_STATE } from '../menu/settings';
 

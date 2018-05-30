@@ -1,3 +1,3 @@
-import { Subject } from 'rxjs/Rx';
+import { Subject } from 'rxjs';
 
 export type ChangeWalletState$ = Subject<number>;

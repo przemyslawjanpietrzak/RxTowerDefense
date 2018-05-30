@@ -1,4 +1,5 @@
-import { Observable } from 'rxjs/Rx';
+import { interval } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 import { playPauseButtonClick$ } from './menu/sinks';
 
@@ -10,6 +11,5 @@ playPauseButtonClick$
         isPlay = !isPlay;
     });
 
-export default Observable
-    .interval(MILLISECONDS_PER_TICK)
-    .filter(() => isPlay);
+export default interval(MILLISECONDS_PER_TICK)
+    .pipe(filter(() => isPlay));
