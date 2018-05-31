@@ -1,4 +1,6 @@
 
+import { filter } from 'rxjs/operators';
+
 import { getDistance } from '../common/utils';
 
 import { Ticker$ } from '../common/models';
@@ -20,9 +22,9 @@ export const effects = {
     },
     bulletHitEnemy: ({ bulletMove$ }: { bulletMove$: BulletMove$ }) => {
         bulletMove$
-            .filter(
+            .pipe(filter(
                 (bullet: Bullet) => getDistance(bullet.position.x, bullet.position.z, bullet.destinationX, bullet.destinationZ) <= bullet.speed,
-            )
+            ))
             .subscribe((bullet: Bullet) => {
                 bulletHitEnemy$.next({ bullet, enemy: bullet.enemy });
 
@@ -31,7 +33,7 @@ export const effects = {
     },
     ticker: ({ ticker$ }: { ticker$: Ticker$ }) => {
         ticker$
-            .filter(() => bulletToDie !== null)
+            .pipe(filter(() => bulletToDie !== null))
             .subscribe(() => {
                 bulletToDie.die();
                 bulletToDie = null;

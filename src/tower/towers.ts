@@ -1,3 +1,5 @@
+import { filter } from 'rxjs/operators';
+
 import { BoxGeometry, Mesh, MeshPhongMaterial } from 'three';
 
 import { enemyMove$ } from '../enemy/sinks';
@@ -43,7 +45,7 @@ export const towerFactory = (x: number, z: number): Tower => {
     });
 
     tower.enemySubscription = enemyMove$
-        .filter(() => tower.reloadBulletTime === 0)
+        .pipe(filter(() => tower.reloadBulletTime === 0))
         .subscribe((enemy: Enemy) => {
             if (isInDistance(tower, enemy.position)) {
                 tower.enemiesInRange.push(enemy);
