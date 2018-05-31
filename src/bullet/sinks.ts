@@ -1,4 +1,4 @@
-import { Subject } from 'rxjs/Rx';
+import { Subject } from 'rxjs';
 import { BulletHitEnemy$, BulletMove$ } from './models';
 
 /* tslint:disable */

@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs/Rx';
+import { fromEvent } from 'rxjs';
 
-export const addTowerButtonClick$ = Observable.fromEvent(document.getElementById('add'), 'click');
-export const cancelTowerButtonClick$ = Observable.fromEvent(document.getElementById('cancel'), 'click');
-export const confirmTowerButtonClick$ = Observable.fromEvent(document.getElementById('confirm'), 'click');
-export const playPauseButtonClick$ = Observable.fromEvent(document.getElementById('play-pause'), 'click');
+export const addTowerButtonClick$ = fromEvent(document.getElementById('add'), 'click');
+export const cancelTowerButtonClick$ = fromEvent(document.getElementById('cancel'), 'click');
+export const confirmTowerButtonClick$ = fromEvent(document.getElementById('confirm'), 'click');
+export const playPauseButtonClick$ = fromEvent(document.getElementById('play-pause'), 'click');

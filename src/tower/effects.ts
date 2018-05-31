@@ -1,4 +1,5 @@
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 import { INITIAL_WALLET_STATE } from '../menu/settings';
 
@@ -24,15 +25,17 @@ const towerNet = new TowerNet();
 export const effects = {
     addTowerButtonClick: ({ addTowerButtonClick$ }: { addTowerButtonClick$: AddTowerButtonClick$ }) => {
         addTowerButtonClick$
-            .filter(() => money >= TOWER_COST)
+            .pipe(filter(() => money >= TOWER_COST))
             .subscribe(() => {
                 showTowerPropose = true;
             });
     },
     setTowerProposal: ({ newTower$, sceneClick$ }: { newTower$: NewTower$, sceneClick$: SceneClick$ }) => {
         sceneClick$
-            .filter(() => showTowerPropose)
-            .filter((position) => towerNet.canAdd(position))
+            .pipe(
+                filter(() => showTowerPropose),
+                filter((position) => towerNet.canAdd(position)),
+            )
             .subscribe(({ x, z }) => {
                 if (towerPropose) {
                     hideTowerShape(towerPropose);
@@ -49,7 +52,7 @@ export const effects = {
     },
     toggleTowerArea: ({ sceneClick$ }: { sceneClick$: SceneClick$ }) => {
         sceneClick$
-            .map((position) => towerNet.findTowerInRange(position))
+            .pipe(map((position) => towerNet.findTowerInRange(position)))
             .subscribe((position) => {
                 if (towerArea && !showTowerPropose) {
                     towerArea = hideTowerArea(towerArea, scene);
@@ -64,7 +67,7 @@ export const effects = {
     },
     cancelTowerButtonClick: ({ cancelTowerButtonClick$ }: { cancelTowerButtonClick$: CancelTowerButtonClick$ }) => {
         cancelTowerButtonClick$
-            .filter(() => !!towerPropose)
+            .pipe(filter(() => !!towerPropose))
             .subscribe(() => {
                 showTowerPropose = false;
                 if (towerPropose) {
@@ -88,8 +91,10 @@ export const effects = {
         { confirmTowerButtonClick$, newTower$ }: { confirmTowerButtonClick$: ConfirmTowerButtonClick$, newTower$: NewTower$ },
     ) => {
         confirmTowerButtonClick$
-            .filter(() =>  showTowerPropose)
-            .filter(() => !!towerPropose)
+            .pipe(
+                filter(() =>  showTowerPropose),
+                filter(() => !!towerPropose),
+            )
             .subscribe(() => {
                 newTower$.next(towerPropose.position);
             });
