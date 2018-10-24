@@ -17,7 +17,7 @@
     "bundleSize": "bundlesize",
     "deploy:master": "aws s3 cp dist/ s3://rxtd-master --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --recursive",
     "deploy:pull-request": "aws s3 cp dist/ s3://rxtd-pr --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --recursive",
-    "deploy": "if [ \"$TRAVIS_BRANCH\" -eq \"develop\" ]; then yarn run delpoy:develop; elif [ $TRAVIS_BRANCH == \"master\" ]; then yarn run delpoy:master; else yarn run deploy:pull-request; fi"
+    "deploy": "if [ \"$TRAVIS_BRANCH\" -eq \"develop\" ]; then yarn run deploy:develop; elif [ $TRAVIS_BRANCH == \"master\" ]; then yarn run deploy:master; else yarn run deploy:pull-request; fi"
   },
   "author": "Przemyslaw Jan Pietrzak",
   "license": "MIT",
