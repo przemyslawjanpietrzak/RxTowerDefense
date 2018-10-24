@@ -7,8 +7,7 @@
         "es2018"
       ],
       "noImplicitAny": true,
-      "noImplicitReturns": true,
-      "strictPropertyInitialization": true
+      "noImplicitReturns": true
     },
     "baseUrl": "types",
     "typeRoots": ["types"],
