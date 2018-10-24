@@ -16,10 +16,10 @@ describe('utils - ', () => {
 
   it('getMove', () => {
     expect(
-      getMove({ x: 0, z: 0 }, {x: 10, z: 0}, 1)
+      getMove({ x: 0, y: 0, z: 0 }, {x: 10, z: 0}, 1)
     ).to.deep.equal({ x: 1, z: 0 });
     expect(
-      getMove({ x: 0, z: 0 }, {x: 10, z: 10}, 1)
+      getMove({ x: 0, y: 0, z: 0 }, {x: 10, z: 10}, 1)
     ).to.deep.equal({ x: 0.7071067811865476, z: 0.7071067811865475 });
   });
 

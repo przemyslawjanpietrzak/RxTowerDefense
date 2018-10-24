@@ -1,9 +1,10 @@
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var env = process.env.npm_lifecycle_event;
-var isProduction = env.includes('production')
+const getPath = file => path.resolve(__dirname, file);
+const env = process.env.npm_lifecycle_event;
+const isProduction = env.includes('production')
 
 module.exports = {
     entry: {
@@ -23,17 +24,17 @@ module.exports = {
                 path.resolve(__dirname, './src')
             ],
             exclude: [
-                'node_modules',
-                '**/*spec.ts',
+                getPath('node_modules'),
+                getPath('**/*spec.ts'),
             ]
         }, {
             test: /\.js$/,
             loader: 'ts-loader',
             include: [
-                path.resolve(__dirname, './src')
+                getPath('./src'),
             ],
             exclude: [
-                /node_modules/,
+                getPath('node_modules'),
             ]
         },]
     },

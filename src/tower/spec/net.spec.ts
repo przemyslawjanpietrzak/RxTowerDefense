@@ -5,7 +5,7 @@ import { NumberKeyframeTrack } from 'three';
 
 describe('tower net - ', () => {
 
-    let net;
+    let net: TowerNet;
 
     beforeEach(() => {
         net = new TowerNet();
