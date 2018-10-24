@@ -10,7 +10,7 @@
   version "5.2.5"
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-5.2.5.tgz#8a4accfc403c124a0bafe8a9fc61a05ec1032073"
 
-"@types/three@^0.93.4":
+"@types/three@0.93.4":
   version "0.93.4"
   resolved "https://registry.yarnpkg.com/@types/three/-/three-0.93.4.tgz#c79037715c8a02ab6549e4e81278eab589ceba53"
 
