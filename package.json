@@ -17,13 +17,14 @@
     "bundleSize": "bundlesize",
     "deploy:master": "aws s3 cp dist/ s3://rxtd-master --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --recursive",
     "deploy:pull-request": "aws s3 cp dist/ s3://rxtd-pr --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --recursive",
-    "deploy": "if [ \"$TRAVIS_BRANCH\" -eq \"develop\" ]; then yarn run delpoy:develop; elif [ $TRAVIS_BRANCH == \"master\" ]; then yarn run delpoy:master; else yarn run deploy:pull-request; fi"
+    "deploy": "if [ \"$TRAVIS_BRANCH\" -eq \"develop\" ]; then yarn run deploy:develop; elif [ $TRAVIS_BRANCH == \"master\" ]; then yarn run deploy:master; else yarn run deploy:pull-request; fi"
   },
   "author": "Przemyslaw Jan Pietrzak",
   "license": "MIT",
   "devDependencies": {
     "@types/chai": "^4.1.6",
     "@types/mocha": "^5.2.5",
+    "@types/three": "0.93.4",
     "bundlesize": "^0.17.0",
     "chai": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
@@ -40,7 +41,6 @@
     "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
-    "@types/three": "^0.93.4",
     "rxjs": "^6.3.3",
     "three": "^0.97.0"
   },
