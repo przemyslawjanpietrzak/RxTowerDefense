@@ -1,5 +1,3 @@
-import { FLOOR_SIZE } from '../scene/settings';
-
 import { StagePosition } from '../common/models';
 
 import { MIN_TOWER_DISTANE } from './settings';

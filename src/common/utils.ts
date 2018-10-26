@@ -28,7 +28,7 @@ export const getTickerPerEnemy = (counter: number, scenario: Scenario): number =
     return scenario.parts[currentPart].tickPerEnemy;
 };
 
-export const runEffects = (effects: { [key: string]: (sinks: Sinks) => void}) => (sinks: Sinks) => {
+export const runEffects = (effects: { [key: string]: (sinks: Sinks) => void}) => (sinks: Sinks): void => {
     Object.keys(effects).forEach((key: string) => {
         effects[key](sinks);
     });

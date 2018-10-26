@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 
 import { TowerNet } from '../net';
-import { NumberKeyframeTrack } from 'three';
 
 describe('tower net - ', () => {
 
