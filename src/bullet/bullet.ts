@@ -16,7 +16,7 @@ const die = (bullet: Bullet) => {
     scene.remove(bullet);
 };
 
-export const bulletFactory = ({ x, y, z }: Point, enemy: Enemy): Bullet => {
+export const bulletFactory = ({ x, z }: Point, enemy: Enemy): Bullet => {
 
     const { x: destinationX, z: destinationZ } = enemy.position;
 

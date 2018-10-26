@@ -1,4 +1,4 @@
-import { merge, Observable } from 'rxjs';
+import { merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { INITIAL_WALLET_STATE } from '../menu/settings';
 

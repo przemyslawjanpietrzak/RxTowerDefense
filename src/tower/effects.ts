@@ -30,7 +30,7 @@ export const effects = {
                 showTowerPropose = true;
             });
     },
-    setTowerProposal: ({ newTower$, sceneClick$ }: { newTower$: NewTower$, sceneClick$: SceneClick$ }) => {
+    setTowerProposal: ({ sceneClick$ }: { sceneClick$: SceneClick$ }) => {
         sceneClick$
             .pipe(
                 filter(() => showTowerPropose),
