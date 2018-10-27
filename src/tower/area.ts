@@ -9,7 +9,7 @@ import { TOWER_AREA_RADIUS, TOWER_AREA_SEGMENTS, TOWER_AREA_Y, TOWER_COLOR } fro
 export const towerAreaFactory = ({ x, y, z }: Point, scene: Scene): Mesh => {
     const geometry = new CircleGeometry(TOWER_AREA_RADIUS, TOWER_AREA_SEGMENTS);
     const material = new MeshBasicMaterial({ color: TOWER_COLOR, wireframe: true });
-    const circle: Mesh = new Mesh(geometry, material);
+    const circle = new Mesh(geometry, material);
     circle.position.set(x, y + TOWER_AREA_Y, z);
     circle.rotation.x = -RIGHT_ANGLE;
 
@@ -18,8 +18,7 @@ export const towerAreaFactory = ({ x, y, z }: Point, scene: Scene): Mesh => {
     return circle;
 };
 
-export const toggleAreaFactory = (tower: Tower, scene: Scene) => {
-    return () => {
+export const toggleAreaFactory = (tower: Tower, scene: Scene) => () => {
         const areaWasVisible = tower.areaVisible;
         if (areaWasVisible) {
             scene.remove(tower.area);
@@ -28,7 +27,6 @@ export const toggleAreaFactory = (tower: Tower, scene: Scene) => {
         }
         tower.areaVisible = !areaWasVisible;
     };
-};
 
 export const hideTowerArea = (towerArea: TowerArea, scene: Scene): null => {
     scene.remove(towerArea);
