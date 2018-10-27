@@ -12,7 +12,8 @@
       "noUnusedParameters": true,
       "noUnusedLocals": true,
       "strictFunctionTypes": true,
-      "strictNullChecks": true
+      "strictNullChecks": true,
+      "strictPropertyInitialization": true
     },
     "baseUrl": "types",
     "typeRoots": ["types"],
