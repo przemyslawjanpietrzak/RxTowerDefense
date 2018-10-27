@@ -66,5 +66,9 @@ ticker$
     .pipe(filter((counter) => counter / scenario.tickPerStep > currentStep))
     .subscribe(() => {
         currentStep++;
-        document.getElementById('current-level').innerHTML = String(currentStep);
+        const currentLevelElement = document.getElementById('current-level');
+        if (currentLevelElement === null) {
+            return;
+        }
+        currentLevelElement.innerHTML = String(currentStep);
     });
