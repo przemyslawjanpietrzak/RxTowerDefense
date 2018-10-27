@@ -11,7 +11,8 @@
       "noImplicitThis": true,
       "noUnusedParameters": true,
       "noUnusedLocals": true,
-      "strictFunctionTypes": true
+      "strictFunctionTypes": true,
+      "strictNullChecks": true
     },
     "baseUrl": "types",
     "typeRoots": ["types"],

@@ -1,6 +1,8 @@
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
+import { Mesh } from 'three';
+
 import { INITIAL_WALLET_STATE } from '../menu/settings';
 
 import { AddTowerButtonClick$, CancelTowerButtonClick$, ConfirmTowerButtonClick$ } from '../menu/models';
@@ -58,8 +60,8 @@ export const effects = {
                     towerArea = hideTowerArea(towerArea, scene);
                 }
                 if (position) {
-                    hideTowerArea(towerArea, scene);
-                    hideTowerShape(towerPropose);
+                    hideTowerArea(towerArea as TowerArea, scene);
+                    hideTowerShape(towerPropose as TowerShape);
                     towerArea = towerAreaFactory({ x: position.x, y: 0, z: position.z }, scene);
                 }
 
@@ -73,15 +75,15 @@ export const effects = {
                 if (towerPropose) {
                     hideTowerShape(towerPropose);
                     towerPropose = null;
-                    towerArea = hideTowerArea(towerArea, scene);
+                    towerArea = hideTowerArea(towerArea as TowerArea, scene);
                 }
             });
     },
     newTower: ({ newTower$ }: { newTower$: NewTower$ }) => {
         newTower$
             .subscribe(({ x, z }) => {
-                hideTowerShape(towerPropose);
-                towerArea = hideTowerArea(towerArea, scene);
+                hideTowerShape(towerPropose as TowerShape);
+                towerArea = hideTowerArea(towerArea as Mesh, scene);
                 towerFactory(x, z);
                 towerNet.addTower({ x, z });
                 showTowerPropose = false;
@@ -93,10 +95,10 @@ export const effects = {
         confirmTowerButtonClick$
             .pipe(
                 filter(() =>  showTowerPropose),
-                filter(() => !!towerPropose),
+                filter(() => towerPropose !== null),
             )
             .subscribe(() => {
-                newTower$.next(towerPropose.position);
+                newTower$.next((towerPropose as Mesh).position);
             });
     },
     changeWalletState: ({ changeWalletState$ }: { changeWalletState$: Observable<number> }) => {

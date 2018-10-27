@@ -11,7 +11,7 @@ import { bulletFactory } from './bullet';
 import { Bullet, BulletMove$ } from './models';
 import { bulletHitEnemy$ } from './sinks';
 
-let bulletToDie: Bullet = null;
+let bulletToDie: Bullet | null = null;
 
 export const effects = {
     towerFireToEnemy: ({ towerFireToEnemy$ }: { towerFireToEnemy$: TowerFireToEnemy$ }) => {
@@ -33,9 +33,11 @@ export const effects = {
     },
     ticker: ({ ticker$ }: { ticker$: Ticker$ }) => {
         ticker$
-            .pipe(filter(() => bulletToDie !== null))
+            .pipe(
+                filter(() => bulletToDie !== null),
+            )
             .subscribe(() => {
-                bulletToDie.die();
+                (bulletToDie as Bullet).die();
                 bulletToDie = null;
         });
     },
