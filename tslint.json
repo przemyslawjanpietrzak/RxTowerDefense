@@ -3,7 +3,8 @@
     "extends": [
         "tslint:recommended",
         "tslint-eslint-rules",
-        "tslint-sonarts"
+        "tslint-sonarts",
+        "rxjs-tslint-rules"
     ],
     "jsRules": {},
     "rules": {
@@ -116,7 +117,15 @@
         "valid-typeof": true,
 
         "object-literal-sort-keys": false,
-        "member-ordering": false
+        "member-ordering": false,
+
+        "rxjs-add": true,
+        "rxjs-deep-operators": false,
+        "rxjs-finnish": true,
+        "rxjs-no-internal": true,
+        "rxjs-no-tap": true,
+        "rxjs-no-unsafe-first": true,
+        "rxjs-no-unsafe-scope": false
     },
     "rulesDirectory": [],
     "linterOptions": {
