@@ -5,6 +5,7 @@ import {
     DirectionalLightHelper,
     Mesh,
     MeshPhongMaterial,
+    // @ts-ignore
     OrbitControls,
     PerspectiveCamera,
     PlaneGeometry,
@@ -29,9 +30,9 @@ const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight,
 // renderer
 const renderer = new WebGLRenderer();
 renderer.shadowMap.type = BasicShadowMap;
-renderer.setPixelRatio( window.devicePixelRatio );
+renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild( renderer.domElement );
+document.body.appendChild(renderer.domElement);
 
 // controlls
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -77,9 +78,9 @@ const onDocumentMouseDown = (event: MouseEvent) => {
     mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
     mouse.y = - (event.clientY / renderer.domElement.clientHeight) * 2 + 1;
 
-    raycaster.setFromCamera( mouse, camera );
+    raycaster.setFromCamera(mouse, camera);
 
-    const intersects = raycaster.intersectObjects([ meshFloor ]);
+    const intersects = raycaster.intersectObjects([meshFloor]);
 
     if (intersects.length > 0) {
         const { point } = intersects[0];
@@ -93,7 +94,7 @@ scene.add(path);
 const animate = () => {
     controls.update();
 
-    requestAnimationFrame( animate );
+    requestAnimationFrame(animate);
     renderer.render(scene, camera);
 };
 
