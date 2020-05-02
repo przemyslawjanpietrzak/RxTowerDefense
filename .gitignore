@@ -1,6 +1,6 @@
-node_modules
-.idea
+.dart_tool
+.packages
+web/pubspec.lock
 build
-dist
-npm-debug.log
-yarn-error.log
+doc/api
+.idea
